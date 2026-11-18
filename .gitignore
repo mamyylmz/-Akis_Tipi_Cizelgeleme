@@ -1,0 +1,9 @@
+*.py[cod]
+.DS_Store
+.idea/
+.venv/
+.vscode/
+Thumbs.db
+__pycache__/
+venv/
+~$*

@@ -1,0 +1,9 @@
+
+[1] KONTROL
+    problem.py  [ta001] ..................... TAMAM (boyut=20, maxFEs=20000)
+    problem.py  [ta011] ..................... TAMAM (boyut=20, maxFEs=30000)
+    problem.py  [ta021] ..................... TAMAM (boyut=20, maxFEs=40000)
+    UYARI: ALGORITHMS sözlüğünde 1 algoritma var; final projesinde 5 algoritma zorunludur.
+    PSO        ................................ TAMAM
+
+    Tüm kontroller başarılı.

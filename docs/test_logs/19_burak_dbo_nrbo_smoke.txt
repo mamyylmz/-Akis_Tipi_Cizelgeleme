@@ -1,0 +1,11 @@
+[smoke/sphere] best_f=1.119652e-44, n_fes=10000
+[smoke/sphere] same-seed reproducible=True
+[smoke/sphere] best_f=1.374779e-196, n_fes=10000
+[smoke/sphere] same-seed reproducible=True
+[tek koşu, seed=2026, tam bütçe; bilimsel sonuç DEĞİL]
+ta001 DBO n_fes= 20000 best_f= 1324.0 BKS= 1278 süre=0.7s
+ta001 NRBO n_fes= 20000 best_f= 1302.0 BKS= 1278 süre=1.2s
+ta011 DBO n_fes= 30000 best_f= 1690.0 BKS= 1582 süre=1.8s
+ta011 NRBO n_fes= 30000 best_f= 1660.0 BKS= 1582 süre=2.5s
+ta021 DBO n_fes= 40000 best_f= 2357.0 BKS= 2297 süre=4.3s
+ta021 NRBO n_fes= 40000 best_f= 2402.0 BKS= 2297 süre=5.2s

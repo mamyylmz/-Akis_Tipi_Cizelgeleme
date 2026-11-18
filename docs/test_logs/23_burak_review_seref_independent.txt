@@ -1,0 +1,5 @@
+ta001: kendi üretecim == dosya: True; seed metadata=True; sha256 eşleşiyor=True; referans perm ile Cmax=1278, BKS=1278
+ta011: kendi üretecim == dosya: True; seed metadata=True; sha256 eşleşiyor=True; referans perm ile Cmax=1582, BKS=1582
+ta021: kendi üretecim == dosya: True; seed metadata=True; sha256 eşleşiyor=True; referans perm ile Cmax=2297, BKS=2297
+ta001 makine-1 ilk 5: [54, 83, 15, 71, 77]
+GENEL: PASS
