@@ -55,6 +55,7 @@ from algorithms.pso import pso                           # noqa: E402
 from algorithms.de import de                             # noqa: E402
 from algorithms.dbo import dbo                           # noqa: E402
 from algorithms.nrbo import nrbo                         # noqa: E402
+from algorithms.rime import rime                         # noqa: E402
 # from algorithms.ga import ga
 # ...
 
@@ -66,6 +67,7 @@ ALGORITHMS = {
     "DE": (de, {"F": 0.5, "CR": 0.9}),
     "DBO": (dbo, {"pop_size": 30, "k": 0.1, "b": 0.3, "S": 0.5}),
     "NRBO": (nrbo, {"pop_size": 30, "DF": 0.6}),
+    "RIME": (rime, {"pop_size": 30, "w": 5}),
     # "GA":  (ga,  {"pop_size": 50, "pc": 0.9, "pm": 0.1}),
 }
 
