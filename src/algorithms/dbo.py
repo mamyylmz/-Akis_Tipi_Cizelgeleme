@@ -141,7 +141,11 @@ def dbo(problem, max_fes, seed, pop_size=30, k=0.1, b=0.3, S=0.5,
             else:
                 theta_deg = int(rng.integers(1, 181))      # 1..180 degrees [code]
                 if theta_deg in (90, 180):
-                    x_new = pX[i].copy()                   # no update at pi/2, pi
+                    # Decision (docs/algorithm_interface.md §10, D1): follow the
+                    # paper text, no update at pi/2 and pi. The MATLAB demo's
+                    # guard is overwritten; at 90 deg it would take a step of
+                    # tan(pi/2) ~ 1.6e16 and throw the beetle onto a bound.
+                    x_new = pX[i].copy()
                 else:
                     theta = np.deg2rad(theta_deg)
                     x_new = pX[i] + np.tan(theta) * np.abs(pX[i] - XX[i])
@@ -151,6 +155,8 @@ def dbo(problem, max_fes, seed, pop_size=30, k=0.1, b=0.3, S=0.5,
             break
 
         # R = 1 - t/Tmax, with t/Tmax replaced by the consumed FE ratio.
+        # Decision D2 (§10): evaluated at the same point as in the MATLAB demo,
+        # i.e. after the rolling group, once per iteration.
         R = 1.0 - fes / max_fes
         X_star = X[int(np.argmin(fit))].copy()    # current local best X*
 

@@ -82,3 +82,11 @@
 **Projeye uyarlama.** `t/T_max` yerine `fes/max_fes` kullanılıyor. Her yeni konum değerlendirilir (1 FE). Kod: [src/algorithms/nrbo.py](../src/algorithms/nrbo.py). Test: [tests/test_nrbo.py](../tests/test_nrbo.py).
 
 **Durum:** İlk çalışan sürüm. Yazar koduyla eşleşiyor. Bağımsız inceleme BEKLİYOR.
+
+## Uyarlama kararları (20.11.2026)
+
+DBO ve NRBO'nun yazar kodundan ayrıldığı ya da ayrılmış gibi görünen beş nokta için kararlar ve gerekçeleri [docs/algorithm_interface.md §10](../docs/algorithm_interface.md)'da tablo halinde. Makale için özet:
+
+- DBO'da dans açısı 90° ya da 180° olduğunda makale metni izleniyor: konum güncellenmiyor.
+- DBO'daki `R` ve NRBO'daki `δ` katsayıları, yazar kodundaki hesaplanma noktalarında, `t/T_max` yerine `fes/max_fes` ile hesaplanıyor.
+- NRBO'da payda için önlem yok, yazar kodundaki gibi. Aralıktan büyük adımlar sınıra kırpılıyor.

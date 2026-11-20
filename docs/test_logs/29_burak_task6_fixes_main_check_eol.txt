@@ -1,0 +1,18 @@
+
+[1] KONTROL
+    problem.py  [ta001] ..................... TAMAM (boyut=20, maxFEs=20000)
+    problem.py  [ta011] ..................... TAMAM (boyut=20, maxFEs=30000)
+    problem.py  [ta021] ..................... TAMAM (boyut=20, maxFEs=40000)
+    UYARI: ALGORITHMS sözlüğünde 4 algoritma var; final projesinde 5 algoritma zorunludur.
+    PSO        ................................ TAMAM
+    DE         ................................ TAMAM
+    DBO        ................................ TAMAM
+    NRBO       ................................ TAMAM
+
+    Tüm kontroller başarılı.
+
+## Windows benzetimi (core.autocrlf=true klon, work/burak .gitattributes ile)
+i/lf    w/lf    attr/text eol=lf      	data/taillard/reference_solutions.json
+i/lf    w/lf    attr/text eol=lf      	data/taillard/ta001.txt
+i/lf    w/lf    attr/text eol=lf      	data/taillard/ta011.txt
+i/lf    w/lf    attr/text eol=lf      	data/taillard/ta021.txt

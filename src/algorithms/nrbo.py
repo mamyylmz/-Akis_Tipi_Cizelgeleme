@@ -123,7 +123,9 @@ def nrbo(problem, max_fes, seed, pop_size=30, DF=0.6):
     # (C) Main loop: FE-based condition.
     with np.errstate(divide="ignore", invalid="ignore", over="ignore"):
         while fes < max_fes:
-            delta = (1.0 - 2.0 * fes / max_fes) ** 5               # Eq.(29)
+            # Eq.(29). Decision N1 (§10): once per iteration, at its start,
+            # as in MATLAB (it = 1 first); it/MaxIt -> fes/max_fes.
+            delta = (1.0 - 2.0 * fes / max_fes) ** 5
 
             for i in range(N):
                 if fes >= max_fes:
@@ -138,6 +140,9 @@ def nrbo(problem, max_fes, seed, pop_size=30, DF=0.6):
                 X2 = best_pos - nrsr + rho                          # Eq.(24)
 
                 # Eq.(28) and (22), fresh a1, a2 for every dimension.
+                # Decision N2 (§10): drawn as two vectors; MATLAB interleaves
+                # a1, a2 per dimension. Same distribution; numpy and MATLAB
+                # streams never coincide anyway.
                 X3 = xi - delta * (X2 - X1)
                 a1 = rng.random(D)
                 a2 = rng.random(D)
