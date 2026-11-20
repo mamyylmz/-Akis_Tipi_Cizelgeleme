@@ -30,6 +30,7 @@ Algoritma `decode`, `objective`, `processing_times` gibi PFSP'ye özgü öğeler
 2. Ana döngü `while fes < max_fes`. Her değerlendirmeden önce `if fes >= max_fes: break` yazılır. Bütçe popülasyonun ya da bir alt grubun ortasında bitebilir.
 3. Sonuç: `n_fes == max_fes` (ne az ne çok). `main.py --check` iki yönü de sınar.
 4. İterasyona bağlı katsayılar (`t/T`, DBO'nun `R`'si, NRBO'nun `δ`'sı) harcanan FE oranıyla hesaplanır: `t/T → fes/max_fes`. Bu bir uyarlamadır, makalede "uyarlama" olarak yazılır.
+   - **Kabul edilen alternatif (20.11.2026, PFSP-RIME-01):** Yazar kodunda katsayı iterasyon indeksine periyodik ya da basamaklı biçimde bağlıysa (RIME'daki `cos(π·it/(Max_iter/10))` ve `round(it·W/Max_iter)` gibi), iterasyon indeksi korunabilir. Koşulları: `Max_iter = ceil((max_fes − N)/N)` olarak hesaplanır, son tur bütçe bitince kesilir ve seçim algoritmanın dosya başlığında ve yöntem notunda belgelenir. Şu an bunu RIME kullanıyor.
 5. Sayaç dışında değerlendirme yoktur: "en iyiyi tekrar hesaplama", "yeniden sıralama için değerlendirme" gibi çağrılar da FE'dir.
 
 ## 4. Rastgelelik
@@ -79,7 +80,7 @@ Fonksiyon ekrana yazmaz, dosya kaydetmez. `if __name__ == "__main__":` bloğunda
 | PSO | `src/algorithms/pso.py` | evet | ders örnek kodu |
 | DE | `src/algorithms/de.py` | evet | nesil tabanlı düzeltme yapıldı (PFSP-K6-01); Şeref'in yeniden incelemesi BEKLİYOR |
 | DBO | `src/algorithms/dbo.py` | evet | ilk çalışan sürüm, yazar koduyla eşleşiyor; bağımsız inceleme BEKLİYOR |
-| RIME | yok | hayır | Muhammed |
+| RIME | `src/algorithms/rime.py` (PR #4) | PR #4'te evet | Burak incelemesi KABUL ([review_burak_rime_2026-11-20.md](review_burak_rime_2026-11-20.md)); Tarık teyidi ve birleştirme bekleniyor |
 | NRBO | `src/algorithms/nrbo.py` | evet | ilk çalışan sürüm, yazar koduyla eşleşiyor; bağımsız inceleme BEKLİYOR |
 
 ## 10. DBO ve NRBO kaynak uyarlama kararları (20.11.2026)
