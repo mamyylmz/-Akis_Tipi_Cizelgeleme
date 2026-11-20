@@ -1,0 +1,5 @@
+# Benchmark data is verified byte-for-byte with SHA-256 (src/problem.py).
+# Git must never convert its line endings, on any platform or core.autocrlf
+# setting; otherwise Windows checkouts get CRLF and the hash check fails.
+data/taillard/*.txt text eol=lf
+data/taillard/*.json text eol=lf

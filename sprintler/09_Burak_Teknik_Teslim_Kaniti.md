@@ -15,3 +15,15 @@
 | İstenen düzeltme / yeni tarih | P1-03 (RIME): dosya gelince. P1-04: Şeref ve Tarık, 22.11.2026'ya kadar |
 | Yeniden kabul şartı | İnceleyici aynı seed ile iki koşuyu tekrarlar, FE sayısını bağımsız sayaçla doğrular ve kodu [21](../docs/test_logs/21_dbo_author_matlab_reference.m) / [22](../docs/test_logs/22_nrbo_author_matlab_reference.m) referans kopyalarıyla satır satır karşılaştırır |
 | Nihai durum | **İNCELEME BEKLİYOR**. Arayüz, DBO ve NRBO çalışıyor ve yazar koduyla eşleşiyor. Görev 4: Şeref incelemesi yapıldı, RIME incelemesi açık |
+
+## Ek · 20.11.2026 · Görev 6 denetimine yanıt (`work/burak`)
+
+| Denetim maddesi | Yapılan | Durum |
+|---|---|---|
+| P0-01 Windows CRLF | `.gitattributes`: `data/taillard/*.txt` ve `*.json` için `eol=lf`. `core.autocrlf=true` ile klonlanan eski `main`'de hash kontrolü 0/3; yeni dalda 3/3, 51 test OK | DÜZELTİLDİ / Windows'ta gerçek checkout ile Tarık'ın teyidi bekleniyor |
+| P1-01 DBO | 90°/180° ve `R` zamanlaması için kararlar ve gerekçeleri [algorithm_interface.md §10](../docs/algorithm_interface.md) (D1, D2). Davranış değişmedi | KARAR BELGELENDİ / Şeref onayı bekleniyor |
+| P1-02 NRBO | `δ` zamanlaması, çekiliş sırası ve payda politikası (N1–N3) belgelendi. Paydanın küçük artı ve eksi olduğu 4 durum ile gerçek koşudaki dev adım testi eklendi. Davranış değişmedi | KARAR BELGELENDİ / Şeref onayı bekleniyor |
+| P0-02 RIME | Muhammed'in `work/muhammed` PR'ı; entegrasyon incelemesi henüz yapılmadı | AÇIK |
+| P2-01 Sınırda birikme | Ölçüm ve kıyas deneyi henüz yapılmadı | AÇIK |
+
+Kanıt: [28_burak_task6_fixes_unittest_all.txt](../docs/test_logs/28_burak_task6_fixes_unittest_all.txt) (54 test OK, 2 RIME skip), [29_burak_task6_fixes_main_check_eol.txt](../docs/test_logs/29_burak_task6_fixes_main_check_eol.txt).

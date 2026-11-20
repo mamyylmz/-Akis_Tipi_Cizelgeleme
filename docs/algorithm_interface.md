@@ -81,3 +81,20 @@ Fonksiyon ekrana yazmaz, dosya kaydetmez. `if __name__ == "__main__":` bloğunda
 | DBO | `src/algorithms/dbo.py` | evet | ilk çalışan sürüm, yazar koduyla eşleşiyor; bağımsız inceleme BEKLİYOR |
 | RIME | yok | hayır | Muhammed |
 | NRBO | `src/algorithms/nrbo.py` | evet | ilk çalışan sürüm, yazar koduyla eşleşiyor; bağımsız inceleme BEKLİYOR |
+
+## 10. DBO ve NRBO kaynak uyarlama kararları (20.11.2026)
+
+Bu bölüm, Görev 6 denetimindeki P1-01 ve P1-02 maddelerine yanıttır ([audit_burak_task6_fix_report.md](../results/audit_burak_task6_fix_report.md)). Her karar yazarların MATLAB koduyla karşılaştırıldı: [DBO](test_logs/21_dbo_author_matlab_reference.m), [NRBO](test_logs/22_nrbo_author_matlab_reference.m). Yayıncı tam metinleri açılmadı; karşılaştırmanın dayanağı yazar kodudur. Kararların bağımsız onayı Şeref'te.
+
+| Kod | Algoritma | Yazar kodu | Bizim kod | Karar ve gerekçe |
+|---|---|---|---|---|
+| D1 | DBO dans, θ = 90°/180° | Önce `x = pX` atanıyor, sonra satır `tan(θ)` güncellemesiyle eziliyor. 90°'de adım `tan(π/2) ≈ 1,6·10¹⁶` (böcek sınıra fırlıyor), 180°'de `tan(π) ≈ −1,2·10⁻¹⁶` (pratikte hareket yok) | Konum güncellenmiyor | **Makale metni izleniyor.** Yazar kodundaki koruma satırı ölü kod; 90°'deki adım kayan nokta yapaylığı ve sınırda birikmeyi artırır. 180°'de iki davranış pratikte aynı. Etki: dans adımlarının 1/180'i |
+| D2 | DBO `R = 1 − t/T_max` | Yuvarlama grubundan sonra, iterasyon başına bir kez; `t` = iterasyon sayısı | Aynı noktada, iterasyon başına bir kez; `t/T_max → fes/max_fes` | **Korunuyor.** Hesaplanma noktası yazar koduyla aynı; FE oranı ders şablonunun kuralı (§3.4). Tarık'ın sabit çekiliş testi bu davranışı doğruluyor |
+| N1 | NRBO `δ = (1 − 2t/T_max)^5` | İterasyon başında, `it = 1`'den başlayarak | İterasyon başında, `fes/max_fes` ile. İlk iterasyonda `fes = N`, yani `2N/max_fes ≈ 2/MaxIt`; yazarın `it = 1` başlangıcıyla aynı | **Korunuyor** |
+| N2 | NRBO a1, a2 çekiliş sırası | Her boyut için sırayla `a1, a2` | Önce bütün `a1` vektörü, sonra `a2` vektörü | **Korunuyor.** Dağılım aynı. numpy ve MATLAB rastgele sayı akışları zaten hiçbir zaman çakışmaz, yani "aynı sıra" sayısal bir eşleşme sağlamaz |
+| N3 | NRBO payda sıfır ya da sıfıra yakın | Önlem yok. `min(max(x, LB), UB)` NaN'ı LB'ye, ±Inf'i sınıra çekiyor | Önlem yok; `np.fmin/np.fmax` aynı eşlemeyi yapıyor | **Yazar kodu izleniyor** (önlem eklemek kaynaktan sapma olur). Ölçüm: ta001 ve ta021'de, seed 2026–2028, tam bütçe; payda hiç 0 olmadı, 10⁻⁶'nın altına da inmedi. NRSR bileşenlerinin %0,16–0,45'i aralıktan büyük (`> 1`) ve sınıra kırpılıyor. Bu, sınırda birikmeye katkı yapan bilinen bir etki (P2-01) |
+
+Testler ([tests/test_nrbo.py](../tests/test_nrbo.py)):
+- Her iki paydanın küçük artı ve küçük eksi olduğu dört durum, testin içinde ayrıca yazılmış bir hesapla birebir karşılaştırılıyor (göreli tolerans 10⁻¹²).
+- Tam sıfır paydası (0/0) ayrı bir testte sınanıyor.
+- Gerçek bir ta021 koşusunda dev adımların oluştuğu ve hiçbirinin sınırlanmadan değerlendirmeye girmediği doğrulanıyor.
