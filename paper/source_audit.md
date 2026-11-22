@@ -50,7 +50,7 @@ Dersin resmî Problem 7 belgesindeki işlem süreleri bağımsız olarak yeniden
 
 **CUJAST:** Resmî amaç-kapsam sayfası mühendislik/doğa bilimleri için özgün sayısal araştırmaları kapsıyor. Resmî yazım kuralları ve gönderim dosyaları sayfası kontrol edildi. Ayrı makale template bağlantısı yayımlanmıyorsa bu eksiklik uydurma bir bağlantıyla doldurulmaz; mevcut resmî yazım kuralları uygulanır ve nihai gönderim günü tekrar kontrol edilir.
 
-NASE birinci, CUJAST ikinci hedeftir; nihai seçim danışmana aittir. 22.11.2026 güncel NASE Author Guidelines, gönderim metnini İngilizce ister ve ana bölümleri Introduction, Materials and Methods, Results and Discussion, Conclusion olarak verir; ders sürümü bu yapıya final gönderim aşamasında dönüştürülecektir.
+NASE birinci, CUJAST ikinci hedeftir; nihai seçim danışmana aittir. 22.11.2026 güncel NASE Author Guidelines, gönderim metni için İngilizce/Türkçe kabul eder ve ana bölümleri Introduction, Materials and Methods, Results and Discussion, Conclusion olarak verir; ders sürümü bu yapıya final gönderim aşamasında dönüştürülecektir.
 
 ## 5. Kapanan önceki bulgular
 
