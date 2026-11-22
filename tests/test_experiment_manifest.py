@@ -1,6 +1,8 @@
 from __future__ import annotations
 
+import json
 import sys
+import tempfile
 import unittest
 from pathlib import Path
 from unittest.mock import patch
@@ -31,6 +33,18 @@ class TestExperimentManifest(unittest.TestCase):
         self.assertEqual(set(manifest["algorithm_parameters"]), set(manifest["algorithms"]))
         for key in ("os", "python", "numpy", "scipy", "pandas"):
             self.assertTrue(manifest["environment"][key])
+
+    def test_save_settings_writes_manifest_automatically(self):
+        provenance = {"commit": "c" * 40, "dirty": False}
+        with tempfile.TemporaryDirectory() as tmp:
+            with patch.object(main, "TAB_DIR", Path(tmp)):
+                with patch.object(main, "_git_provenance", return_value=provenance):
+                    manifest = main._build_experiment_manifest(3)
+                    main._save_settings(3, manifest)
+            saved = json.loads((Path(tmp) / "experiment_manifest.json").read_text(encoding="utf-8"))
+            self.assertEqual(saved, manifest)
+            self.assertTrue((Path(tmp) / "parametre_ayarlari.csv").exists())
+            self.assertTrue((Path(tmp) / "deney_ayarlari.json").exists())
 
     def test_final_run_requires_clean_git_and_exact_five_algorithms(self):
         good = {
