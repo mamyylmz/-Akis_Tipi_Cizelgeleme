@@ -273,10 +273,10 @@ def _validate_final_experiment_preconditions(n_runs: int, manifest: dict) -> Non
     if n_runs != N_RUNS:
         return
 
-    if tuple(ALGORITHMS) != FINAL_ALGORITHMS:
+    if len(ALGORITHMS) != len(FINAL_ALGORITHMS) or set(ALGORITHMS) != set(FINAL_ALGORITHMS):
         raise KontrolHatasi(
             "Final deney için algoritma kaydı tam olarak "
-            f"{FINAL_ALGORITHMS} olmalı; şu an {tuple(ALGORITHMS)}."
+            f"{FINAL_ALGORITHMS} kümesini içermeli; şu an {tuple(ALGORITHMS)}."
         )
 
     commit = manifest.get("experiment_commit")
