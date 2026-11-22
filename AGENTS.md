@@ -29,4 +29,4 @@ Git history is unavailable in this workspace. Use a short, descriptive commit su
 
 ## Negative Quality Rules
 
-Before accepting technical or paper work, read `docs/NEGATIF_KOMUTLAR_VE_KALITE_KARARLARI.md`. In particular: do not fabricate missing data or files, do not edit acceptance tests merely to make them pass, do not mark unverified literature details as verified, do not treat `main.py --check` as sufficient scientific validation, and do not close P0/P1 findings without rerunning the relevant evidence on the corrected files.
+Before accepting technical or paper work, read `docs/KALITE_KARARLARI.md`. In particular: do not fabricate missing data or files, do not edit acceptance tests merely to make them pass, do not mark unverified literature details as verified, do not treat `main.py --check` as sufficient scientific validation, and do not close P0/P1 findings without rerunning the relevant evidence on the corrected files.
