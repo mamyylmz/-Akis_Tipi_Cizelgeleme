@@ -141,7 +141,7 @@ Wilcoxon/Holm, Friedman/Nemenyi sonuç tabloları ve CD diyagramı. Sayısal far
 
 ### 4.7. En İyi Çözüm ve Gantt Gösterimi
 
-En iyi permütasyon, bağımsız yeniden hesaplanan Cmax, 15 işlemlik küçük örnek zaman tablosu ve doğrulanmış Gantt. Başlangıç/bitiş, öncelik ve çakışma denetimi. [Gantt planı](../docs/gantt_plan.md).
+En iyi permütasyon, bağımsız yeniden hesaplanan Cmax, 15 işlemlik küçük örnek zaman tablosu ve doğrulanmış Gantt. Başlangıç/bitiş, öncelik ve çakışma denetimi. [Doğrulanmış küçük örnek zaman çizelgesi](support/small_example_schedule.md).
 
 ### 4.8. Hesaplama Maliyeti
 

@@ -15,7 +15,7 @@ GitHub repository mpremme/Newton-Raphson-Based-Optimizer-NRBO- (created
 2024-01-21); an independent copy (lexiangrui/CUMCM2025 code/NRBO/NRBO.m) is
 identical. Equation numbers refer to the open-access restatement in
 Sci. Rep. 2026, PMC13310854 (Eqs. 17-35), which matches the authors' code.
-Reference copy: docs/test_logs/22_nrbo_author_matlab_reference.m
+Author-code reference: https://github.com/mpremme/Newton-Raphson-Based-Optimizer-NRBO-
 
 Faithful details taken from the authors' code:
 - DF = 0.6, N = 30 (Main.m).

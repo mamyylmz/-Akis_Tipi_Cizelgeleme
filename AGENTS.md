@@ -1,32 +1,36 @@
 # Repository Guidelines
 
-## Project Structure
+Bu dosya yapay zekâ ajanları ve ekip üyeleri için kısa yönlendirmedir. Ayrıntılı kuralları burada kopyalama; canonical kaynakları oku.
 
-This workspace contains planning, paper, benchmark, model, tests, and initial algorithm code for YMM4142 Problem 7. The objective is to minimize makespan (Cmax) in the permutation flow shop scheduling problem (PFSP).
+## Önce oku
 
-- Read `docs/PFSP_Ortak_Proje_ve_Makale_Calisma_Kilavuzu.md` for the shared project standard, article headings (Part III), allowed journals (section 18), and acceptance gates. Official course documents and applicable journal rules retain the priority defined in that guide.
-- This workspace is the repository root: `docs/PFSP_Ortak_Proje_ve_Makale_Calisma_Kilavuzu.md` corresponds to `Akis_Tipi_Cizelgeleme/docs/PFSP_Ortak_Proje_ve_Makale_Calisma_Kilavuzu.md` in the implementation repository. Do not create a duplicate nested repository directory.
+1. `docs/PFSP_Ortak_Proje_ve_Makale_Calisma_Kilavuzu.md`
+2. `docs/KALITE_KARARLARI.md`
+3. `docs/GIT_WORKFLOW.md`
+4. `docs/quality_status.md`
+5. ilgili `worklists/<isim>.md`
 
-- `sprintler/` contains the team plan, sprint assignments, and delivery evidence template. Start with `00_EKIP_ILK_SPRINT_VE_3_ARALIK_PLANI.md`.
-- `kişiyeözeldosyaları/` contains role-specific instructions.
-- The repository layout uses `src/problem.py` for the PFSP model, `src/algorithms/` for optimizers, `tests/` for independent checks, `data/taillard/` for benchmark files, and `docs/` / `paper/` for research materials. The PFSP model, required Taillard data, DE implementation, and their tests are present. The remaining algorithms and final 30-run experiment results are not yet complete.
+## Teknik sözleşme
 
-## Development Commands
+- Amaç: PFSP makespan / Cmax minimizasyonu.
+- Algoritmalar: DE, PSO, DBO, RIME, NRBO.
+- Random-key decode: stable argsort.
+- Benchmark: ta001=20k FE, ta011=30k FE, ta021=40k FE.
+- Final deney: 30 seed (2026–2055), toplam 450 koşu.
+- Seed kaynağı: `np.random.default_rng(seed)`.
+- Her objective çağrısı FE sayılır.
+- Testi geçsin diye seed, maxFEs, referans değer veya kabul kriteri değiştirilmez.
+- P0/P1 açıkken PASS/TAMAMLANDI yazılmaz.
+- Pilot/smoke sonuç final bilimsel veri değildir.
 
-Review Markdown changes directly in this workspace. In the implementation checkout, run `python src/main.py --check` from the root to smoke-test the course template. Run the independent model and algorithm checks before accepting a change. When using the runner's `--only-analysis` option, verify that all expected result files exist.
+## Git
 
-## Coding Style and Naming
+Yalnız kendi `work/<isim>` branch'inde değişiklik yap. Normal hedef `develop` PR'ıdır. `main` ve `develop` üzerine normal geliştirme push'u yapılmaz. Force-push/history rewrite kullanılmaz.
 
-Use four spaces for Python indentation and snake_case for new functions and modules. Preserve the course template's shared API and result fields such as `best_x`, `best_f`, and `n_fes`. Use deterministic random-key decoding with stable sorting and initialize randomness with `np.random.default_rng(seed)`. Record benchmark provenance and SHA-256 hashes in `data/README.md`.
+## Repo düzeni
 
-## Testing and Experiment Evidence
+Yeni tarihsel sprint dosyası, terminal logu veya kopya yazar kodu ekleme. Güncel görevler yalnız `worklists/` altında tutulur. Test kanıtı mümkünse CI ve PR üzerinde kalır. `results/` yalnız experiment-freeze sonrası final bilimsel çıktılar içindir.
 
-Use descriptive `test_*.py` filenames, such as `tests/test_problem.py` and `tests/test_contract.py`. Verify the documented five-job example yields Cmax = 20, reject invalid permutations, check same-seed reproducibility and function-evaluation budgets, and independently recompute the objective for the reported best permutation. Record seeds and retain raw results for each run.
+## Makale
 
-## Commits and Review
-
-Git history is unavailable in this workspace. Use a short, descriptive commit subject. In the PR or delivery record, include the commit SHA or file version, changed files, test commands, expected and observed results, and open issues. Use `sprintler/06_TESLIM_KANIT_SABLONU.md` for delivery evidence. Have an independent reviewer rerun at least one critical check before acceptance.
-
-## Negative Quality Rules
-
-Before accepting technical or paper work, read `docs/NEGATIF_KOMUTLAR_VE_KALITE_KARARLARI.md`. In particular: do not fabricate missing data or files, do not edit acceptance tests merely to make them pass, do not mark unverified literature details as verified, do not treat `main.py --check` as sufficient scientific validation, and do not close P0/P1 findings without rerunning the relevant evidence on the corrected files.
+Ders sürümünde `paper/outline.md` ve ortak kılavuz Bölüm III esas alınır. NASE gönderim sürümü için güncel kurallar `docs/journal_shortlist.md` içindedir. Kaynak erişim düzeyi açıkça yazılır; doğrulanmayan denklem veya sayı kesin bilgi olarak kullanılmaz.

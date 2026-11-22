@@ -31,7 +31,7 @@
 6. Küçük böcek: `x_i(t+1) = x_i(t) + C1·(x_i(t) − Lb^b) + C2·(x_i(t) − Ub^b)`, C1 ~ N(0,1) skaler, C2 ∈ U(0,1)^D.
 7. Hırsız: `x_i(t+1) = X^b + S·g·(|x_i(t) − X*| + |x_i(t) − X^b|)`, g ~ N(0,1)^D.
 
-> **Yazar kodu ile karşılaştırma (18.11.2026).** Yazarların MATLAB demo kodu ("Programmed by Jian-kai Xue, Updated 28 Nov. 2022", File Exchange #121318) GitHub kopyalarından alındı. İki bağımsız kopya birebir aynı. Referans kopya: [21_dbo_author_matlab_reference.m](../docs/test_logs/21_dbo_author_matlab_reference.m). Koddan doğrulananlar:
+> **Yazar kodu ile karşılaştırma (18.11.2026).** Yazarların MATLAB demo kodu ("Programmed by Jian-kai Xue, Updated 28 Nov. 2022", File Exchange #121318) GitHub kopyalarından alındı. İki bağımsız kopya birebir aynı. Yazar kodu referansı: MATLAB Central File Exchange #121318 (`https://www.mathworks.com/matlabcentral/fileexchange/121318-dung-beetle-optimizer-a-new-meta-heuristic-algorithm`). Depoda üçüncü taraf kaynak kod kopyası tutulmaz. Koddan doğrulananlar:
 > - Denk. (3)/(5)'te üst sınır `X·(1+R)`. İkincil kaynaktaki `(1−R)` bir yazım hatası.
 > - Denk. (7)'de mutlak değerler var ve S = 0.5 (`./2`).
 > - α = −1 olasılığı 0.1.
@@ -53,7 +53,7 @@
 
 **Denklem kontrolü için ikincil kaynaklar.** [S1] Sci. Rep. (2026), PMC13310854, orijinal NRBO bölümü, Denk. 17–35. [S2] Sci. Rep. (2025), PMC12000557, TAO bölümü.
 
-**Yazar kodu ile karşılaştırma (18.11.2026).** Yazarların MATLAB kodu (`NRBO.m`, `SearchRule.m`, `Main.m`; başlıkta "Authors, Inventors, and Programmers: Dr. Sowmya R, Dr. M. Premkumar, and Dr. Pradeep Jangir"), ikinci yazarın GitHub deposundan alındı: `mpremme/Newton-Raphson-Based-Optimizer-NRBO-`, 21.01.2024'te açılmış. Bağımsız bir kopya birebir aynı. Referans kopya: [22_nrbo_author_matlab_reference.m](../docs/test_logs/22_nrbo_author_matlab_reference.m).
+**Yazar kodu ile karşılaştırma (18.11.2026).** Yazarların MATLAB kodu (`NRBO.m`, `SearchRule.m`, `Main.m`; başlıkta "Authors, Inventors, and Programmers: Dr. Sowmya R, Dr. M. Premkumar, and Dr. Pradeep Jangir"), ikinci yazarın GitHub deposundan alındı: `mpremme/Newton-Raphson-Based-Optimizer-NRBO-`, 21.01.2024'te açılmış. Bağımsız bir kopya birebir aynı. Yazar kodu referansı: `https://github.com/mpremme/Newton-Raphson-Based-Optimizer-NRBO-`. Depoda üçüncü taraf kaynak kod kopyası tutulmaz.
 
 **Arama mekanizması.** NRBO iki kurala dayanır. Newton–Raphson Arama Kuralı (NRSR), türevsiz bir Newton adımı kurar: ikinci türevi merkezi farkla yaklaştırır ve fonksiyon değeri yerine konumları kullanır. Tuzaktan Kaçınma Operatörü (TAO), DF olasılığıyla uygulanan, en iyi çözüme ve popülasyon ortalamasına dayalı bir sıçramadır.
 

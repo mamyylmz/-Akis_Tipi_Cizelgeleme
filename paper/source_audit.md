@@ -42,7 +42,7 @@ Dersin resmî Problem 7 belgesindeki işlem süreleri bağımsız olarak yeniden
 - bağıntı=`C[i,j]=max(C[i-1,j], C[i,j-1])+p[pi[i],j]`
 - gözlenen **Cmax=20** → **PASS**.
 
-15 işlemin başlangıç/bitiş zamanları `docs/gantt_plan.md` içine işlendi. Böylece önceki "veri bekleniyor" durumu kapatıldı; uydurma Gantt kullanılmadı.
+15 işlemin başlangıç/bitiş zamanları `paper/support/small_example_schedule.md` içine işlendi. Böylece önceki "veri bekleniyor" durumu kapatıldı; uydurma Gantt kullanılmadı.
 
 ## 4. Dergi kontrolü
 
@@ -50,7 +50,7 @@ Dersin resmî Problem 7 belgesindeki işlem süreleri bağımsız olarak yeniden
 
 **CUJAST:** Resmî amaç-kapsam sayfası mühendislik/doğa bilimleri için özgün sayısal araştırmaları kapsıyor. Resmî yazım kuralları ve gönderim dosyaları sayfası kontrol edildi. Ayrı makale template bağlantısı yayımlanmıyorsa bu eksiklik uydurma bir bağlantıyla doldurulmaz; mevcut resmî yazım kuralları uygulanır ve nihai gönderim günü tekrar kontrol edilir.
 
-Bu aşamada NASE birinci, CUJAST ikinci hedeftir; nihai seçim danışmana aittir.
+NASE birinci, CUJAST ikinci hedeftir; nihai seçim danışmana aittir. 22.11.2026 güncel NASE Author Guidelines, gönderim metnini İngilizce ister ve ana bölümleri Introduction, Materials and Methods, Results and Discussion, Conclusion olarak verir; ders sürümü bu yapıya final gönderim aşamasında dönüştürülecektir.
 
 ## 5. Kapanan önceki bulgular
 

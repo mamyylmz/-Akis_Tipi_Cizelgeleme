@@ -1,45 +1,56 @@
-# PFSP — Akış Tipi Çizelgeleme Çalışma Alanı
+# PFSP — Akış Tipi Çizelgeleme
 
-Amaç, Permütasyon Akış Tipi Çizelgeleme Probleminde **makespan (Cmax) minimizasyonudur**. Depo artık hem araştırma/makale belgelerini hem de ders şablonuna dayalı teknik model altyapısını içerir.
+YMM4142 Optimizasyon Teorisi Problem 7 için Permütasyon Akış Tipi Çizelgeleme Problemi (PFSP) çalışma deposu. Amaç makespan / Cmax minimizasyonudur.
 
-## Başlangıç
+## Güncel durum
 
-1. [Ortak proje ve makale kılavuzu](docs/PFSP_Ortak_Proje_ve_Makale_Calisma_Kilavuzu.md)
-2. [Negatif komutlar ve kalite kararları](docs/NEGATIF_KOMUTLAR_VE_KALITE_KARARLARI.md)
-3. [Ekip planı](sprintler/00_EKIP_ILK_SPRINT_VE_3_ARALIK_PLANI.md)
-4. [Makale iskeleti](paper/outline.md) ve [kaynak denetimi](paper/source_audit.md)
-5. [Bilal teslim kanıtı](sprintler/07_Bilal_Literatur_Teslim_Kaniti.md)
-6. [Şeref/modelleme teslim kanıtı](sprintler/08_Seref_Modelleme_Teslim_Kaniti.md)
-7. [Model doğrulama raporu](docs/model_validation_report_2026-11-18.md)
+- Beş meta-sezgisel `develop` üzerinde entegre: DE, PSO, DBO, RIME, NRBO.
+- Zorunlu Taillard örnekleri: ta001, ta011, ta021.
+- Final deney protokolü: 5 × 3 × 30 = 450 koşu, toplam 13.500.000 FE.
+- Final 450 koşu henüz üretilmedi.
+- NEH klasik referans sezgiseli henüz tamamlanmadı.
+- DBO/NRBO için özgün makale-denklem ↔ kod eşleştirmesi proje düzeyinde açık P1'dir.
+- Tarık'ın deney/validator geliştirmeleri PR #5 üzerindedir ve akademik P1 kapanışını beklemektedir.
 
-## Teknik yapı
+Güncel iş dağılımı: [worklists/](worklists/README.md).  
+Makale hazırlık durumu: [paper/STATUS.md](paper/STATUS.md).  
+Kalite durumu: [docs/quality_status.md](docs/quality_status.md).
 
-| Yol | İçerik |
+## Repo yapısı
+
+| Yol | Amaç |
 |---|---|
-| `src/problem.py` | PFSP modeli, random-key decode, Cmax, RPD ve veri doğrulama |
-| `src/algorithms/de.py` | DE/rand/1/bin uygulaması; Şeref'in algoritma çıktısı |
-| `src/algorithms/pso.py` | Ders paketindeki PSO örneği |
-| `src/main.py` | Ders paketindeki deney çalıştırıcı; şu anda yalnızca PSO kayıtlıdır |
-| `tests/test_problem.py` | Veri, decode, bağımsız Cmax ve referans permütasyon testleri |
-| `tests/test_de.py` | DE FE/seed/API testleri |
-| `data/taillard/` | ta001, ta011, ta021 ve referans çözüm metadata'sı |
-| `tools/generate_taillard_instances.py` | Resmî tohumlardan deterministik veri üretimi |
-| `paper/` | Literatür ve makale çalışma dosyaları |
-| `docs/` | Ortak standart, dergi, Gantt, kalite ve doğrulama kayıtları |
-| `sprintler/` | Sprint atamaları ve teslim kanıtları |
+| `src/` | PFSP modeli, algoritmalar, deney ve analiz kodu |
+| `tests/` | model, algoritma ve sözleşme testleri |
+| `data/taillard/` | doğrulanmış benchmark dosyaları ve referans metadata |
+| `paper/` | makale taslakları, yöntem metinleri ve destek materyali |
+| `docs/` | güncel proje standardı, Git akışı, kalite ve dergi kuralları |
+| `worklists/` | yalnız güncel kişisel görev listeleri |
+| `results/` | yalnız experiment-freeze sonrası doğrulanmış bilimsel çıktılar |
+| `tools/` | yeniden üretim ve bağımsız doğrulama araçları |
 
 ## Temel kontroller
 
 ```bash
-python tools/generate_taillard_instances.py
 python -m unittest discover -s tests -v
 python src/problem.py
 python src/main.py --check
 python docs/check_literature.py
+python tools/check_repo_integrity.py
 ```
 
-`python src/main.py --check` **tek başına final kabul değildir**. Şu anda `ALGORITHMS` sözlüğünde yalnızca ders paketindeki PSO kayıtlı olduğu için komut 5 algoritma zorunluluğu hakkında uyarı verir. DE ayrıca bağımsız olarak `main.py` algoritma sözleşmesiyle test edilmiştir; diğer algoritmalar hazır olduğunda entegrasyon ortak aşamada yapılacaktır.
+`main.py --check` tek başına bilimsel kabul değildir.
 
-## Deney sonuçları hakkında uyarı
+## Branch akışı
 
-Depodaki `results/` nihai 30 koşuluk deneyler tamamlanana kadar bilimsel sonuç kaynağı değildir. Tek koşuluk smoke testler geçici kopyada çalıştırılır ve repoya nihai sonuç olarak yazılmaz.
+- `work/<isim>`: kişisel geliştirme
+- `develop`: bağımsız kontrolden geçen entegrasyon
+- `main`: yalnız milestone/final kabul edilmiş sürüm
+
+Normal akış: `work/<isim> -> PR -> develop -> final kalite kapısı -> main`.
+
+`main` geçmişinde 22 Kasım'da doğrudan yapılmış iki audit commit'i ve bunların revert commit'leri vardır. Geçmiş yeniden yazılmayacaktır; finalde `develop -> main` PR ile uzlaştırılacaktır.
+
+## Results politikası
+
+Pre-freeze smoke/pilot sonuçları repoda tutulmaz. `results/` yalnız sabitlenmiş deney commit'inden üretilmiş, manifest ile bağlanmış ve validator kapısından geçmiş final sonuçları içerir. Pilot kanıtlar CI loglarında veya Git geçmişinde kalır.
