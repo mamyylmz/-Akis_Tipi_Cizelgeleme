@@ -1,0 +1,58 @@
+name: PFSP CI
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  test:
+    name: ${{ matrix.os }} / Python ${{ matrix.python-version }}
+    runs-on: ${{ matrix.os }}
+    env:
+      PYTHONUTF8: "1"
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-latest, windows-latest]
+        python-version: ["3.12"]
+
+    steps:
+      - name: Force Windows-style Git setting before checkout
+        if: runner.os == 'Windows'
+        shell: pwsh
+        run: git config --global core.autocrlf true
+
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Verify Taillard working-tree line endings
+        shell: python
+        run: |
+          from pathlib import Path
+          files = sorted(Path("data/taillard").glob("ta*.txt"))
+          assert len(files) == 3, files
+          bad = [str(p) for p in files if b"\r\n" in p.read_bytes()]
+          if bad:
+              raise SystemExit(f"CRLF detected in canonical benchmark files: {bad}")
+          print("LF PASS:", ", ".join(str(p) for p in files))
+
+      - name: Show Git EOL attributes
+        run: git ls-files --eol -- data/taillard
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python-version }}
+          cache: pip
+
+      - name: Install dependencies
+        run: python -m pip install -r requirements.txt
+
+      - name: Run full unittest suite
+        run: python -m unittest discover -s tests -v
+
+      - name: Verify PFSP reference instances
+        run: python src/problem.py
+
+      - name: Run course contract checks
+        run: python src/main.py --check

@@ -123,7 +123,9 @@ def nrbo(problem, max_fes, seed, pop_size=30, DF=0.6):
     # (C) Main loop: FE-based condition.
     with np.errstate(divide="ignore", invalid="ignore", over="ignore"):
         while fes < max_fes:
-            delta = (1.0 - 2.0 * fes / max_fes) ** 5               # Eq.(29)
+            # Eq.(29). Decision N1 (§10): once per iteration, at its start,
+            # as in MATLAB (it = 1 first); it/MaxIt -> fes/max_fes.
+            delta = (1.0 - 2.0 * fes / max_fes) ** 5
 
             for i in range(N):
                 if fes >= max_fes:
@@ -137,10 +139,14 @@ def nrbo(problem, max_fes, seed, pop_size=30, DF=0.6):
                 X1 = xi - nrsr + rho                                # Eq.(23)
                 X2 = best_pos - nrsr + rho                          # Eq.(24)
 
-                # Eq.(28) and (22), fresh a1, a2 for every dimension.
+                # Eq.(28) and (22). Match the author-code draw order:
+                # for each dimension draw a1 and then a2. A (D, 2) draw from
+                # default_rng consumes values row-major as
+                # a1_0, a2_0, a1_1, a2_1, ...
                 X3 = xi - delta * (X2 - X1)
-                a1 = rng.random(D)
-                a2 = rng.random(D)
+                a12 = rng.random((D, 2))
+                a1 = a12[:, 0]
+                a2 = a12[:, 1]
                 x_update = a1 * (a1 * X1 + (1.0 - a2) * X2) + (1.0 - a2) * X3
 
                 # Trap Avoidance Operator (Eqs. 30-35).
