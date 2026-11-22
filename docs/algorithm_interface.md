@@ -36,7 +36,7 @@ Algoritma `decode`, `objective`, `processing_times` gibi PFSP'ye özgü öğeler
 ## 4. Rastgelelik
 
 - Tek kaynak: `rng = np.random.default_rng(seed)`. `np.random.*` ile global durum, `random` modülü ve zamana bağlı tohum kullanılmaz.
-- Aynı seed ile iki koşu, `best_f`, `best_x` ve `history` bakımından birebir aynı olmalıdır. Farklı seed farklı sonuç vermelidir.
+- Aynı seed ile iki koşu, `best_f`, `best_x` ve `history` bakımından birebir aynı olmalıdır. Farklı seed farklı RNG akışını başlatmalıdır; ayrık PFSP arama uzayında farklı seed'lerin aynı final `best_x`/permütasyona ulaşması mümkündür ve hata değildir.
 - Deney tohumu: `SEED_BASE + k` (`main.py`, `SEED_BASE = 2026`), her algoritmada aynı k. koşu aynı tohumla başlar.
 
 ## 5. Sınırlar
@@ -92,7 +92,7 @@ Bu bölüm, Görev 6 denetimindeki P1-01 ve P1-02 maddelerine yanıttır ([audit
 | D1 | DBO dans, θ = 90°/180° | Önce `x = pX` atanıyor, sonra satır `tan(θ)` güncellemesiyle eziliyor. 90°'de adım `tan(π/2) ≈ 1,6·10¹⁶` (böcek sınıra fırlıyor), 180°'de `tan(π) ≈ −1,2·10⁻¹⁶` (pratikte hareket yok) | Konum güncellenmiyor | **Makale metni izleniyor.** Yazar kodundaki koruma satırı ölü kod; 90°'deki adım kayan nokta yapaylığı ve sınırda birikmeyi artırır. 180°'de iki davranış pratikte aynı. Etki: dans adımlarının 1/180'i |
 | D2 | DBO `R = 1 − t/T_max` | Yuvarlama grubundan sonra, iterasyon başına bir kez; `t` = iterasyon sayısı | Aynı noktada, iterasyon başına bir kez; `t/T_max → fes/max_fes` | **Korunuyor.** Hesaplanma noktası yazar koduyla aynı; FE oranı ders şablonunun kuralı (§3.4). Tarık'ın sabit çekiliş testi bu davranışı doğruluyor |
 | N1 | NRBO `δ = (1 − 2t/T_max)^5` | İterasyon başında, `it = 1`'den başlayarak | İterasyon başında, `fes/max_fes` ile. İlk iterasyonda `fes = N`, yani `2N/max_fes ≈ 2/MaxIt`; yazarın `it = 1` başlangıcıyla aynı | **Korunuyor** |
-| N2 | NRBO a1, a2 çekiliş sırası | Her boyut için sırayla `a1, a2` | Önce bütün `a1` vektörü, sonra `a2` vektörü | **Korunuyor.** Dağılım aynı. numpy ve MATLAB rastgele sayı akışları zaten hiçbir zaman çakışmaz, yani "aynı sıra" sayısal bir eşleşme sağlamaz |
+| N2 | NRBO a1, a2 çekiliş sırası | Her boyut için sırayla `a1, a2` | `rng.random((D, 2))` ile satır-major `a1_0,a2_0,a1_1,a2_1,...` sırası | **Kaynak sırasına yaklaştırıldı.** NumPy ve MATLAB RNG değerleri birebir eşleşmese de gereksiz çekiliş-sırası sapması kaldırıldı |
 | N3 | NRBO payda sıfır ya da sıfıra yakın | Önlem yok. `min(max(x, LB), UB)` NaN'ı LB'ye, ±Inf'i sınıra çekiyor | Önlem yok; `np.fmin/np.fmax` aynı eşlemeyi yapıyor | **Yazar kodu izleniyor** (önlem eklemek kaynaktan sapma olur). Ölçüm: ta001 ve ta021'de, seed 2026–2028, tam bütçe; payda hiç 0 olmadı, 10⁻⁶'nın altına da inmedi. NRSR bileşenlerinin %0,16–0,45'i aralıktan büyük (`> 1`) ve sınıra kırpılıyor. Bu, sınırda birikmeye katkı yapan bilinen bir etki (P2-01) |
 
 Testler ([tests/test_nrbo.py](../tests/test_nrbo.py)):
