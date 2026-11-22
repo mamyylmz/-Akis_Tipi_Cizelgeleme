@@ -266,8 +266,10 @@ class TestAuthorCodeFormulas(unittest.TestCase):
 
         initial = np.array([[.31, .36], [.22, .18], [.52, .71]])
         x, best, worst = initial
-        draw, a1, a2 = np.array([.2, .3]), np.array([.7, .6]), np.array([.55, .45])
-        uniform = [initial, .3, .15, draw, .3, .6, a1, a2]
+        draw = np.array([.2, .3])
+        a1, a2 = np.array([.7, .6]), np.array([.55, .45])
+        a12 = np.column_stack([a1, a2])
+        uniform = [initial, .3, .15, draw, .3, .6, a12]
         uniform.append(.8 if branch == "no_tao" else .2)
         if branch != "no_tao":
             uniform.extend([.65, .25, .1 if branch == "update_base" else .9, .1, .4])
@@ -301,7 +303,8 @@ class TestAuthorCodeFormulas(unittest.TestCase):
         from algorithms.nrbo import nrbo
 
         initial = np.full((2, 2), .5)
-        rng = scripted_rng([initial, .2, .2, np.full(2, .3), .2, .2, np.full(2, .3), np.full(2, .4), .9],
+        a12 = np.column_stack([np.full(2, .3), np.full(2, .4)])
+        rng = scripted_rng([initial, .2, .2, np.full(2, .3), .2, .2, a12, .9],
                            [1, 1], indices=[np.array([0, 1])])
         problem = FormulaProblem([1, 1, 1])
         with patch("algorithms.nrbo.np.random.default_rng", return_value=rng):
