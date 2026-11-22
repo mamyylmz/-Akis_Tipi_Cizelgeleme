@@ -68,7 +68,7 @@
 - (23)–(24): `X1 = X_n − NRSR + ρ`, `X2 = X_best − NRSR + ρ`.
 - (28): `X3 = X_n − δ·(X2 − X1)`. [S1]'deki fazladan `a·` çarpanı yazar kodunda yok.
 - Uyarlamalı katsayı (29): `δ = (1 − 2t/T_max)^5`. Bu katsayı ikinci yarıda negatife döner ve sonda −1 olur.
-- Yeni konum (22), her boyut için yeni a1, a2 ile: `X_new = a1·(a1·X1 + (1−a2)·X2) + (1−a2)·X3`.
+- Yeni konum (22), her boyut için sırayla çekilen yeni a1, a2 ile: `X_new = a1·(a1·X1 + (1−a2)·X2) + (1−a2)·X3`. Python uygulaması çekiliş sırasını yazar kodundaki boyut-başına `a1` ardından `a2` düzeniyle eşler.
 - TAO (30–35), rand < DF ise: `X_TAO = (μ1 < 0.5 ise X_new, değilse X_best) + θ1·(μ1·X_best − μ2·X_n) + θ2·δ·(μ1·mean(X) − μ2·X_n)`.
   - `mean(X)` popülasyon ortalaması vektörüdür.
   - `β ∈ {0,1}`, olasılık 0.5; `μ1 = 3β·rand + (1−β)`, `μ2 = β·rand + (1−β)`.
@@ -81,7 +81,7 @@
 
 **Projeye uyarlama.** `t/T_max` yerine `fes/max_fes` kullanılıyor. Her yeni konum değerlendirilir (1 FE). Kod: [src/algorithms/nrbo.py](../src/algorithms/nrbo.py). Test: [tests/test_nrbo.py](../tests/test_nrbo.py).
 
-**Durum:** İlk çalışan sürüm. Yazar koduyla eşleşiyor. Bağımsız inceleme BEKLİYOR.
+**Durum:** Kaynak/yazar kodu ve belgelenmiş FE uyarlamasıyla eşleştirildi; final kabul, birleşik test kapısı ve insan ekip denetimi sonrasında verilecektir.
 
 ## Uyarlama kararları (20.11.2026)
 
