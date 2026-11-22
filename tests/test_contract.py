@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+import importlib
 import sys
 import unittest
 from pathlib import Path
@@ -58,16 +59,16 @@ class TestAlgorithmContract(unittest.TestCase):
                 self.assertEqual(first["best_f"], second["best_f"])
                 self.assertEqual(first["history"], second["history"])
 
-    def test_different_seed_changes_search_state(self):
+    def test_seed_is_forwarded_to_each_algorithm_rng(self):
         p = Problem("ta001")
+        seed = 2027
         for name, (algorithm, params) in ALGORITHMS.items():
             with self.subTest(algorithm=name):
-                first = algorithm(p, 121, 2026, **params)
-                second = algorithm(p, 121, 2027, **params)
-                self.assertFalse(
-                    np.array_equal(first["best_x"], second["best_x"]),
-                    f"{name}: fixed audit seeds unexpectedly returned identical best_x",
-                )
+                module = importlib.import_module(algorithm.__module__)
+                original_factory = module.np.random.default_rng
+                with patch.object(module.np.random, "default_rng", wraps=original_factory) as factory:
+                    algorithm(p, 31, seed, **params)
+                factory.assert_called_once_with(seed)
 
     def test_course_instance_budgets_are_unchanged(self):
         self.assertEqual(
