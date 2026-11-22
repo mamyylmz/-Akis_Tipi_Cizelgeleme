@@ -73,19 +73,19 @@ Fonksiyon ekrana yazmaz, dosya kaydetmez. `if __name__ == "__main__":` bloğunda
 
 Örnek: [tests/test_dbo.py](../tests/test_dbo.py), [tests/test_de.py](../tests/test_de.py).
 
-## 9. Algoritma durum tablosu (18.11.2026, bu çalışma kopyası)
+## 9. Algoritma durum tablosu (22.11.2026)
 
 | Algoritma | Dosya | `ALGORITHMS`'te | Durum |
 |---|---|---|---|
-| PSO | `src/algorithms/pso.py` | evet | ders örnek kodu |
-| DE | `src/algorithms/de.py` | evet | nesil tabanlı düzeltme yapıldı (PFSP-K6-01); Şeref'in yeniden incelemesi BEKLİYOR |
-| DBO | `src/algorithms/dbo.py` | evet | ilk çalışan sürüm, yazar koduyla eşleşiyor; bağımsız inceleme BEKLİYOR |
-| RIME | `src/algorithms/rime.py` (PR #4) | PR #4'te evet | Burak incelemesi KABUL ([review_burak_rime_2026-11-20.md](review_burak_rime_2026-11-20.md)); Tarık teyidi ve birleştirme bekleniyor |
-| NRBO | `src/algorithms/nrbo.py` | evet | ilk çalışan sürüm, yazar koduyla eşleşiyor; bağımsız inceleme BEKLİYOR |
+| PSO | `src/algorithms/pso.py` | evet | teknik 5/5 contract kapısı PASS; final makale yöntem/kaynak metni tamamlanacak |
+| DE | `src/algorithms/de.py` | evet | nesil tabanlı düzeltme ve teknik 5/5 contract kapısı PASS; final DE yöntem metni tamamlanacak |
+| DBO | `src/algorithms/dbo.py` | evet | teknik contract PASS; özgün yayın denklem ↔ kod akademik P1 açık |
+| RIME | `src/algorithms/rime.py` | evet | PR #4 ile `develop` içine kabul edildi; kaynak/kod ve 5/5 contract kapısı PASS |
+| NRBO | `src/algorithms/nrbo.py` | evet | teknik contract PASS; özgün yayın denklem ↔ kod akademik P1 açık |
 
 ## 10. DBO ve NRBO kaynak uyarlama kararları (20.11.2026)
 
-Bu bölüm, Görev 6 denetimindeki P1-01 ve P1-02 maddelerine yanıttır ([audit_burak_task6_fix_report.md](../results/audit_burak_task6_fix_report.md)). Her karar yazarların MATLAB koduyla karşılaştırıldı: [DBO](test_logs/21_dbo_author_matlab_reference.m), [NRBO](test_logs/22_nrbo_author_matlab_reference.m). Yayıncı tam metinleri açılmadı; karşılaştırmanın dayanağı yazar kodudur. Kararların bağımsız onayı Şeref'te.
+Bu bölümdeki uygulama kararları yazar kodları ve erişilen yöntem kaynaklarıyla karşılaştırılmıştır. DBO yazar kodu: https://www.mathworks.com/matlabcentral/fileexchange/121318-dung-beetle-optimizer-a-new-meta-heuristic-algorithm ; NRBO yazar kodu: https://github.com/mpremme/Newton-Raphson-Based-Optimizer-NRBO- . Özgün yayın denklem ↔ proje kodu eşleştirmesinin son akademik P1 durumu [quality_status.md](quality_status.md) içinde izlenir.
 
 | Kod | Algoritma | Yazar kodu | Bizim kod | Karar ve gerekçe |
 |---|---|---|---|---|

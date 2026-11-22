@@ -56,3 +56,10 @@ jobs:
 
       - name: Run course contract checks
         run: python src/main.py --check
+
+
+      - name: Run repository integrity check
+        run: python tools/check_repo_integrity.py
+
+      - name: Run literature and paper structure check
+        run: python docs/check_literature.py

@@ -1,5 +1,0 @@
-DE ta001 full-budget smoke (NOT a final scientific run)
-n_fes= 20000
-best_f= 1297.0
-decoded_permutation_1_based= 15 14 19 6 17 1 7 16 9 13 11 5 8 3 4 2 18 12 10 20
-repeatability check is covered separately in tests/test_de.py
