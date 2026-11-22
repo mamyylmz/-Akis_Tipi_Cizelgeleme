@@ -49,6 +49,10 @@ class ExperimentFixture:
     def mutate(self, instance: str, algorithm: str, field: str, value) -> None:
         path = self.root / instance / f"{algorithm}.csv"
         df = pd.read_csv(path)
+        # Corruption tests intentionally inject values that may violate the
+        # inferred pandas dtype (e.g. string "False" into a bool column).
+        if isinstance(value, str):
+            df[field] = df[field].astype(object)
         df.loc[0, field] = value
         df.to_csv(path, index=False)
 
