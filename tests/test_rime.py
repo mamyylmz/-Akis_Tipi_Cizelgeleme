@@ -3,6 +3,7 @@ from __future__ import annotations
 import sys
 import unittest
 from pathlib import Path
+from unittest.mock import patch
 
 import numpy as np
 
@@ -36,14 +37,12 @@ class TestRIME(unittest.TestCase):
         p = Problem("ta001")
         a = rime(p, 600, 123)
         b = rime(p, 600, 123)
-        c = rime(p, 600, 124)
         for key in ("best_x", "best_f", "history", "n_fes", "time"):
             self.assertIn(key, a)
         self.assertEqual(a["n_fes"], 600)
         self.assertEqual(a["best_f"], b["best_f"])
         np.testing.assert_array_equal(a["best_x"], b["best_x"])
         self.assertEqual(a["history"], b["history"])
-        self.assertFalse(np.array_equal(a["best_x"], c["best_x"]))
         self.assertTrue(np.all((p.lb <= a["best_x"]) & (a["best_x"] <= p.ub)))
         self.assertEqual(p.evaluate(a["best_x"]), a["best_f"])
         self.assertEqual(a["history"][-1], (600, a["best_f"]))
@@ -51,6 +50,13 @@ class TestRIME(unittest.TestCase):
             all(x[0] < y[0] and x[1] >= y[1] for x, y in zip(a["history"], a["history"][1:]))
         )
         self.assertCountEqual(p.decode(a["best_x"]).tolist(), range(p.dim))
+
+    def test_seed_is_forwarded_to_default_rng(self):
+        p = Problem("ta001")
+        original = np.random.default_rng
+        with patch("algorithms.rime.np.random.default_rng", wraps=original) as factory:
+            rime(p, 73, 2027)
+        factory.assert_called_once_with(2027)
 
     def test_exact_odd_and_tiny_budgets(self):
         for budget in (1, 7, 29, 30, 31, 73, 121, 137, 1001):
