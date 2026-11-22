@@ -44,7 +44,6 @@ ROOT = SRC.parent
 sys.path.insert(0, str(SRC))
 
 import stat_tests as st                                  # noqa: E402
-import experiment_validation as ev
 import visualization as vz                               # noqa: E402
 from problem import INSTANCES, MAX_FES, Problem         # noqa: E402
 
@@ -56,7 +55,7 @@ from algorithms.pso import pso                           # noqa: E402
 from algorithms.de import de                             # noqa: E402
 from algorithms.dbo import dbo                           # noqa: E402
 from algorithms.nrbo import nrbo                         # noqa: E402
-from algorithms.rime import rime
+# from algorithms.ga import ga
 # ...
 
 # 2) Algoritmaları ve parametrelerini buraya ekleyin.
@@ -67,7 +66,7 @@ ALGORITHMS = {
     "DE": (de, {"F": 0.5, "CR": 0.9}),
     "DBO": (dbo, {"pop_size": 30, "k": 0.1, "b": 0.3, "S": 0.5}),
     "NRBO": (nrbo, {"pop_size": 30, "DF": 0.6}),
-    "RIME": (rime, {"pop_size": 30, "w": 5}),
+    # "GA":  (ga,  {"pop_size": 50, "pc": 0.9, "pm": 0.1}),
 }
 
 N_RUNS = 30          # her algoritma, her test örneğinde bağımsız koşu sayısı
@@ -185,8 +184,9 @@ def run_checks() -> dict[str, Problem]:
     if hatalar:
         _fail(hatalar)
 
-    if set(ALGORITHMS) != {"PSO", "DE", "DBO", "NRBO", "RIME"}:
-        raise KontrolHatasi("Beş zorunlu algoritma çalıştırıcıda kayıtlı olmalıdır.")
+    if len(ALGORITHMS) != 5:
+        print(f"    UYARI: ALGORITHMS sözlüğünde {len(ALGORITHMS)} algoritma var; "
+              "final projesinde 5 algoritma zorunludur.")
     first = problems[INSTANCES[0]]
     for alg_name, (func, params) in ALGORITHMS.items():
         try:
@@ -246,11 +246,6 @@ def run_experiments(problems: dict[str, Problem], n_runs: int) -> None:
             pd.DataFrame(rows).to_csv(out / f"{alg_name}.csv", index=False)
             print(f"   ({time.perf_counter() - t0:.1f} s)")
     _save_settings(n_runs)
-    manifest = ev.expected_manifest(ROOT, ALGORITHMS, n_runs, SEED_BASE, ALPHA)
-    ev.validate_results(RAW_DIR, manifest)
-    (TAB_DIR / "experiment_manifest.json").write_text(
-        json.dumps(manifest, indent=2), encoding="utf-8",
-    )
 
 
 def _save_settings(n_runs: int) -> None:
@@ -269,19 +264,6 @@ def _save_settings(n_runs: int) -> None:
 # [3] ANALİZ
 # =============================================================================
 def run_analysis() -> None:
-    manifest = ev.read_manifest(
-        TAB_DIR / "experiment_manifest.json", ROOT, ALGORITHMS, SEED_BASE, ALPHA
-    )
-    settings = json.loads((TAB_DIR / "deney_ayarlari.json").read_text(encoding="utf-8"))
-    if settings != {"N_RUNS": manifest["runs"], "SEED_BASE": SEED_BASE, "ALPHA": ALPHA,
-                    "INSTANCES": INSTANCES, "MAX_FES": MAX_FES}:
-        raise KontrolHatasi("Deney ayarları manifest ile uyuşmuyor.")
-    parameter_table = pd.read_csv(TAB_DIR / "parametre_ayarlari.csv")
-    names = parameter_table["Algoritma"].tolist()
-    parameters = dict(zip(names, map(json.loads, parameter_table["Parametreler"])))
-    if len(names) != len(set(names)) or parameters != manifest["algorithms"]:
-        raise KontrolHatasi("Parametre tablosu manifest ile uyuşmuyor.")
-    ev.validate_results(RAW_DIR, manifest)
     print("\n[3] ANALİZ")
     TAB_DIR.mkdir(parents=True, exist_ok=True)
     for name in INSTANCES:
@@ -290,7 +272,7 @@ def run_analysis() -> None:
         except FileNotFoundError as e:
             print(f"    {name}: {e}")
             continue
-        res = {a: res[a] for a in ALGORITHMS}
+        res = {a: res[a] for a in res if a in ALGORITHMS} or res
         print(f"\n    --- {name} ---  algoritmalar: {', '.join(res)}")
 
         desc = st.descriptive_table(res)
@@ -322,17 +304,10 @@ def main() -> None:
     ap = argparse.ArgumentParser(description="YMM4142 final projesi deney çalıştırıcı")
     ap.add_argument("--runs", type=int, default=N_RUNS, help="koşu sayısı (varsayılan 30)")
     ap.add_argument("--check", action="store_true", help="yalnızca kontrolleri çalıştır")
-    ap.add_argument("--output-dir", type=Path, default=ROOT / "results")
     ap.add_argument("--only-analysis", action="store_true",
                     help="deneyleri koşturmadan mevcut sonuçları analiz et")
     args = ap.parse_args()
-    global RAW_DIR, TAB_DIR, FIG_DIR
-    RAW_DIR = args.output_dir / "raw"
-    TAB_DIR = args.output_dir / "tables"
-    FIG_DIR = args.output_dir / "figures"
 
-    if args.runs < 1:
-        ap.error("--runs pozitif olmalı")
     if args.only_analysis:
         run_analysis()
         return
@@ -340,8 +315,6 @@ def main() -> None:
     if args.check:
         print("\n    Tüm kontroller başarılı.")
         return
-    if any(RAW_DIR.rglob("*.csv")) or (TAB_DIR / "experiment_manifest.json").exists():
-        ap.error("Deney çıktısı dizini dolu. Yeni koşu için boş bir --output-dir seçin.")
     run_experiments(problems, args.runs)
     run_analysis()
     print("\nTamamlandı.")

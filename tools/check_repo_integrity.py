@@ -20,7 +20,7 @@ REQUIRED = [
     "data/taillard/reference_solutions.json",
     "paper/method_model.md",
     "docs/model_validation_report_2026-11-18.md",
-    "docs/KALITE_KARARLARI.md",
+    "docs/NEGATIF_KOMUTLAR_VE_KALITE_KARARLARI.md",
     "sprintler/08_Seref_Modelleme_Teslim_Kaniti.md",
 ]
 LINK_RE = re.compile(r"\[[^\]]*\]\(([^)]+)\)")
@@ -52,25 +52,17 @@ def main() -> int:
         errors.append("src/problem.py still contains sphere-example implementation text")
 
     # Final experiment results must not be fabricated by smoke tests.
-    results = ROOT / "results"
-    result_files = [
-        p for p in results.rglob("*")
-        if p.is_file() and p.name != ".gitkeep"
-        and not (p.parent == results and p.suffix == ".md")
-    ]
+    result_files = [p for p in (ROOT / "results").rglob("*") if p.is_file() and p.name != ".gitkeep"] if (ROOT / "results").exists() else []
     if result_files:
         errors.append("non-placeholder files exist under results/: " + ", ".join(str(p.relative_to(ROOT)) for p in result_files[:10]))
 
     # Generated Python caches should not be included in the delivered archive.
-    scopes = [ROOT / name for name in ("src", "tests", "tools", "docs", "paper",
-                                      "data", "sprintler", "results")]
-    caches = [p for scope in scopes for suffix in ("__pycache__", "*.pyc")
-              for p in scope.rglob(suffix)]
+    caches = list(ROOT.rglob("__pycache__")) + list(ROOT.rglob("*.pyc"))
     if caches:
         errors.append("generated Python cache files/directories present")
 
     # Every local Markdown link must resolve to a real file/directory. External URLs and pure anchors are skipped.
-    for md in [*ROOT.glob("*.md"), *(p for scope in scopes for p in scope.rglob("*.md"))]:
+    for md in ROOT.rglob("*.md"):
         text = md.read_text(encoding="utf-8")
         for target in LINK_RE.findall(text):
             target = target.strip().split()[0].strip("<>")
