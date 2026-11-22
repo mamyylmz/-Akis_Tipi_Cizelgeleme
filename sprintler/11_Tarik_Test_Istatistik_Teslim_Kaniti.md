@@ -45,3 +45,21 @@ Final sonuç validator:
 ## Bağımsız inceleme
 
 Burak PSO mekanizmasını ve algoritma sözleşmesini; Şeref model/Cmax kontrollerini; Muhammed deney kapsamı ve freeze politikasını incelemelidir. Üreten kişinin kendi onayı merge için yeterli değildir.
+
+
+## 22.11.2026 entegrasyon revizyonu
+
+Muhammed'in yönetici kapsam denetiminde bulunan dört P1 için kod revizyonu yapıldı:
+
+- P1-01: final deney manifesti runner tarafından otomatik üretiliyor; 30-run final modunda temiz Git çalışma ağacı ve 40 karakter commit SHA zorunlu.
+- P1-02: farklı seed'in mutlaka farklı final `best_x` üretmesi şartı kaldırıldı; seed'in ilgili algoritmanın `default_rng(seed)` kaynağına aktarımı test ediliyor.
+- P1-03: `feasible` strict boolean parser ile doğrulanıyor; `"False"` artık yanlışlıkla true kabul edilemez.
+- P1-04: validator `objective/cmax/rpd/permutation/violation/feasible` alanlarını `best_x` üzerinden bağımsız yeniden hesaplıyor.
+
+Regresyon testleri:
+- `tests/test_experiment_manifest.py`
+- `tests/test_experiment_validation.py`
+
+RIME ve Burak blocker düzeltmeleri güncel `develop` üzerinden bu branch'e merge edilmiştir.
+
+**Durum:** Otomatik Linux/Windows CI ve 5/5 retest sonucu bekleniyor. Bu kayıt Tarık'ın insan final audit onayı yerine geçmez; son kontrol görevi ayrıca Tarık'a verilecektir.
