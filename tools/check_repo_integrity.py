@@ -4,6 +4,7 @@ from __future__ import annotations
 import hashlib
 import json
 import re
+import subprocess
 import sys
 from pathlib import Path
 
@@ -47,9 +48,18 @@ def main() -> int:
     if result_files and not manifest.is_file():
         errors.append("results contain files without experiment_manifest.json: " + ", ".join(str(p.relative_to(ROOT)) for p in result_files[:10]))
 
-    caches = list(ROOT.rglob("__pycache__")) + list(ROOT.rglob("*.pyc"))
-    if caches:
-        errors.append("generated Python cache files/directories present")
+    try:
+        tracked = subprocess.check_output(
+            ["git", "ls-files"], cwd=ROOT, text=True, encoding="utf-8"
+        ).splitlines()
+    except (OSError, subprocess.CalledProcessError):
+        tracked = []
+    tracked_caches = [
+        p for p in tracked
+        if "__pycache__/" in p or p.endswith((".pyc", ".pyo"))
+    ]
+    if tracked_caches:
+        errors.append("generated Python cache artifacts are tracked: " + ", ".join(tracked_caches[:10]))
 
     for rel in ("sprintler", "kisiyeozeldosyalar", "docs/test_logs", "docs/experiments"):
         if (ROOT / rel).exists():
