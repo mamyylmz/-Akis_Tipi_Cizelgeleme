@@ -29,7 +29,7 @@ Kapanış:
 - 450 final koşu ve final manifest yok.
 - Final istatistik/şekil/Gantt yok.
 - Makalenin deneysel sonuçlar, tartışma, sonuç ve beyan bölümleri tamamlanmadı.
-- NASE gönderim sürümü için İngilizce 4 ana bölümlü dergi uyarlaması yapılmadı.
+- NASE gönderim sürümü için güncel 4 ana bölümlü dergi uyarlaması yapılmadı.
 
 ## Main notu
 
