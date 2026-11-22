@@ -1,0 +1,8 @@
+test_contract_budget_seed_bounds_and_best ... ok
+test_exact_odd_and_tiny_budgets ... ok
+test_full_course_budget_ta001 ... ok
+test_invalid_parameters ... ok
+test_reference_helpers ... ok
+
+Ran 5 tests
+OK

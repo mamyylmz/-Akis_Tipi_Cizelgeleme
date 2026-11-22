@@ -111,6 +111,8 @@ Durum: AÇIK
 
 **Sınırdaki eşit anahtarlar.** `evaluate` önce `clip` uyguluyor, sonra kararlı sıralama yapıyor. Bu model sözleşmesine uygun, hata değil. Ancak ta001'de 5 seed ile tam bütçe denemesinde algoritmaların bulduğu en iyi çözümlerde anahtarların %20–38'i tam 0 ya da 1 değerindeydi. Eşit anahtarların sırasını iş numarası belirliyor; algoritmalar sık sık 1297'de bitiyor. Bu, H2 hipoteziyle ve algoritmalar arası farkın görünürlüğüyle ilgili. Şeref ile Burak'ın 23 Kasım'dan önce bir karara varması gerekiyor: olduğu gibi raporlamak ya da beş algoritmanın hepsinde aynı biçimde sınır işleme yöntemini değiştirmek (yansıtma ya da rastgele yeniden atama).
 
+> **Düzeltme (20.11.2026):** Bu gözlemdeki "algoritmalar 1297'de takılıyor" kısmını eşit anahtarlara bağlamak yanlıştı. 450 koşuluk sınır pilotunda ([boundary_pilot_2026-11-20](experiments/boundary_pilot_2026-11-20/README.md)) eşitlikler tamamen kaldırıldığında da koşuların %84–92'si 1297'de bitti. 1297, ta001'in bir yerel optimumu. Sınırda birikme gerçek, ama bu pilotta çözüm kalitesini anlamlı biçimde etkilemedi (Holm sonrası 0/30, Friedman p = 0,25).
+
 ## 4. Karar
 
 - **Model ve veri (`problem.py`, `data/taillard/*`, model testleri): KABUL (Burak'ın kod/API kontrolü).** Tarık'ın bağımsız model/seed/FE kontrolü ve Bilal'in kaynak kontrolü ayrı kapılar; bu karar onların yerine geçmez.
