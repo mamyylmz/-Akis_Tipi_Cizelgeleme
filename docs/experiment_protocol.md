@@ -63,11 +63,19 @@ Final koşu başlamadan önce `results/tables/experiment_manifest.json` oluştur
 ```json
 {
   "experiment_commit": "<40-char git SHA>",
+  "git_dirty_at_start": false,
   "n_runs": 30,
   "seed_base": 2026,
   "instances": ["ta001", "ta011", "ta021"],
   "max_fes": {"ta001": 20000, "ta011": 30000, "ta021": 40000},
   "algorithms": ["PSO", "DE", "DBO", "RIME", "NRBO"],
+  "algorithm_parameters": {
+    "PSO": {"...": "..."},
+    "DE": {"...": "..."},
+    "DBO": {"...": "..."},
+    "RIME": {"...": "..."},
+    "NRBO": {"...": "..."}
+  },
   "environment": {
     "os": "<exact>",
     "python": "<exact>",
@@ -78,6 +86,8 @@ Final koşu başlamadan önce `results/tables/experiment_manifest.json` oluştur
 }
 ```
 
+Manifest runner tarafından otomatik üretilir; elle yazılmaz. 30 koşuluk final modunda Git çalışma ağacı temiz olmak ve commit SHA okunabilir olmak zorundadır. Pilot koşularda dirty/unavailable provenance yalnızca manifestte açıkça kaydedilir.
+
 ## 6. Koşu başına kabul kriterleri
 
 Her satır için:
@@ -85,7 +95,11 @@ Her satır için:
 - seed beklenen seed ile aynı,
 - `n_fes == MAX_FES[instance]`,
 - `feasible == True`,
-- `best_f` sonlu,
+- `best_f`, `objective`, `cmax`, `rpd`, `violation` sonlu,
+- `objective == cmax == problem.evaluate(best_x) == best_f`,
+- `rpd == 100*(cmax-reference)/reference`,
+- `violation == 0` ve `feasible == true`,
+- kaydedilmiş 1-based `permutation` == `problem.decode(best_x)+1`,
 - `best_x` boyutu n,
 - bütün anahtarlar [0,1] içinde,
 - decode tam bir 0..n-1 permütasyonu,
