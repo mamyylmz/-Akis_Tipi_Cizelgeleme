@@ -7,7 +7,7 @@
 3. Final makale metnini `paper/outline.md` başlıkları altında birleştir; yöntem metinlerini sahiplerinden al.
 4. Tarık final sonuçlarını verdikten sonra tablolar/şekiller/Gantt'ı metne yerleştir; sayıları elle üretme.
 5. Yazar adları, kurum, e-posta, ORCID, katkı, conflict, funding, data/code ve AI kullanım beyanlarını topla.
-6. Ders sürümü tamamlandıktan sonra NASE gönderim kopyasını İngilizce ve NASE'nin güncel 4 ana bölüm yapısına dönüştür.
+6. Ders sürümü tamamlandıktan sonra NASE gönderim kopyasını danışmanla seçilen Türkçe/İngilizce dilde NASE'nin güncel 4 ana bölüm yapısına dönüştür.
 7. Abstract 150–300 kelime ve 5–8 keyword; NASE template/APA/figure-table kurallarını gönderim gününde yeniden kontrol et.
 
 **Kabul:** kaynakça/metin içi atıflar tutarlı; doğrulanmamış iddia yok; NASE sürümü güncel resmî kurallara uyuyor.
