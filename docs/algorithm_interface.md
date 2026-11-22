@@ -73,15 +73,15 @@ Fonksiyon ekrana yazmaz, dosya kaydetmez. `if __name__ == "__main__":` bloğunda
 
 Örnek: [tests/test_dbo.py](../tests/test_dbo.py), [tests/test_de.py](../tests/test_de.py).
 
-## 9. Algoritma durum tablosu (18.11.2026, bu çalışma kopyası)
+## 9. Algoritma durum tablosu (22.11.2026)
 
 | Algoritma | Dosya | `ALGORITHMS`'te | Durum |
 |---|---|---|---|
-| PSO | `src/algorithms/pso.py` | evet | ders örnek kodu |
-| DE | `src/algorithms/de.py` | evet | nesil tabanlı düzeltme yapıldı (PFSP-K6-01); Şeref'in yeniden incelemesi BEKLİYOR |
-| DBO | `src/algorithms/dbo.py` | evet | ilk çalışan sürüm, yazar koduyla eşleşiyor; bağımsız inceleme BEKLİYOR |
+| PSO | `src/algorithms/pso.py` | evet | teknik 5/5 contract kapısı PASS; final makale yöntem/kaynak metni tamamlanacak |
+| DE | `src/algorithms/de.py` | evet | nesil tabanlı düzeltme ve teknik 5/5 contract kapısı PASS; final DE yöntem metni tamamlanacak |
+| DBO | `src/algorithms/dbo.py` | evet | teknik contract PASS; özgün yayın denklem ↔ kod akademik P1 açık |
 | RIME | `src/algorithms/rime.py` | evet | PR #4 ile `develop` içine kabul edildi; kaynak/kod ve 5/5 contract kapısı PASS |
-| NRBO | `src/algorithms/nrbo.py` | evet | ilk çalışan sürüm, yazar koduyla eşleşiyor; bağımsız inceleme BEKLİYOR |
+| NRBO | `src/algorithms/nrbo.py` | evet | teknik contract PASS; özgün yayın denklem ↔ kod akademik P1 açık |
 
 ## 10. DBO ve NRBO kaynak uyarlama kararları (20.11.2026)
 
