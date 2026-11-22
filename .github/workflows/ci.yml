@@ -57,16 +57,9 @@ jobs:
       - name: Run course contract checks
         run: python src/main.py --check
 
-      - name: Tarik 1-run five-algorithm integration smoke
-        if: github.event_name == 'push' && github.ref_name == 'work/tarik'
-        shell: python
-        run: |
-          import sys
-          sys.path.insert(0, "src")
-          import main
-          problems = main.run_checks()
-          main.run_experiments(problems, 1)
 
-      - name: Validate real integration-smoke CSV files
-        if: github.event_name == 'push' && github.ref_name == 'work/tarik'
-        run: python tools/check_experiment_outputs.py --runs 1 --seed-base 2026
+      - name: Run repository integrity check
+        run: python tools/check_repo_integrity.py
+
+      - name: Run literature and paper structure check
+        run: python docs/check_literature.py

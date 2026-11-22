@@ -1,4 +1,0 @@
-PFSP model verification
-ta001: 20x5, Cmax=1278, reference=1278, RPD=0.000000% -> PASS
-ta011: 20x10, Cmax=1582, reference=1582, RPD=0.000000% -> PASS
-ta021: 20x20, Cmax=2297, reference=2297, RPD=0.000000% -> PASS

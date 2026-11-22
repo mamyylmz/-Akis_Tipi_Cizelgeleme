@@ -1,6 +1,0 @@
-REPO INTEGRITY: PASS
-Required files: 13/13
-Benchmark hashes: PASS
-Local Markdown links: PASS
-No smoke/final result contamination: PASS
-No Python cache artifacts: PASS
