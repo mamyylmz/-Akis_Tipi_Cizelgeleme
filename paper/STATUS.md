@@ -7,10 +7,13 @@
 - Giriş taslağı.
 - 12 kaynaklık literatür matrisi ve kaynak audit'i.
 - Ana araştırma sorusu: eşit FE altında beş algoritmanın çözüm kalitesi ve kararlılığı.
-- PFSP matematiksel model ve random-key gösterimi.
+- PFSP matematiksel model ve random-key gösterimi — final metin tamamlandı.
 - RIME yöntem notu.
-- DBO/NRBO yöntem taslağı.
+- DBO/NRBO yöntem metni — akademik P1 yönetici bağımsız kabulüyle kapandı.
 - 5×3 doğrulama örneği ve Cmax=20 zaman çizelgesi.
+- DE final yöntem metni.
+- NEH deterministik baseline implementasyonu ve üç Taillard sonucu.
+- Final en iyi çözüm için bağımsız schedule/Cmax doğrulayıcı.
 - Taillard benchmark provenance ve 1278/1582/2297 referans kontrolleri.
 
 ## Makaleyi bloke eden işler

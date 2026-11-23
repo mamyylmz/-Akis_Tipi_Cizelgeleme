@@ -53,11 +53,11 @@ Aşağıdaki yöntem açıklamaları uygulama kodu ve özgün kaynaklarla eşle�
 
 ### 3.1. Problemin Tanımı ve Matematiksel Modeli
 
-n iş, m makine, işlem süreleri p ve ortak permütasyon π. Amaç min Cmax; toplam akış süresi değildir. `C[i,j] = max(C[i-1,j], C[i,j-1]) + p[pi[i],j]`; sıfır sınır değerleri; Cmax son işin son makinedeki tamamlanması. Şeref'in doğrulanmış modeliyle karşılaştırılacak.
+[Final PFSP model metni](method_model.md): n iş, m makine, ortak permütasyon, Cmax amacı ve bağımsız doğrulama kapıları.
 
 ### 3.2. Çözüm Gösterimi ve Kısıt Yönetimi
 
-Random-key x∈[0,1]^n, kararlı argsort ile geçerli permütasyon; eşit anahtarlarda deterministik çözüm. PFSP için ek ceza gerekmemesinin gerekçesi, sınır yönetimi ve aynı sıraya çözülen adayların FE sayımı açıklanacak.
+[Final model/gösterim metni](method_model.md): random-key x∈[0,1]^n, stable argsort, sınır yönetimi ve geçerli permütasyon garantisi.
 
 ### 3.3. Karşılaştırılan Meta-Sezgisel Algoritmalar
 
@@ -65,7 +65,7 @@ Tam olarak beş meta-sezgisel aşağıdadır. NEH ayrıca klasik referanstır. H
 
 ### 3.3.1. Diferansiyel Evrim (DE)
 
-[Sorumlu: Şeref; kaynak: L04, literatür matrisi. Özgün denklemler ve uygulama eşleşmesi doğrulandıktan sonra başlatma, keşif/sömürü, güncellemeler, parametreler, sınır ve random-key kullanımı yazılacak.]
+[Final DE yöntem metni](method_de.md). DE/rand/1/bin; NP=100, F=0.5, CR=0.9; generational güncelleme ve exact FE bütçesi.
 
 ### 3.3.2. Parçacık Sürü Optimizasyonu (PSO)
 
@@ -93,7 +93,7 @@ Tablo 2. Deney ve algoritma parametreleri
 
 | Algoritma | Popülasyon | Parametreler | Kaynak / gerekçe |
 | --- | --- | --- | --- |
-| DE | [bekliyor] | F, CR [bekliyor] | L04 |
+| DE | 100 | F=0.5, CR=0.9 | Storn & Price (1997), L04 |
 | PSO | [bekliyor] | Özgün 1995 kuralı veya açıkça kaynaklandırılmış varyant [kodla eşleştirilecek] | L05 + gerekiyorsa varyant kaynağı |
 | DBO | [bekliyor] | [bekliyor] | L06 |
 | RIME | [bekliyor] | [bekliyor] | L07 |
@@ -125,7 +125,7 @@ CPU/RAM, işletim sistemi, Python/kütüphane sürümleri, kod sürümü, Tablo 
 | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
 | [veri bekleniyor] | | | | | | | | | | | |
 
-Her zorunlu örnek için beş yöntem ve ayrı NEH referansı; sonuçlar ham koşulardan türetilecek.
+Her zorunlu örnek için beş yöntem ve ayrı NEH referansı; meta-sezgisel sonuçlar ham final koşulardan türetilecek. NEH klasik baseline sonuçları [neh_baseline.md](support/neh_baseline.md) içinde deterministik olarak kaydedildi.
 
 ### 4.4. Yakınsama Analizi
 
@@ -141,7 +141,7 @@ Wilcoxon/Holm, Friedman/Nemenyi sonuç tabloları ve CD diyagramı. Sayısal far
 
 ### 4.7. En İyi Çözüm ve Gantt Gösterimi
 
-En iyi permütasyon, bağımsız yeniden hesaplanan Cmax, 15 işlemlik küçük örnek zaman tablosu ve doğrulanmış Gantt. Başlangıç/bitiş, öncelik ve çakışma denetimi. [Doğrulanmış küçük örnek zaman çizelgesi](support/small_example_schedule.md).
+En iyi permütasyon, üretim modelinden bağımsız `tools/verify_final_schedule.py` ile yeniden hesaplanan Cmax ve doğrulanmış Gantt verisi. Küçük doğrulama örneği: [small_example_schedule.md](support/small_example_schedule.md). Final 450 koşu sonrası gerçek en iyi permütasyonlara aynı kapı uygulanacak.
 
 ### 4.8. Hesaplama Maliyeti
 
