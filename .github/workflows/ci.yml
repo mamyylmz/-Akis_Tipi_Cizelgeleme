@@ -54,6 +54,9 @@ jobs:
       - name: Verify PFSP reference instances
         run: python src/problem.py
 
+      - name: Verify deterministic NEH baseline
+        run: python tools/run_neh_baseline.py
+
       - name: Run course contract checks
         run: python src/main.py --check
 

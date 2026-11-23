@@ -1,12 +1,18 @@
-# Şeref — Work List
+# Şeref kapsamı — yönetici tarafından devralındı
 
-**Branch:** `work/seref`
+**Aktif branch:** `work/seref`  
+**Fiili yürütücü:** Muhammed / proje yöneticisi adına AI destekli teknik çalışma  
+**Tarih:** 23.11.2026
 
-1. Burak'ın DBO/NRBO özgün denklem eşleme tablosunu **bağımsız** incele; doğrulanmayan maddeyi PASS sayma.
-2. P1 kapanırsa `docs/quality_status.md` için kısa bağımsız karar kanıtı üret.
-3. NEH klasik baseline'ı `src/heuristics/neh.py` altında deterministik olarak uygula ve `tests/test_neh.py` ekle.
-4. NEH için ta001/ta011/ta021 permütasyon, Cmax, RPD ve runtime üret; 30 koşu yapma.
-5. `paper/method_model.md` içeriğini final makale 3.1/3.2 metnine dönüştür; DE yöntem alt bölümünü özgün kaynak + gerçek kod parametreleriyle tamamla.
-6. Final deney sonrası en iyi çözüm/Gantt Cmax'larını bağımsız yeniden hesapla.
+Şeref'e atanmış aşağıdaki teknik işler proje yöneticisi tarafından devralınmıştır:
 
-**Kabul:** DBO/NRBO P1 bağımsız kapanmış; NEH deterministik ve testli; DE/model metni gerçek kodla aynı.
+- [x] Burak'ın DBO/NRBO P1 kanıtını bağımsız kaynak/kod incelemesiyle kabul et.
+- [x] NEH klasik baseline implementasyonunu oluştur.
+- [x] NEH birim/kabul testlerini oluştur.
+- [x] ta001/ta011/ta021 için NEH Cmax, RPD ve permütasyonları üret.
+- [x] DE final yöntem metnini gerçek `src/algorithms/de.py` parametreleriyle eşleştir.
+- [x] PFSP model/random-key yöntem metnini final makale 3.1/3.2 biçimine getir.
+- [x] Üretim modelinden bağımsız schedule/Cmax verifier oluştur ve üç referans permütasyonda doğrula.
+- [ ] Final 450 deney tamamlandıktan sonra gerçek **final en iyi algoritma permütasyonlarını** aynı verifier ile tekrar doğrula ve final Gantt verisini üret.
+
+Son madde kod/validator açısından hazırdır; gerçek final 450 sonuç henüz mevcut olmadığı için veri uygulaması experiment aşamasına bağımlıdır. Bu, eksik implementasyon değil veri bağımlılığıdır.

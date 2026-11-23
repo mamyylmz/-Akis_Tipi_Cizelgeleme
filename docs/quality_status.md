@@ -1,36 +1,40 @@
 # Güncel Kalite ve Kabul Durumu
 
-**Tarih:** 22.11.2026  
-**Kaynak branch:** `develop`
+**Tarih:** 23.11.2026  
+**Kaynak branch:** `develop` + aktif çalışma PR'ları
 
 ## Kabul edilmiş teknik temel
 
-- PFSP model/data doğrulaması kabul edilmiş.
-- Taillard LF/SHA bütünlüğü Linux + Windows CI ile doğrulanmış.
-- DE, PSO, DBO, RIME, NRBO `develop` üzerinde entegre.
-- RIME kaynak/kod ve 5/5 contract kapısı kabul edilmiş.
-- DBO/NRBO runtime/FE/seed/bounds testleri mevcut teknik kapılardan geçmiş.
+- PFSP model/data doğrulaması: kabul.
+- Taillard LF/SHA bütünlüğü: Linux + Windows CI PASS.
+- DE, PSO, DBO, RIME, NRBO: `develop` üzerinde entegre.
+- RIME kaynak/kod ve 5/5 contract kapısı: kabul.
+- DBO/NRBO runtime/FE/seed/bounds teknik kapıları: kabul.
+- **DBO/NRBO akademik P1:** 23.11.2026'da yönetici bağımsız kaynak/kod incelemesiyle **KAPALI**. Erişilemeyen özgün metin ayrıntıları doğrulanmış gibi gösterilmeyecek.
+- NEH klasik baseline: **KABUL**. Deterministik implementasyon, testler ve ta001/ta011/ta021 sonuçları hazır; Ubuntu/Windows CI PASS.
+- Bağımsız schedule/Cmax verifier: **KABUL**. Küçük 5×3 örnek, üç Taillard referans permütasyonu ve üç NEH permütasyonu üretim `Problem` sınıfından bağımsız yeniden hesaplanarak doğrulandı.
 
-## Açık P1
+## DBO/NRBO P1 kapanış sınırı
 
-**DBO/NRBO özgün yayın denklem eşleştirmesi.** Tarık'ın 22.11.2026 kapanış raporu teknik P0'ları kapatmış, ancak özgün makale denklem ↔ proje yöntemi eşleştirmesini P1 olarak açık bırakmıştır.
+Kabul kararı şunları doğrular:
+- DBO Denklem (1)–(7) numaralandırması yazar kodu ve açık erişim yöntem kaynaklarıyla tutarlıdır.
+- NRBO NRSR/TAO bileşenleri resmi yazar koduyla proje koduna eşlenmiştir.
+- FE tabanlı `R`/`delta` proje uyarlamasıdır.
 
-Kapanış:
-1. Burak özgün DBO ve NRBO yayınlarından denklem numarası / kaynak satırı / proje kodu eşleme tablosunu tamamlar.
-2. Şeref bu eşlemeyi bağımsız olarak inceler.
-3. Kod değişikliği gerekmiyorsa yalnız akademik P1 kapanır; kod değişirse ilgili regresyon kapısı tekrar çalışır.
-4. Tarık PR #5 final kararını bu kanıta göre KABUL/P0=0/P1=0 olarak günceller.
+Kabul kararı şunları **iddia etmez**:
+- kapalı NRBO özgün makalesindeki denklem numaralarının doğrulandığını;
+- DBO özgün PDF'sindeki `Ub = X(1±R)` baskısının doğrudan okunduğunu.
 
 ## Kalan proje blokları
 
-- NEH klasik baseline eksik.
-- DE ve PSO için final makale yöntem metinleri eksik.
-- Final experiment-freeze oluşturulmadı.
-- 450 final koşu ve final manifest yok.
-- Final istatistik/şekil/Gantt yok.
-- Makalenin deneysel sonuçlar, tartışma, sonuç ve beyan bölümleri tamamlanmadı.
-- NASE gönderim sürümü için güncel 4 ana bölümlü dergi uyarlaması yapılmadı.
+- PSO final makale yöntem metni.
+- Tarık PR #5 deney/manifest/validator entegrasyonu.
+- Method-freeze ve experiment-freeze.
+- 450 final koşu.
+- Final istatistik/şekil ve final en iyi-çözüm Gantt uygulaması.
+- Makalenin gerçek Results/Discussion/Conclusion ve beyanları.
+- NASE final biçim uyarlaması.
 
-## Main notu
+## Main kuralı
 
-`main` ile `develop` geçmişi diverged durumdadır; 22 Kasım'da main'e doğrudan giren audit commit'leri daha sonra revert edilmiştir. Tarihçe yeniden yazılmayacaktır. Finalde `develop -> main` PR/merge ile uzlaştırılacaktır.
+`main`e yalnız final kalite kapısı P0=0/P1=0 ve final deney provenance doğrulandıktan sonra `develop -> main` PR ile geçilir.
