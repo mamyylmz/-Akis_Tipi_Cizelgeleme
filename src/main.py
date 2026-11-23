@@ -31,6 +31,9 @@ from __future__ import annotations
 
 import argparse
 import json
+import platform
+import re
+import subprocess
 import sys
 import time
 import traceback
@@ -38,6 +41,7 @@ from pathlib import Path
 
 import numpy as np
 import pandas as pd
+import scipy
 
 SRC = Path(__file__).resolve().parent
 ROOT = SRC.parent
@@ -70,6 +74,7 @@ ALGORITHMS = {
     "RIME": (rime, {"pop_size": 30, "w": 5}),
     # "GA":  (ga,  {"pop_size": 50, "pc": 0.9, "pm": 0.1}),
 }
+FINAL_ALGORITHMS = ("PSO", "DE", "DBO", "RIME", "NRBO")
 
 N_RUNS = 30          # her algoritma, her test örneğinde bağımsız koşu sayısı
 SEED_BASE = 2026     # k. koşunun tohumu: SEED_BASE + k
@@ -223,8 +228,75 @@ def _jsonable(v):
     return v
 
 
+def _git_provenance() -> dict:
+    """Return the exact Git revision and tracked-worktree cleanliness."""
+    try:
+        commit = subprocess.check_output(
+            ["git", "rev-parse", "--verify", "HEAD"],
+            cwd=ROOT, text=True, encoding="utf-8", stderr=subprocess.DEVNULL,
+        ).strip()
+        status = subprocess.check_output(
+            ["git", "status", "--porcelain", "--untracked-files=no"],
+            cwd=ROOT, text=True, encoding="utf-8", stderr=subprocess.DEVNULL,
+        )
+        return {"commit": commit, "dirty": bool(status.strip())}
+    except (OSError, subprocess.CalledProcessError):
+        return {"commit": None, "dirty": None}
+
+
+def _build_experiment_manifest(n_runs: int) -> dict:
+    provenance = _git_provenance()
+    return {
+        "experiment_commit": provenance["commit"],
+        "git_dirty_at_start": provenance["dirty"],
+        "n_runs": int(n_runs),
+        "seed_base": SEED_BASE,
+        "instances": list(INSTANCES),
+        "max_fes": dict(MAX_FES),
+        "algorithms": list(ALGORITHMS),
+        "algorithm_parameters": {
+            name: {key: _jsonable(value) for key, value in params.items()}
+            for name, (_, params) in ALGORITHMS.items()
+        },
+        "environment": {
+            "os": platform.platform(),
+            "python": platform.python_version(),
+            "numpy": np.__version__,
+            "scipy": scipy.__version__,
+            "pandas": pd.__version__,
+        },
+    }
+
+
+def _validate_final_experiment_preconditions(n_runs: int, manifest: dict) -> None:
+    """Protect the 30-run scientific dataset from ambiguous provenance."""
+    if n_runs != N_RUNS:
+        return
+
+    if len(ALGORITHMS) != len(FINAL_ALGORITHMS) or set(ALGORITHMS) != set(FINAL_ALGORITHMS):
+        raise KontrolHatasi(
+            "Final deney için algoritma kaydı tam olarak "
+            f"{FINAL_ALGORITHMS} kümesini içermeli; şu an {tuple(ALGORITHMS)}."
+        )
+
+    commit = manifest.get("experiment_commit")
+    if not isinstance(commit, str) or re.fullmatch(r"[0-9a-fA-F]{40}", commit) is None:
+        raise KontrolHatasi(
+            "Final deney commit SHA'sı okunamadı. Deneyi bir Git checkout içinde çalıştırın."
+        )
+    if manifest.get("git_dirty_at_start") is not False:
+        raise KontrolHatasi(
+            "Final 30-run deney temiz bir Git çalışma ağacından başlamalı. "
+            "Değişiklikleri commit edin veya pilot için --runs 3 kullanın."
+        )
+
+
 def run_experiments(problems: dict[str, Problem], n_runs: int) -> None:
     print(f"\n[2] DENEY  ({n_runs} koşu)")
+    manifest = _build_experiment_manifest(n_runs)
+    _validate_final_experiment_preconditions(n_runs, manifest)
+    _save_settings(n_runs, manifest)
+
     for name, p in problems.items():
         out = RAW_DIR / name
         out.mkdir(parents=True, exist_ok=True)
@@ -247,19 +319,22 @@ def run_experiments(problems: dict[str, Problem], n_runs: int) -> None:
                 print(f"\r    {name:<14} {alg_name:<8} koşu {k + 1:>3}/{n_runs}", end="")
             pd.DataFrame(rows).to_csv(out / f"{alg_name}.csv", index=False)
             print(f"   ({time.perf_counter() - t0:.1f} s)")
-    _save_settings(n_runs)
 
 
-def _save_settings(n_runs: int) -> None:
-    """Deney ayarlarını kaydeder (makaledeki 'Deney düzeneği' için)."""
+def _save_settings(n_runs: int, manifest: dict) -> None:
+    """Persist both paper settings and machine-readable experiment provenance."""
     TAB_DIR.mkdir(parents=True, exist_ok=True)
     rows = [{"Algoritma": a, "Parametreler": json.dumps(prm, ensure_ascii=False)}
             for a, (_, prm) in ALGORITHMS.items()]
     pd.DataFrame(rows).to_csv(TAB_DIR / "parametre_ayarlari.csv", index=False)
+
     with open(TAB_DIR / "deney_ayarlari.json", "w", encoding="utf-8") as fp:
         json.dump({"N_RUNS": n_runs, "SEED_BASE": SEED_BASE, "ALPHA": ALPHA,
                    "INSTANCES": INSTANCES, "MAX_FES": MAX_FES}, fp,
                   ensure_ascii=False, indent=2)
+
+    with open(TAB_DIR / "experiment_manifest.json", "w", encoding="utf-8") as fp:
+        json.dump(manifest, fp, ensure_ascii=False, indent=2, sort_keys=True)
 
 
 # =============================================================================
