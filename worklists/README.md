@@ -1,17 +1,19 @@
 # Güncel Ekip Work Listleri
 
-Bu dizin eski sprint/yönergelerin yerini alan **tek güncel görev kaynağıdır**. Her üye yalnız kendi `work/<isim>` branch'inde çalışır.
+Bu dizin aktif görevlerin tek güncel operasyonel kaynağıdır.
 
-## Sıra ve bağımlılıklar
+## Güncel kritik yol
 
-1. **Akademik P1:** Burak DBO/NRBO özgün denklem eşlemesini tamamlar, Şeref bağımsız doğrular.
-2. **Tarık PR #5:** P1 kapanış kanıtına göre final audit kararını KABUL/P0=0/P1=0 olarak günceller; PR `develop`e alınır.
-3. **Yöntem/baseline:** Şeref NEH + DE metni; Tarık PSO metni; Burak DBO/NRBO final metni; Muhammed RIME final edit.
-4. **Method freeze:** algoritma-parametre-kaynak-kod tablosu kilitlenir.
-5. **Experiment freeze:** `develop` üzerindeki kabul edilmiş commit etiketlenir.
-6. **Final deney:** 450 koşu; validator; istatistik; şekiller; final Gantt.
-7. **Makale:** sonuçlar/tartışma/beyanlar/NASE uyarlaması.
-8. **Final kalite kapısı:** P0=0, P1=0; test/literatür/integrity/result validator PASS.
-9. **Promotion:** yalnız bu noktada `develop -> main` PR merge edilir.
+1. **DBO/NRBO akademik P1 — KAPALI (23.11.2026).**
+2. Şeref'in teknik kapsamı proje yöneticisi tarafından devralındı: NEH, DE/model metni ve bağımsız schedule verifier.
+3. Tarık PR #5: deney runner/manifest/validator entegrasyonu.
+4. PSO final yöntem metni + Burak bağımsız kaynak/parametre kontrolü.
+5. Method-freeze.
+6. Experiment-freeze.
+7. 5×3×3 dry-run, ardından 450 final koşu.
+8. Final validator + istatistik + şekiller.
+9. Final en iyi permütasyonların bağımsız Cmax/Gantt doğrulaması.
+10. Makale Results/Discussion/Conclusion ve beyanlar.
+11. P0=0/P1=0 final kapısı → `develop -> main`.
 
-Ayrıntılar kişi dosyalarındadır.
+Her üye normalde yalnız kendi `work/<isim>` branch'inde çalışır. Şeref kapsamı bu sprintte açıkça yönetici tarafından devralınmıştır.

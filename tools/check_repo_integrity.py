@@ -13,12 +13,15 @@ REQUIRED = [
     "src/problem.py", "src/main.py",
     "src/algorithms/de.py", "src/algorithms/pso.py", "src/algorithms/dbo.py",
     "src/algorithms/rime.py", "src/algorithms/nrbo.py",
+    "src/heuristics/neh.py",
     "data/README.md", "data/taillard/ta001.txt", "data/taillard/ta011.txt",
     "data/taillard/ta021.txt", "data/taillard/reference_solutions.json",
     "paper/outline.md", "paper/STATUS.md",
     "docs/PFSP_Ortak_Proje_ve_Makale_Calisma_Kilavuzu.md",
     "docs/KALITE_KARARLARI.md", "docs/GIT_WORKFLOW.md", "docs/quality_status.md",
     "worklists/README.md",
+    "tools/run_neh_baseline.py", "tools/verify_final_schedule.py",
+    "tests/test_neh.py", "tests/test_schedule_verifier.py",
 ]
 LINK_RE = re.compile(r"\[[^\]]*\]\(([^)]+)\)")
 
