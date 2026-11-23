@@ -26,7 +26,7 @@ Deterministik proje tie-break'i:
 | ta011 | 1582 | **1680** | **6.194690** | 18 5 2 17 3 6 12 9 15 10 20 13 8 14 19 11 4 7 1 16 |
 | ta021 | 2297 | **2410** | **4.919460** | 16 15 10 8 9 12 13 11 5 1 20 14 17 2 18 6 7 19 3 4 |
 
-Bu Cmax değerleri bağımsız PFSP recurrence ile yeniden hesaplandı. Runtime donanıma bağlı olduğundan kalıcı sayısal sonuç olarak elle yazılmayacak; `python tools/run_neh_baseline.py` her çalıştırmada Cmax/RPD/permutation ile birlikte gerçek runtime'ı üretir. CI çıktısı ayrıca kabul kanıtıdır.
+Bu Cmax değerleri bağımsız PFSP recurrence ile yeniden hesaplandı. Ubuntu GitHub Actions / Python 3.12 kabul koşusunda gözlenen referans runtime değerleri sırasıyla **0.016048 s**, **0.016795 s** ve **0.027353 s** olmuştur. Runtime donanıma bağlıdır; bilimsel karşılaştırmada bu değerler NEH'in aynı CI ortamındaki tek referans ölçümü olarak ele alınmalı, algoritmaların final deney runtime'larıyla farklı donanım/ortamdan geliyorsa doğrudan karşılaştırılmamalıdır. `python tools/run_neh_baseline.py` her ortamda Cmax/RPD/permutation ve gerçek runtime'ı yeniden üretir.
 
 ## Küçük örnek
 
