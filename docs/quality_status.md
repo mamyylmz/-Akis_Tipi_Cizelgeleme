@@ -11,8 +11,8 @@
 - RIME kaynak/kod ve 5/5 contract kapısı: kabul.
 - DBO/NRBO runtime/FE/seed/bounds teknik kapıları: kabul.
 - **DBO/NRBO akademik P1:** 23.11.2026'da yönetici bağımsız kaynak/kod incelemesiyle **KAPALI**. Erişilemeyen özgün metin ayrıntıları doğrulanmış gibi gösterilmeyecek.
-- NEH klasik baseline: implementasyon/test/üç benchmark sonucu hazırlanıyor; Şeref kapsamı yönetici tarafından devralındı.
-- Bağımsız schedule/Cmax verifier: final sonuçları üretim `Problem` sınıfından bağımsız yeniden hesaplamak üzere hazırlanıyor.
+- NEH klasik baseline: **KABUL**. Deterministik implementasyon, testler ve ta001/ta011/ta021 sonuçları hazır; Ubuntu/Windows CI PASS.
+- Bağımsız schedule/Cmax verifier: **KABUL**. Küçük 5×3 örnek, üç Taillard referans permütasyonu ve üç NEH permütasyonu üretim `Problem` sınıfından bağımsız yeniden hesaplanarak doğrulandı.
 
 ## DBO/NRBO P1 kapanış sınırı
 
