@@ -36,10 +36,10 @@ Her `problem.evaluate()` çağrısı bir FE olarak sayılır. Başlatma ve sür�
 
 | Parametre | Değer | Uygulama |
 |---|---:|---|
-| Sürü büyüklüğü | 30 | Çalıştırıcı ayarı |
-| Atalet uç değerleri | 0.9 ve 0.4 | FE oranına bağlı doğrusal zamanlama |
-| Bilişsel ve sosyal katsayılar | c1 = c2 = 2.0 | Çalıştırıcı ayarı |
-| Hız aralığı çarpanı | 0.2 | PSO fonksiyonunun varsayılanı |
+| Sürü büyüklüğü (`pop_size`) | 30 | Çalıştırıcı ve manifest ayarı |
+| Atalet uç değerleri | w_max=0.9, w_min=0.4 | FE oranına bağlı doğrusal zamanlama |
+| Bilişsel ve sosyal katsayılar | c1=2.0, c2=2.0 | Çalıştırıcı ve manifest ayarı |
+| Hız aralığı çarpanı (`v_frac`) | 0.2 | Çalıştırıcı ve manifest ayarı, önceki fonksiyon varsayılanıyla aynı |
 | Hız ve konum sınırları | [−0.2, 0.2] ve [0, 1] | PFSP random-key uzayında |
 | Bütçe | 20.000 / 30.000 / 40.000 FE | ta001 / ta011 / ta021 |
 | Final seed planı | 2026–2055 | Ortak deney protokolü |

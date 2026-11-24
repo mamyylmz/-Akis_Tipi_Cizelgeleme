@@ -27,49 +27,27 @@ from typing import Iterable
 import numpy as np
 
 
-def _integer_values(values, label):
-    """Validate the numeric domain before any integer conversion."""
-    array = np.asarray(values)
-    if array.dtype.kind == "f":
-        if (not np.all(np.isfinite(array))
-                or not np.all(array == np.trunc(array))):
-            raise ValueError(f"{label} must contain finite integers")
-    elif array.dtype.kind not in "iu":
-        raise ValueError(f"{label} must contain finite integers")
-    return array
-
-
-def _processing_matrix(processing_times):
-    p = _integer_values(processing_times, "processing_times")
-    if p.ndim != 2 or p.shape[0] < 1 or p.shape[1] < 1:
-        raise ValueError("processing_times must be a non-empty 2-D matrix")
-    if np.any(p <= 0):
-        raise ValueError("processing times must be positive")
-    return [[int(duration) for duration in row] for row in p]
-
-
-def _makespan(matrix, order):
-    completion = [0] * len(matrix[0])
-    for job in order:
-        completion[0] += matrix[job][0]
-        for machine in range(1, len(completion)):
-            completion[machine] = (
-                max(completion[machine], completion[machine - 1])
-                + matrix[job][machine]
-            )
-    return completion[-1]
-
-
 def makespan(processing_times: np.ndarray, permutation: Iterable[int]) -> int:
     """Compute PFSP makespan independently from src.problem.Problem."""
-    matrix = _processing_matrix(processing_times)
-    perm = _integer_values(list(permutation), "permutation")
-    if perm.shape != (len(matrix),):
+    p = np.asarray(processing_times, dtype=np.int64)
+    if p.ndim != 2 or p.shape[0] < 1 or p.shape[1] < 1:
+        raise ValueError("processing_times must be a non-empty 2-D matrix")
+
+    perm = np.asarray(list(permutation), dtype=np.int64)
+    if perm.shape != (p.shape[0],):
         raise ValueError("permutation length must equal number of jobs")
-    order = [int(job) for job in perm]
-    if set(order) != set(range(len(matrix))):
+    if np.unique(perm).size != p.shape[0] or np.any((perm < 0) | (perm >= p.shape[0])):
         raise ValueError("permutation must contain every job exactly once")
-    return _makespan(matrix, order)
+
+    completion = np.zeros(p.shape[1], dtype=np.int64)
+    for job in perm:
+        completion[0] += p[job, 0]
+        for machine in range(1, p.shape[1]):
+            completion[machine] = (
+                max(completion[machine], completion[machine - 1])
+                + p[job, machine]
+            )
+    return int(completion[-1])
 
 
 def neh(processing_times: np.ndarray) -> dict:
@@ -83,9 +61,15 @@ def neh(processing_times: np.ndarray) -> dict:
         }
     """
     t0 = time.perf_counter()
-    matrix = _processing_matrix(processing_times)
-    totals = [sum(row) for row in matrix]
-    priority = sorted(range(len(matrix)), key=lambda job: (-totals[job], job))
+    p = np.asarray(processing_times, dtype=np.int64)
+    if p.ndim != 2 or p.shape[0] < 1 or p.shape[1] < 1:
+        raise ValueError("processing_times must be a non-empty 2-D matrix")
+    if np.any(p <= 0):
+        raise ValueError("processing times must be positive")
+
+    n_jobs = p.shape[0]
+    totals = p.sum(axis=1)
+    priority = sorted(range(n_jobs), key=lambda job: (-int(totals[job]), job))
 
     sequence: list[int] = []
     current_cmax = 0
@@ -95,7 +79,10 @@ def neh(processing_times: np.ndarray) -> dict:
         best_cmax = None
         for position in range(len(sequence) + 1):
             candidate = sequence[:position] + [job] + sequence[position:]
-            candidate_cmax = _makespan(matrix, candidate)
+            # Partial NEH insertion only schedules the jobs selected so far.
+            partial = p[candidate]
+            partial_perm = np.arange(len(candidate), dtype=np.int64)
+            candidate_cmax = makespan(partial, partial_perm)
             if best_cmax is None or candidate_cmax < best_cmax:
                 best_cmax = candidate_cmax
                 best_sequence = candidate
@@ -103,8 +90,8 @@ def neh(processing_times: np.ndarray) -> dict:
         current_cmax = int(best_cmax)
 
     result_perm = np.asarray(sequence, dtype=np.int64)
-    # Recheck the final permutation on the original validated matrix.
-    final_cmax = _makespan(matrix, sequence)
+    # Defensive independent recomputation on the original matrix.
+    final_cmax = makespan(p, result_perm)
     if final_cmax != current_cmax:
         raise RuntimeError("internal NEH makespan inconsistency")
 

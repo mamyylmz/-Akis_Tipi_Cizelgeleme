@@ -93,13 +93,13 @@ Tablo 2. Deney ve algoritma parametreleri
 
 | Algoritma | Popülasyon | Parametreler | Kaynak / gerekçe |
 | --- | --- | --- | --- |
-| DE | 100 | F=0.5, CR=0.9 | Storn & Price (1997), L04 |
-| PSO | [bekliyor] | Özgün 1995 kuralı veya açıkça kaynaklandırılmış varyant [kodla eşleştirilecek] | L05 + gerekiyorsa varyant kaynağı |
-| DBO | [bekliyor] | [bekliyor] | L06 |
-| RIME | [bekliyor] | [bekliyor] | L07 |
-| NRBO | [bekliyor] | [bekliyor] | L08 |
+| DE | 100 | F=0.5, CR=0.9 | Storn & Price (1997), L04. Üç benchmark için D=20 ve 5D=100. |
+| PSO | 30 | w_max=0.9, w_min=0.4, c1=2.0, c2=2.0, v_frac=0.2 | [PSO yöntemi](method_pso.md). Shi ve Eberhart (1998), FE tabanlı proje uyarlaması. |
+| DBO | 30 | k=0.1, b=0.3, S=0.5, roll_prob=0.9, deviation_prob=0.1 | L06, [DBO yöntem notu](method_dbo_nrbo.md). |
+| RIME | 30 | w=5 | L07, [RIME yöntemi](method_rime.md). |
+| NRBO | 30 | DF=0.6 | L08, [NRBO yöntem notu](method_dbo_nrbo.md). |
 
-Özgün öneriler veya tüm yöntemlere eşit ayar bütçesi kaydedilecek. Donanım/yazılım ortamı 4.1'de ayrıntılandırılacak.
+Tablodaki etkin değerler çalıştırıcıdan deney manifestine aktarılır. Donanım/yazılım ortamı 4.1'de ayrıntılandırılacak.
 
 Yapay zekâ kullanım kaydı: ChatGPT/Codex belge düzenleme ve kaynak tarama desteğinde kullanıldı. Araç/kapsam ve insan doğrulaması yazarlarca kesinleştirilecek; Beyanlar ile tutarlı tutulacak.
 

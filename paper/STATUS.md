@@ -12,21 +12,19 @@
 - DBO/NRBO yöntem metni — akademik P1 yönetici bağımsız kabulüyle kapandı.
 - 5×3 doğrulama örneği ve Cmax=20 zaman çizelgesi.
 - DE ve [PSO final yöntem metinleri](method_pso.md).
-- NEH deterministik baseline implementasyonu ve üç Taillard sonucu.
+- NEH deterministik baseline ve üç Taillard sonucu kabul edildi.
+- PR #5 deney çalıştırıcısı, manifest ve CSV doğrulayıcısı `develop` dalına alındı.
 - Final en iyi çözüm için bağımsız schedule/Cmax doğrulayıcı.
 - Taillard benchmark provenance ve 1278/1582/2297 referans kontrolleri.
 
 ## Makaleyi bloke eden işler
 
-1. DBO/NRBO özgün makale-denklem eşleştirmesi P1.
-2. Method-freeze kararının commit kimliğiyle kaydedilmesi.
-3. NEH implementasyonu ve üç benchmark referans sonuçları.
-4. Final parametre tablosunun gerçek `src/main.py` ile doldurulması.
-5. Experiment-freeze ve 450 final koşu.
-6. Descriptive statistics, Wilcoxon+Holm, Friedman+Nemenyi/CD.
-7. Final convergence/box plotlar, en iyi çözümler ve büyük örnek Gantt.
-8. Results/Discussion/Conclusion.
-9. Yazar kimlikleri, ORCID, kurum, CRediT, conflict/data/code/AI beyanları.
+1. Method-freeze kararının commit kimliğiyle kaydedilmesi.
+2. Experiment-freeze ve 450 final koşu.
+3. Descriptive statistics, Wilcoxon+Holm, Friedman ve anlamlıysa Nemenyi/CD.
+4. Final convergence/box plotlar, en iyi çözümler ve büyük örnek Gantt.
+5. Results/Discussion/Conclusion.
+6. Yazar kimlikleri, ORCID, kurum, CRediT, conflict/data/code/AI beyanları.
 
 ## Ders sürümü ve NASE sürümü
 

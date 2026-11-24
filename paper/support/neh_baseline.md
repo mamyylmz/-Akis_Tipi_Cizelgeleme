@@ -18,8 +18,6 @@ Deterministik proje tie-break'i:
 - eşit toplam işlem süresinde düşük iş indeksi önce işlenir;
 - eşit insertion Cmax değerinde en erken insertion konumu seçilir.
 
-İlk iki iş için döngü her iki sırayı değerlendirir. Uygulama her adayın Cmax değerini klasik yöntemle baştan hesaplar, dolayısıyla zaman karmaşıklığı O(n³m) olur. Özgün makaledeki 4×5 sayısal örnekte sıralama J4–J3–J1–J2 ve Cmax = 54 olarak yeniden üretildi. [Özgün yöntem ve örnek](https://www.academia.edu/90236533/A_heuristic_algorithm_for_the_m_machine_n_job_flow_shop_sequencing_problem)
-
 ## Zorunlu Taillard sonuçları
 
 | Örnek | Referans Cmax | NEH Cmax | RPD (%) | NEH permütasyonu (1-based) |

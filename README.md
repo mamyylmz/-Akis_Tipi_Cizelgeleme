@@ -8,9 +8,10 @@ YMM4142 Optimizasyon Teorisi Problem 7 için Permütasyon Akış Tipi Çizelgele
 - Zorunlu Taillard örnekleri: ta001, ta011, ta021.
 - Final deney protokolü: 5 × 3 × 30 = 450 koşu, toplam 13.500.000 FE.
 - Final 450 koşu henüz üretilmedi.
-- NEH klasik referans sezgiseli ve üç Taillard sonucu hazır. [Yöntem ve sonuçlar](paper/support/neh_baseline.md).
-- DBO/NRBO için özgün makale-denklem ↔ kod eşleştirmesi proje düzeyinde açık P1'dir.
-- Tarık'ın deney/validator geliştirmeleri PR #5 üzerindedir ve akademik P1 kapanışını beklemektedir.
+- NEH klasik referans sezgiseli ve üç Taillard sonucu kabul edildi. [Yöntem ve sonuçlar](paper/support/neh_baseline.md).
+- DBO/NRBO akademik P1’i kapandı. Kabul kapsamı [kalite durumunda](docs/quality_status.md) kayıtlı.
+- PR #5 deney çalıştırıcısı, manifest ve CSV doğrulayıcısı `develop` dalına alındı.
+- [PSO yöntem ve parametre metni](paper/method_pso.md) tamamlandı.
 
 Güncel iş dağılımı: [worklists/](worklists/README.md).  
 Makale hazırlık durumu: [paper/STATUS.md](paper/STATUS.md).  

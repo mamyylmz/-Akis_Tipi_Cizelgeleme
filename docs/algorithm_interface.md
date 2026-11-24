@@ -77,11 +77,11 @@ Fonksiyon ekrana yazmaz, dosya kaydetmez. `if __name__ == "__main__":` bloğunda
 
 | Algoritma | Dosya | `ALGORITHMS`'te | Durum |
 |---|---|---|---|
-| PSO | `src/algorithms/pso.py` | evet | teknik 5/5 contract kapısı PASS; final makale yöntem/kaynak metni tamamlanacak |
+| PSO | `src/algorithms/pso.py` | evet | teknik 5/5 contract kapısı PASS. [Final yöntem metni](../paper/method_pso.md) tamamlandı |
 | DE | `src/algorithms/de.py` | evet | nesil tabanlı düzeltme ve teknik 5/5 contract kapısı PASS; final DE yöntem metni tamamlanacak |
-| DBO | `src/algorithms/dbo.py` | evet | teknik contract PASS; özgün yayın denklem ↔ kod akademik P1 açık |
+| DBO | `src/algorithms/dbo.py` | evet | teknik contract PASS, akademik P1 kapalı |
 | RIME | `src/algorithms/rime.py` | evet | PR #4 ile `develop` içine kabul edildi; kaynak/kod ve 5/5 contract kapısı PASS |
-| NRBO | `src/algorithms/nrbo.py` | evet | teknik contract PASS; özgün yayın denklem ↔ kod akademik P1 açık |
+| NRBO | `src/algorithms/nrbo.py` | evet | teknik contract PASS, akademik P1 kapalı |
 
 ## 10. DBO ve NRBO kaynak uyarlama kararları (20.11.2026)
 

@@ -37,7 +37,7 @@ Her boyut için mutant bileşenin seçilme olasılığı `CR`'dir. En az bir mut
 [
 u_{ij,G+1}=
 \begin{cases}
-v_{ij,G+1}, & rand_j < CR\ \text{veya}\ j=j_{rand},\\
+v_{ij,G+1}, & rand_j\le CR\ \text{veya}\ j=j_{rand},\\
 x_{ij,G}, & \text{aksi halde}.
 \end{cases}
 ]

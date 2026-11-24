@@ -53,7 +53,7 @@ Sürekli vektör, artan anahtar sırasıyla iş permütasyonuna dönüştürül�
 
 Uygulama eşit anahtarlarda deterministik davranmak için `np.argsort(..., kind="stable")` kullanır. Böylece bütün algoritmalar aynı temsil ve çözümleme mekanizmasına sahiptir.
 
-Random-key çözümleyicisi her işi tam bir kez içeren permütasyon ürettiğinden normal optimizasyon akışında ek ceza kısıtı gerekmez. Bununla birlikte modelin `objective()` metodu doğrudan verilen permütasyonlarda uzunluk, indeks aralığı, tamsayı olma ve tekrarsızlık kontrollerini yapar. `evaluate()` ve `details()`, anahtarları çözümlemeden önce `[0,1]` sınırına kırpar. Doğrudan `decode()` çağrısı sonlu anahtarları verilen değerleriyle sıralar.
+Random-key çözümleyicisi her işi tam bir kez içeren permütasyon ürettiğinden normal optimizasyon akışında ek ceza kısıtı gerekmez. Bununla birlikte modelin `objective()` metodu doğrudan verilen permütasyonlarda uzunluk, indeks aralığı, tamsayı olma ve tekrarsızlık kontrollerini yapar. Algoritmalardan gelen anahtarlar değerlendirmeden önce ortak `[0,1]` sınırına kırpılır.
 
 ### Performans ölçütü
 
