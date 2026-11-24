@@ -11,7 +11,7 @@
 - RIME yöntem notu.
 - DBO/NRBO yöntem metni — akademik P1 yönetici bağımsız kabulüyle kapandı.
 - 5×3 doğrulama örneği ve Cmax=20 zaman çizelgesi.
-- DE final yöntem metni.
+- DE ve [PSO final yöntem metinleri](method_pso.md).
 - NEH deterministik baseline implementasyonu ve üç Taillard sonucu.
 - Final en iyi çözüm için bağımsız schedule/Cmax doğrulayıcı.
 - Taillard benchmark provenance ve 1278/1582/2297 referans kontrolleri.
@@ -19,7 +19,7 @@
 ## Makaleyi bloke eden işler
 
 1. DBO/NRBO özgün makale-denklem eşleştirmesi P1.
-2. DE ve PSO final yöntem metinleri.
+2. Method-freeze kararının commit kimliğiyle kaydedilmesi.
 3. NEH implementasyonu ve üç benchmark referans sonuçları.
 4. Final parametre tablosunun gerçek `src/main.py` ile doldurulması.
 5. Experiment-freeze ve 450 final koşu.

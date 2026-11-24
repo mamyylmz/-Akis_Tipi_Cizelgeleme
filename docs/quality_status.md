@@ -25,10 +25,17 @@ Kabul kararı şunları **iddia etmez**:
 - kapalı NRBO özgün makalesindeki denklem numaralarının doğrulandığını;
 - DBO özgün PDF'sindeki `Ub = X(1±R)` baskısının doğrudan okunduğunu.
 
+## PR #5 · Bağımsız teknik karar
+
+**24.11.2026 · İncelenen SHA:** `c3c2b38f66485370a0dd8104577732ba43a7cf1b`
+**Karar:** **P0=0 / P1=0 — KABUL** (deney çalıştırıcısı, manifest ve CSV doğrulama kapsamı).
+
+Akademik P1 kapanışı yukarıdaki 23.11.2026 yönetici kaydına dayanır. Bağımsız tekrar çalıştırmada algoritma sözleşmesi 4/4, manifest 4/4 ve CSV doğrulayıcısı 7/7 geçti. `python -B src/main.py --check` üç benchmark ve beş algoritma için başarılı. Bu kayıt yerel teknik incelemenin sonucudur. GitHub PR birleştirme ve uzak CI durumu bu incelemede teyit edilmedi. Method-freeze kararının SHA kaydı ve üç koşuluk dry-run ayrı kapılardır.
+
 ## Kalan proje blokları
 
-- PSO final makale yöntem metni.
-- Tarık PR #5 deney/manifest/validator entegrasyonu.
+- PSO yöntem metni hazır. Method-freeze kararı bekliyor.
+- Tarık PR #5 için teknik kabul kaydı tamamlandı. Uzak PR entegrasyon durumu teyit bekliyor.
 - Method-freeze ve experiment-freeze.
 - 450 final koşu.
 - Final istatistik/şekil ve final en iyi-çözüm Gantt uygulaması.

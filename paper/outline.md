@@ -69,7 +69,7 @@ Tam olarak beş meta-sezgisel aşağıdadır. NEH ayrıca klasik referanstır. H
 
 ### 3.3.2. Parçacık Sürü Optimizasyonu (PSO)
 
-[Sorumlu: Tarık; kaynak: L05, literatür matrisi. Özgün denklemler ve uygulama eşleşmesi doğrulandıktan sonra başlatma, keşif/sömürü, güncellemeler, parametreler, sınır ve random-key kullanımı yazılacak.]
+[PSO yöntem metni](method_pso.md). Atalet ağırlığı Shi ve Eberhart (1998) ile kaynaklandırılmıştır. Uygulama tüketilen FE oranını temel alır.
 
 ### 3.3.3. Dung Beetle Optimizer (DBO)
 
