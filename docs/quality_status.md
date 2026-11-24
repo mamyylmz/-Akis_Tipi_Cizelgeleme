@@ -1,6 +1,6 @@
 # Güncel Kalite ve Kabul Durumu
 
-**Tarih:** 23.11.2026  
+**Tarih:** 24.11.2026
 **Kaynak branch:** `develop` + aktif çalışma PR'ları
 
 ## Kabul edilmiş teknik temel
@@ -33,11 +33,17 @@ Kabul kararı şunları **iddia etmez**:
 
 Akademik P1 kapanışı yukarıdaki 23.11.2026 yönetici kaydına dayanır. Bağımsız tekrar çalıştırmada algoritma sözleşmesi 4/4, manifest 4/4 ve CSV doğrulayıcısı 7/7 geçti. `python -B src/main.py --check` üç benchmark ve beş algoritma için başarılı. PR #5 deney çalıştırıcısı, manifest ve CSV doğrulayıcısı `develop` dalına `a37ef0e241517a446355a58869a14837fa7427bf` birleştirme commit’iyle alındı. Method-freeze kararının SHA kaydı ve üç koşuluk dry-run ayrı kapılardır.
 
+## Güncel deney çıktıları ve düzeltme
+
+- Method-freeze `df8ac616165dc0105c83429e5ed000f34045aafa` için [dry-run paketi](evidence/method-freeze-dry-run-df8ac61/README.md) mevcut: 15 CSV / 45 pilot koşu, final veriden ayrı.
+- [Final manifest](../results/tables/experiment_manifest.json) deney sürümü `73ce39c78a6263ce6f252267edeff0515157aca1` ve temiz başlangıç kaydeder: 15 CSV / 450 koşu / 13.500.000 FE, seed 2026–2055. [Doğrulama kaydı](../results/verification.json), 9 istatistik tablosu ve 18 grafik dosyası mevcut.
+- Merge öncesi denetimde bulunan kesirli FE kabulü validator'da düzeltildi; kesirli/NaN/Inf ve boolean history FE regresyonları eklendi. Yerel benchmark CRLF sorunu, dosyalar kayıtlı LF/SHA biçimine getirilerek giderildi; referans değerler değiştirilmedi.
+- Düzeltmenin öz kontrolü: ilgili testler 14/14, final validator 450/450 başarılı. Yeni düzeltme **bağımsız inceleme bekliyor**; yukarıdaki tarihsel PR #5 kabulü yeni sürüme taşınmaz. Bu kayıt yönetici freeze/merge onayı yerine geçmez.
+
 ## Kalan proje blokları
 
-- Method-freeze ve experiment-freeze.
-- 450 final koşu.
-- Final istatistik/şekil ve final en iyi-çözüm Gantt uygulaması.
+- Validator düzeltmesinin bağımsız incelemesi ve güncel kabul kararı.
+- Final en iyi-çözüm Gantt çıktıları ve makaleye aktarımı.
 - Makalenin gerçek Results/Discussion/Conclusion ve beyanları.
 - NASE final biçim uyarlaması.
 

@@ -74,6 +74,23 @@ class TestExperimentOutputValidator(unittest.TestCase):
         errors = validate(self.raw, runs=1, seed_base=2026)
         self.assertTrue(any("infeasible" in error for error in errors), errors)
 
+    def test_noninteger_or_nonfinite_fe_is_rejected(self):
+        for value in (20000.5, float("nan"), float("inf"), float("-inf")):
+            with self.subTest(value=value):
+                self.fixture.mutate("ta001", "PSO", "n_fes", str(value))
+                errors = validate(self.raw, runs=1, seed_base=2026)
+                self.assertTrue(any("n_fes is not an integer" in e for e in errors), errors)
+
+    def test_invalid_history_fe_is_rejected(self):
+        for history in ([20000.5], [0.5, 20000], [float("nan"), 20000],
+                        [float("inf"), 20000], [True, 20000]):
+            with self.subTest(history=history):
+                self.fixture.mutate("ta001", "PSO", "history_fes", json.dumps(history))
+                best_f = valid_row("ta001")["best_f"]
+                self.fixture.mutate("ta001", "PSO", "history_f", json.dumps([best_f] * len(history)))
+                errors = validate(self.raw, runs=1, seed_base=2026)
+                self.assertTrue(any("history_fes" in e for e in errors), errors)
+
     def test_objective_and_cmax_corruption_are_rejected(self):
         self.fixture.mutate("ta001", "DE", "objective", 999999)
         self.fixture.mutate("ta011", "DBO", "cmax", 999999)
