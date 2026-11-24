@@ -43,6 +43,15 @@ class TestExperimentManifest(unittest.TestCase):
                     main._save_settings(3, manifest)
             saved = json.loads((Path(tmp) / "experiment_manifest.json").read_text(encoding="utf-8"))
             self.assertEqual(saved, manifest)
+            self.assertEqual(saved["algorithm_parameters"], {
+                "PSO": {"pop_size": 30, "w_max": 0.9, "w_min": 0.4,
+                        "c1": 2.0, "c2": 2.0, "v_frac": 0.2},
+                "DE": {"pop_size": 100, "F": 0.5, "CR": 0.9},
+                "DBO": {"pop_size": 30, "k": 0.1, "b": 0.3, "S": 0.5,
+                        "roll_prob": 0.9, "deviation_prob": 0.1},
+                "RIME": {"pop_size": 30, "w": 5},
+                "NRBO": {"pop_size": 30, "DF": 0.6},
+            })
             self.assertTrue((Path(tmp) / "parametre_ayarlari.csv").exists())
             self.assertTrue((Path(tmp) / "deney_ayarlari.json").exists())
 

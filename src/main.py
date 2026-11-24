@@ -67,9 +67,10 @@ from algorithms.rime import rime                         # noqa: E402
 #    Biçim:  "RAPORDAKİ_ADI": (fonksiyon, {parametre: değer, ...})
 #    Parametreler özgün makalelerden alınır ve makalede tablo olarak raporlanır.
 ALGORITHMS = {
-    "PSO": (pso, {"pop_size": 30, "w_max": 0.9, "w_min": 0.4, "c1": 2.0, "c2": 2.0}),
-    "DE": (de, {"F": 0.5, "CR": 0.9}),
-    "DBO": (dbo, {"pop_size": 30, "k": 0.1, "b": 0.3, "S": 0.5}),
+    "PSO": (pso, {"pop_size": 30, "w_max": 0.9, "w_min": 0.4, "c1": 2.0, "c2": 2.0, "v_frac": 0.2}),
+    "DE": (de, {"pop_size": 100, "F": 0.5, "CR": 0.9}),
+    "DBO": (dbo, {"pop_size": 30, "k": 0.1, "b": 0.3, "S": 0.5,
+                  "roll_prob": 0.9, "deviation_prob": 0.1}),
     "NRBO": (nrbo, {"pop_size": 30, "DF": 0.6}),
     "RIME": (rime, {"pop_size": 30, "w": 5}),
     # "GA":  (ga,  {"pop_size": 50, "pc": 0.9, "pm": 0.1}),
@@ -369,8 +370,9 @@ def run_analysis() -> None:
             fr = st.friedman_test(res)
             st.friedman_table(fr).to_csv(TAB_DIR / f"{name}_friedman.csv", float_format="%.4g")
             print(f"\n    Friedman: chi2 = {fr['statistic']:.3f}, p = {fr['p_value']:.3g}")
-            cd = st.nemenyi_cd(fr["k"], fr["n_blocks"])
-            vz.plot_cd_diagram(fr["mean_ranks"], cd, name, out_dir=FIG_DIR)
+            if fr["p_value"] < ALPHA:
+                cd = st.nemenyi_cd(fr["k"], fr["n_blocks"], alpha=ALPHA)
+                vz.plot_cd_diagram(fr["mean_ranks"], cd, name, out_dir=FIG_DIR)
         else:
             print("    (Friedman testi ve CD diyagramı için en az 3 algoritma gerekir.)")
     print(f"\n    Tablolar : {TAB_DIR}\n    Grafikler: {FIG_DIR}")
