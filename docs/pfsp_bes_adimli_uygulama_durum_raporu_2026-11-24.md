@@ -1,53 +1,35 @@
-# PFSP · PR #5, PSO ve deney hazırlığı durum raporu
+# PFSP · PR #5, PSO ve deney durumu
 
 **Tarih:** 24.11.2026
 **İncelenen dal:** `work/tarik`
-**Teknik denetimin başlangıç commit’i:** `c3c2b38f66485370a0dd8104577732ba43a7cf1b`
-**Belgelerin ve son kalite kontrollerinin commit’i:** `ad45575b1d5968d0d6b29217d1008fbda07ee17c`
-**Durum:** Adım 1 ve 2 tamamlandı. Adım 3 yönetici onayını bekliyor. Adım 4 ve 5 için final deney çıktıları henüz oluşmadı.
+**Çıktıların yayımlandığı commit:** `17973e6575084c4b92cbd561097a7fb4930b6d39`
+**Durum:** Deney çıktıları mevcut; merge öncesi validator düzeltmesi bağımsız inceleme bekliyor. Güncel kabul kararı [kalite durumunda](quality_status.md), aktif görevler [Tarık work listesinde](../worklists/tarik.md) tutulur.
 
 ## Beş adımın durumu
 
-| Adım | Durum | Yapılan işlem veya bekleme nedeni |
+| Adım | Durum | Kanıt ve sınır |
 | --- | --- | --- |
-| 1 · PR #5 teknik kararı | Tamamlandı | DBO/NRBO akademik P1 kapanışı 23 Kasım tarihli yönetici kaydından doğrulandı. Algoritma sözleşmesi 4/4, manifest 4/4 ve CSV doğrulayıcısı 7/7 geçti. Yerel teknik kapsam için `P0=0 / P1=0 — KABUL` işlendi. GitHub PR birleştirme ve uzak CI sonucu teyit edilmedi. |
-| 2 · PSO yöntem metni | Tamamlandı | Başlatma, hız ve konum denklemleri, güncelleme sırası, sınır yönetimi ve FE hesabı Python koduyla eşleştirildi. Atalet ağırlığı için Shi ve Eberhart (1998) kaynağı eklendi. FE tabanlı zamanlama proje uyarlaması olarak belgelendi. |
-| 3 · 45 koşuluk dry-run | Başlatılmadı | Yönetici method-freeze’in henüz onaylanmadığını bildirdi ve dry-run’ı başlatmama talimatı verdi. Bildirilen develop HEAD `a37ef0e241517a446355a58869a14837fa7427bf` freeze olarak kullanılmadı. Onaylı METHOD-FREEZE SHA gerekli. |
-| 4 · 450 final koşu | Başlatılmadı | Dry-run ve validator başarısı, ardından EXPERIMENT-FREEZE onayı gerekiyor. Final CSV veya deney manifesti üretilmedi. |
-| 5 · Validator, istatistik ve grafik | Araçlar hazır, final uygulama bekliyor | Mevcut validator testleri geçti. Final CSV doğrulaması, Wilcoxon sıra toplamı + Holm, Friedman ve koşula bağlı Nemenyi ile yakınsama ve kutu grafikleri 450 koşunun doğrulanmış ham çıktılarıyla üretilecek. Bu aşamada final tablo, p-değeri veya grafik üretilmedi. |
+| 1 · PR #5 teknik kararı | Önceki sürüm kabul edildi | `c3c2b38f66485370a0dd8104577732ba43a7cf1b` için tarihsel P0=0/P1=0 kararı kalite belgesindedir. Birleştirme commit'i `a37ef0e241517a446355a58869a14837fa7427bf`. Bu kabul yeni düzeltmenin bağımsız incelemesi değildir. |
+| 2 · PSO yöntem metni | Mevcut | [Yöntem metni](../paper/method_pso.md), çalıştırıcı ve manifest aynı parametreleri kullanır. Atalet ağırlığı kaynağı yayıncı özeti düzeyinde doğrulanmıştır; FE zamanlaması ve parametre seçimi proje uygulamasıdır. |
+| 3 · 45 koşuluk dry-run | Kanıt mevcut | [Pilot paket](evidence/method-freeze-dry-run-df8ac61/README.md): method-freeze `df8ac616165dc0105c83429e5ed000f34045aafa`, 15 CSV / 45 koşu / 1.350.000 FE. Final results verisinden ayrı. |
+| 4 · 450 final koşu | Çıktılar mevcut | [Manifest](../results/tables/experiment_manifest.json): `73ce39c78a6263ce6f252267edeff0515157aca1`, temiz başlangıç, seed 2026–2055, 15 CSV / 450 koşu / 13.500.000 FE. |
+| 5 · Validator, istatistik ve grafik | Düzeltme inceleme bekliyor | [Deney doğrulama kaydı](../results/verification.json), 9 istatistik tablosu ve 18 grafik mevcut. Validator düzeltmesi sonrası öz kontrol 450/450 ve ilgili testler 14/14 başarılı; yeni sürümün bağımsız kabulü beklenir. |
 
-[PR #5 teknik kaydı](https://github.com/mamyylmz/-Akis_Tipi_Cizelgeleme/blob/ad45575b1d5968d0d6b29217d1008fbda07ee17c/docs/quality_status.md) · [PSO yöntem metni](https://github.com/mamyylmz/-Akis_Tipi_Cizelgeleme/blob/ad45575b1d5968d0d6b29217d1008fbda07ee17c/paper/method_pso.md) · [Shi ve Eberhart, 1998](https://doi.org/10.1109/ICEC.1998.699146)
+## PSO parametreleri
 
-## PSO kod ve metin eşleştirmesi
+`pop_size=30`, `w_max=0.9`, `w_min=0.4`, `c1=2.0`, `c2=2.0`, `v_frac=0.2`: çalıştırıcı, fonksiyon varsayılanları, yöntem metni ve manifest ile eşleşir. FE tabanlı ağırlık dış tur başında hesaplanır; hız [−0.2, 0.2], konum [0, 1] aralığındadır.
 
-| Parametre | Doğrulanan değer | Kod kaynağı |
-| --- | --- | --- |
-| `pop_size` | 30 | `src/main.py` PSO kaydı |
-| `w_max` | 0.9 | Çalıştırıcı kaydı |
-| `w_min` | 0.4 | Çalıştırıcı kaydı |
-| `c1` | 2.0 | Çalıştırıcı kaydı |
-| `c2` | 2.0 | Çalıştırıcı kaydı |
-| `v_frac` | 0.2 | `src/algorithms/pso.py` fonksiyon varsayılanı |
+## Düzeltme ve yeniden kontrol
 
-Atalet ağırlığı dış tur başında `w_max − (w_max − w_min) × fes / max_fes` ile hesaplanır ve o tur boyunca sabit kalır. İlk güncelleme başlangıç sürüsünün değerlendirilmesinden sonra yapılır. PFSP anahtar uzayında hız bileşenleri [−0,2, 0,2], konum bileşenleri [0, 1] aralığına kırpılır.
+Validator, FE değerlerini `int()` ile keserek kabul ediyordu. Sonlu tam sayı kontrolü ve kesirli/NaN/Inf/boolean history FE regresyonları eklendi. Yerel benchmark dosyaları, Git'te kayıtlı LF biçimine getirildi; beklenen SHA'lar veya sayısal veriler değiştirilmedi. PSO açıklamasındaki bütün parametreleri kaynak önerisi sayan ifade kaldırıldı.
 
-## Çalıştırılan kalite kontrolleri
+Bağımsız incelemeci şu kontrolleri yeni sürümde yeniden çalıştırmalı:
 
-| Komut | Sonuç |
-| --- | --- |
-| `python -B -m unittest discover -s tests` | 90/90 başarılı. |
-| `python -B src/main.py --check` | Üç benchmark, beş algoritma başarılı. |
-| `python -B src/problem.py` | Referans Cmax 1278, 1582, 2297. |
-| `python -B tools/run_neh_baseline.py` | NEH Cmax 1286, 1680, 2410. |
-| `python -B tools/check_repo_integrity.py` | Başarılı, benchmark hash’leri ve yerel bağlantılar dahil. |
-| `python -B docs/check_literature.py` | Başarılı, mevcut makale yapısı ve kaynakça kontrolleri dahil. |
+```text
+python -B -m unittest tests/test_experiment_manifest.py tests/test_experiment_validation.py tests/test_statistical_gate.py -v
+python -B tools/check_experiment_outputs.py --raw-dir results/raw --runs 30 --seed-base 2026
+python -B tools/check_repo_integrity.py
+python -B docs/check_literature.py
+```
 
-Kontroller `work/tarik` commit’inde çalıştırıldı. Bu kanıt, yeni bir develop SHA’sının yönetici tarafından freeze olarak onaylandığı anlamına gelmez.
-
-## Devam kapıları
-
-1. Yönetici **METHOD-FREEZE SHA** kaydını açıkça onaylamalı. Sadece onaylı sürümde 5 algoritma × 3 benchmark × 3 seed dry-run çalıştırılır. Beklenen değerler **15 CSV, 45 koşu, seed 2026–2028 ve 1.350.000 FE**. Manifest aynı freeze SHA’yı kaydetmeli ve validator tamamen geçmeli.
-2. Başarılı dry-run ardından **EXPERIMENT-FREEZE** onayı gerekir. Temiz checkout, beş algoritma, üç benchmark hash’i ve değiştirilmemiş FE bütçeleri denetlenir. Final ölçütleri **15 CSV, 450 koşu, seed 2026–2055 ve 13.500.000 FE**.
-3. Final CSV’ler elle değiştirilmeden proje içi validator ile doğrulanır. Wilcoxon sıra toplamı + Holm ve Friedman sonuçları doğrulanmış veriden üretilir. Protokol uyarınca Nemenyi, Friedman anlamlıysa uygulanır. Yakınsama ve kutu grafikleri aynı sonuç verisine bağlanır.
-
-Raporun yerel kopyası ayrı results dizininde saklanır. Repo kopyası docs altındadır. Repo results dizini freeze sonrasındaki bilimsel çıktılara ayrılmıştır.
+Deneyin özgün manifesti ve verification kaydı değiştirilmedi. Düzeltme algoritma davranışını, problem modelini veya sayısal benchmark verisini değiştirmez. Bu rapor yönetici freeze/merge onayının yerine geçmez.

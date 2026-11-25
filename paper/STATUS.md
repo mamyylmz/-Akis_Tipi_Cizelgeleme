@@ -1,6 +1,6 @@
 # Makale Hazırlık Durumu
 
-**Tarih:** 22.11.2026
+**Tarih:** 24.11.2026
 
 ## Hazır / kullanılabilir girdiler
 
@@ -19,12 +19,12 @@
 
 ## Makaleyi bloke eden işler
 
-1. Method-freeze kararının commit kimliğiyle kaydedilmesi.
-2. Experiment-freeze ve 450 final koşu.
-3. Descriptive statistics, Wilcoxon+Holm, Friedman ve anlamlıysa Nemenyi/CD.
-4. Final convergence/box plotlar, en iyi çözümler ve büyük örnek Gantt.
-5. Results/Discussion/Conclusion.
-6. Yazar kimlikleri, ORCID, kurum, CRediT, conflict/data/code/AI beyanları.
+1. Validator düzeltmesinin bağımsız incelemesi; güncel kabul sınırı [kalite durumunda](../docs/quality_status.md).
+2. Final en iyi çözümlerin Gantt çıktıları ve mevcut tablo/grafiklerin makaleye aktarımı.
+3. Results/Discussion/Conclusion.
+4. Yazar kimlikleri, ORCID, kurum, CRediT, conflict/data/code/AI beyanları.
+
+[Method-freeze dry-run kanıtı](../docs/evidence/method-freeze-dry-run-df8ac61/README.md) `df8ac616165dc0105c83429e5ed000f34045aafa` sürümüne bağlıdır; 45 pilot koşu final veri değildir. [Final manifest](../results/tables/experiment_manifest.json) `73ce39c78a6263ce6f252267edeff0515157aca1` sürümünden 450 koşuyu kaydeder. Betimsel istatistikler, Wilcoxon+Holm, Friedman, üç benchmark için Nemenyi/CD ve yakınsama/kutu grafikleri mevcuttur.
 
 ## Ders sürümü ve NASE sürümü
 

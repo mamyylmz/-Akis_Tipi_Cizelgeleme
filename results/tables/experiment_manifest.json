@@ -1,0 +1,61 @@
+{
+  "algorithm_parameters": {
+    "DBO": {
+      "S": 0.5,
+      "b": 0.3,
+      "deviation_prob": 0.1,
+      "k": 0.1,
+      "pop_size": 30,
+      "roll_prob": 0.9
+    },
+    "DE": {
+      "CR": 0.9,
+      "F": 0.5,
+      "pop_size": 100
+    },
+    "NRBO": {
+      "DF": 0.6,
+      "pop_size": 30
+    },
+    "PSO": {
+      "c1": 2.0,
+      "c2": 2.0,
+      "pop_size": 30,
+      "v_frac": 0.2,
+      "w_max": 0.9,
+      "w_min": 0.4
+    },
+    "RIME": {
+      "pop_size": 30,
+      "w": 5
+    }
+  },
+  "algorithms": [
+    "PSO",
+    "DE",
+    "DBO",
+    "NRBO",
+    "RIME"
+  ],
+  "environment": {
+    "numpy": "2.2.6",
+    "os": "Windows-10-10.0.19045-SP0",
+    "pandas": "2.2.3",
+    "python": "3.11.9",
+    "scipy": "1.17.1"
+  },
+  "experiment_commit": "73ce39c78a6263ce6f252267edeff0515157aca1",
+  "git_dirty_at_start": false,
+  "instances": [
+    "ta001",
+    "ta011",
+    "ta021"
+  ],
+  "max_fes": {
+    "ta001": 20000,
+    "ta011": 30000,
+    "ta021": 40000
+  },
+  "n_runs": 30,
+  "seed_base": 2026
+}

@@ -40,6 +40,16 @@ def _parse_bool(value) -> bool:
     raise ValueError(f"invalid boolean value: {value!r}")
 
 
+def _parse_fe(value) -> int:
+    """Accept finite integer-valued numbers without truncation or bool coercion."""
+    if not isinstance(value, (bool, np.bool_)):
+        if isinstance(value, (int, np.integer)):
+            return int(value)
+        if isinstance(value, (float, np.floating)) and np.isfinite(value) and value == np.floor(value):
+            return int(value)
+    raise ValueError(f"FE must be a finite integer, got {value!r}")
+
+
 def _parse_permutation(value, n_jobs: int) -> list[int]:
     if not isinstance(value, str):
         raise ValueError(f"permutation must be a space-separated string, got {type(value).__name__}")
@@ -101,7 +111,7 @@ def validate(raw_dir: Path, runs: int = 30, seed_base: int = 2026) -> list[str]:
                 prefix = f"{path}:run={row_no + 1}"
 
                 try:
-                    n_fes = int(row["n_fes"])
+                    n_fes = _parse_fe(row["n_fes"])
                 except (TypeError, ValueError):
                     errors.append(f"{prefix}: n_fes is not an integer")
                     n_fes = None
@@ -124,10 +134,18 @@ def validate(raw_dir: Path, runs: int = 30, seed_base: int = 2026) -> list[str]:
 
                 try:
                     x = np.asarray(json.loads(row["best_x"]), dtype=float)
-                    hfes = [int(v) for v in json.loads(row["history_fes"])]
+                    raw_hfes = json.loads(row["history_fes"])
                     hval = [float(v) for v in json.loads(row["history_f"])]
                 except Exception as exc:
                     errors.append(f"{prefix}: JSON decode failed: {exc}")
+                    continue
+
+                try:
+                    if not isinstance(raw_hfes, list):
+                        raise ValueError("expected a list")
+                    hfes = [_parse_fe(v) for v in raw_hfes]
+                except ValueError as exc:
+                    errors.append(f"{prefix}: invalid history_fes: {exc}")
                     continue
 
                 if x.shape != (problem.dim,):

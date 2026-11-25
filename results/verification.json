@@ -1,0 +1,133 @@
+{
+  "sha": "73ce39c78a6263ce6f252267edeff0515157aca1",
+  "csv": 15,
+  "runs": 450,
+  "fes": 13500000,
+  "validator": "PASS",
+  "manifest": {
+    "algorithm_parameters": {
+      "DBO": {
+        "S": 0.5,
+        "b": 0.3,
+        "deviation_prob": 0.1,
+        "k": 0.1,
+        "pop_size": 30,
+        "roll_prob": 0.9
+      },
+      "DE": {
+        "CR": 0.9,
+        "F": 0.5,
+        "pop_size": 100
+      },
+      "NRBO": {
+        "DF": 0.6,
+        "pop_size": 30
+      },
+      "PSO": {
+        "c1": 2.0,
+        "c2": 2.0,
+        "pop_size": 30,
+        "v_frac": 0.2,
+        "w_max": 0.9,
+        "w_min": 0.4
+      },
+      "RIME": {
+        "pop_size": 30,
+        "w": 5
+      }
+    },
+    "algorithms": [
+      "PSO",
+      "DE",
+      "DBO",
+      "NRBO",
+      "RIME"
+    ],
+    "environment": {
+      "numpy": "2.2.6",
+      "os": "Windows-10-10.0.19045-SP0",
+      "pandas": "2.2.3",
+      "python": "3.11.9",
+      "scipy": "1.17.1"
+    },
+    "experiment_commit": "73ce39c78a6263ce6f252267edeff0515157aca1",
+    "git_dirty_at_start": false,
+    "instances": [
+      "ta001",
+      "ta011",
+      "ta021"
+    ],
+    "max_fes": {
+      "ta001": 20000,
+      "ta011": 30000,
+      "ta021": 40000
+    },
+    "n_runs": 30,
+    "seed_base": 2026
+  },
+  "friedman": {
+    "ta001": {
+      "p_value": 0.020097563133081645,
+      "cd_generated": true
+    },
+    "ta011": {
+      "p_value": 2.1052029616825913e-11,
+      "cd_generated": true
+    },
+    "ta021": {
+      "p_value": 1.751414384128061e-14,
+      "cd_generated": true
+    }
+  },
+  "tables": [
+    "deney_ayarlari.json",
+    "experiment_manifest.json",
+    "parametre_ayarlari.csv",
+    "ta001_friedman.csv",
+    "ta001_istatistikler.csv",
+    "ta001_wilcoxon.csv",
+    "ta011_friedman.csv",
+    "ta011_istatistikler.csv",
+    "ta011_wilcoxon.csv",
+    "ta021_friedman.csv",
+    "ta021_istatistikler.csv",
+    "ta021_wilcoxon.csv"
+  ],
+  "figures": [
+    "ta001_cd.pdf",
+    "ta001_cd.png",
+    "ta001_kutu.pdf",
+    "ta001_kutu.png",
+    "ta001_yakinsama.pdf",
+    "ta001_yakinsama.png",
+    "ta011_cd.pdf",
+    "ta011_cd.png",
+    "ta011_kutu.pdf",
+    "ta011_kutu.png",
+    "ta011_yakinsama.pdf",
+    "ta011_yakinsama.png",
+    "ta021_cd.pdf",
+    "ta021_cd.png",
+    "ta021_kutu.pdf",
+    "ta021_kutu.png",
+    "ta021_yakinsama.pdf",
+    "ta021_yakinsama.png"
+  ],
+  "raw_sha256": {
+    "raw/ta001/DBO.csv": "d546a1dfb6650b98e15217bea3111bc0f751afc0098fa7e0ec037470ea3de070",
+    "raw/ta001/DE.csv": "e7e7f90d15d65f4891623a82e8c39736ce793f4806e83cbc929968b8b501ef4d",
+    "raw/ta001/NRBO.csv": "5d17dfd22f83b2be993bdb5aef6af7f06d0ec5a7bd30bbf167015f8a02271261",
+    "raw/ta001/PSO.csv": "73191d4cf32cf5cf03d38eb06029dd28847119f055ffbc8db10fd82fe581816f",
+    "raw/ta001/RIME.csv": "f245b2bcca463c1f35b92c005545f4ed643889c7c068489a38fee330298a0cbc",
+    "raw/ta011/DBO.csv": "a1e00c91144a2d1edbdffcd8be9a3e189824d87049d65a2130a8654ee643d7cf",
+    "raw/ta011/DE.csv": "716fd553b57fbda84cde004f295919a8dbe19d1b6fac85763bc5859cca97e096",
+    "raw/ta011/NRBO.csv": "f0138330daad6137e1ce415244b6b6de84f804d674b885dc4fa53d3339996d14",
+    "raw/ta011/PSO.csv": "24e4b479336ff3da71600fa68b3dcd70dd4a632f078b0eda75e14ff5731bb5b4",
+    "raw/ta011/RIME.csv": "c82101125f64f19dc580d2d65981c7625f906b8f73fdbbb288b8830b5a27e265",
+    "raw/ta021/DBO.csv": "7865fa048656f833f84f6b41054ee155b0301e04d236846d78447e711a466332",
+    "raw/ta021/DE.csv": "430572c319963ca6be7b394ea30c4c4a93b3c424410a9e2fb7651c756626064c",
+    "raw/ta021/NRBO.csv": "aeacb2d702197bd20b166d44d9fe785757fa4ddf597edc631487d7c1bd5d7eb2",
+    "raw/ta021/PSO.csv": "fe38f3ef281d52f44acd2656c37bea63ef000d7b899368fed2a5ca6b43a05b1e",
+    "raw/ta021/RIME.csv": "93aaff53b5c76866bbc401a2804645e69fe649d86565e780ad1a073b5d689289"
+  }
+}

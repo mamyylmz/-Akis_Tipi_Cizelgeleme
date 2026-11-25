@@ -84,7 +84,10 @@ def pso(problem, max_fes, seed, pop_size=30, w_max=0.9, w_min=0.4,
         c2       : Sosyal katsayı (sürünün en iyisine çekimi).
         v_frac   : Hız sınırının arama aralığına oranı: v_max = v_frac*(ub-lb).
 
-        Varsayılan parametre değerleri [1] ve [2]'de önerilen değerlerdir.
+        Varsayılan parametre değerleri proje uygulamasının ayarlarıdır;
+        tamamının [1] ve [2]'de önerildiği iddia edilmez. [2]'nin yayıncı
+        özeti atalet ağırlığının tanıtılmasını doğrular; FE tabanlı doğrusal
+        zamanlama projeye özgü uyarlamadır.
         Deneylerde kullanılan değerler main.py'deki ALGORITHMS sözlüğünden
         gelir ve makalenin "Parametre Ayarları" tablosunda aynen raporlanır.
 
@@ -153,7 +156,8 @@ def pso(problem, max_fes, seed, pop_size=30, w_max=0.9, w_min=0.4,
 
         # Atalet ağırlığı İTERASYONA göre değil, harcanan FE ORANINA göre
         # doğrusal olarak azalır. Böylece bütçe ne olursa olsun keşiften
-        # (büyük w) sömürüye (küçük w) geçiş aynı oranda gerçekleşir. [2]
+        # (büyük w) sömürüye (küçük w) geçiş aynı oranda gerçekleşir.
+        # FE tabanlı bu zamanlama proje uyarlamasıdır.
         # NOT: Kendi algoritmanızda iterasyon sayısına bağlı parametreler varsa
         # (ör. GWO'daki "a" katsayısı, t/T oranı) aynı şekilde fes/max_fes
         # oranını kullanın.
