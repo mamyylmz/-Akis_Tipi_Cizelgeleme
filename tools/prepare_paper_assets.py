@@ -242,9 +242,13 @@ def check():
         used = set(re.findall(r'\]\(#ref-([A-Z0-9]+)\)', text))
         assert refs == used and len(refs) == 13, (filename, refs - used, used - refs)
         assert len(re.findall(r'<a id="ref-', text)) == 13
-        ai_method = re.search(r"\*\*Yapay zekâ kullanım açıklaması:\*\* (.*?)(?=\n\n)", text, re.S).group(1)
-        ai_declaration = re.search(r"\*\*Yapay Zekâ Kullanım Beyanı:\*\* (.*?)(?=\n\n)", text, re.S).group(1)
-        assert ai_method == ai_declaration, (filename, "AI statements differ")
+        if filename == "manuscript_nase_en.md":
+            assert "ChatGPT/Codex" in text.split("## 3. Results and Discussion")[0]
+            assert "ChatGPT/Codex" in text.split("## Declarations")[1]
+        else:
+            ai_method = re.search(r"\*\*Yapay zekâ kullanım açıklaması:\*\* (.*?)(?=\n\n)", text, re.S).group(1)
+            ai_declaration = re.search(r"\*\*Yapay Zekâ Kullanım Beyanı:\*\* (.*?)(?=\n\n)", text, re.S).group(1)
+            assert ai_method == ai_declaration, (filename, "AI statements differ")
         for heading in (("Abstract",) if filename == "manuscript_nase_en.md" else ("Özet", "Abstract")):
             match = re.search(r"^## " + heading + r"\n\n(.*?)(?=\n\n\*\*)", text, re.M | re.S)
             assert match, (filename, heading)
