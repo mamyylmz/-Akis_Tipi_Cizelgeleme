@@ -92,8 +92,8 @@ Friedman analyses treat matching run numbers/seeds as blocks within each benchma
 | pandas | 2.2.3 |
 | python | 3.11.9 |
 | scipy | 1.17.1 |
-| CPU | [TEYİT BEKLİYOR] |
-| RAM | [TEYİT BEKLİYOR] |
+| CPU | [CONFIRMATION PENDING] |
+| RAM | [CONFIRMATION PENDING] |
 <!-- /data:environment -->
 
 CPU, RAM, background load and power mode remain **[EXPERIMENT OPERATOR VERIFICATION REQUIRED]**. Runtime comparisons describe the recorded environment only.
@@ -274,7 +274,7 @@ The ta001 reference is DBO due to the prespecified alphabetical tie rule among e
 <!-- data:nemenyi -->
 | Instance | Method pairs exceeding CD |
 | --- | --- |
-| ta001 | Yok |
+| ta001 | None |
 | ta011 | DBO / DE; DBO / PSO; DBO / RIME; DE / NRBO; NRBO / PSO; NRBO / RIME |
 | ta021 | DBO / DE; DBO / RIME; DE / NRBO; NRBO / PSO; NRBO / RIME; PSO / RIME |
 <!-- /data:nemenyi -->
