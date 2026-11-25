@@ -66,3 +66,9 @@ jobs:
 
       - name: Run literature and paper structure check
         run: python docs/check_literature.py
+
+      - name: Validate every final CSV against PFSP and exact FE contract
+        run: python tools/check_experiment_outputs.py --raw-dir results/raw --runs 30 --seed-base 2026
+
+      - name: Independently verify final manuscript numerical blocks and schedules
+        run: python -B tools/prepare_paper_assets.py --check
