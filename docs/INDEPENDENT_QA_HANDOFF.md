@@ -8,7 +8,7 @@
 - Pilot: 15 CSV / 45 koşu / 1.350.000 FE; `docs/evidence/method-freeze-dry-run-df8ac61/`.
 - **Gerçek final deneyde kullanılan temiz checkout:** `73ce39c78a6263ce6f252267edeff0515157aca1` (manifest ve `results/verification.json`).
 - Final sonuçların `develop` entegrasyonu: PR #11, merge `3589e6ba4c4d48db46a6c9271cdba91737f3daf2`.
-- Bilal makale entegrasyonu: PR #12; son kabul edilen merge SHA GitHub PR kaydından teyit edilmeli.
+- Bilal makale entegrasyonu: PR #12, merge `764a2e1ba40c29e4257e13b816cbe38b5198e390` (Ubuntu/Windows PR CI PASS).
 - Yönetici inceleme/testleri: `tests/test_manager_final_acceptance.py` ve `docs/MANAGER_FINAL_GATE_2026-11-25.md`. Son onaylı `develop` HEAD ayrıca teyit edilmeli.
 - **Önemli:** Final 450 koşu için deneye *başlamadan önce* verilen açık yönetici EXPERIMENT-FREEZE kararının ayrı bir kanıtı tespit edilmedi. Kodun temiz kaynak SHA'sı doğrulanmıştır; geçmişe dönük olarak ön onay verilmiş gibi gösterilmemelidir.
 
