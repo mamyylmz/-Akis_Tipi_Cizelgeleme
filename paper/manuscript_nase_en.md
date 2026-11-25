@@ -39,7 +39,7 @@ Three Taillard benchmarks and their source checksums are fixed. The values 1278,
 **Table 1. Benchmarks and evaluation budgets.**
 
 <!-- data:benchmarks -->
-| Örnek | Boyut | Veri üretim tohumu | Referans | FE/koşu | SHA-256 |
+| Instance | Dimensions | Benchmark seed | Reference | FE/run | SHA-256 |
 | --- | --- | --- | --- | --- | --- |
 | ta001 | 20×5 | 873654221 | 1278 | 20000 | `68164a1350ad2252e224b3fc36872ec65556f04cb6cd6914abaa455910867bf2` |
 | ta011 | 20×10 | 587595453 | 1582 | 30000 | `e291f3f94885af40c9b9509cd9e939d66d4455d3611db55b42b3bfb801cf6656` |
@@ -63,7 +63,7 @@ The experiments use 20,000, 30,000 and 40,000 objective-function evaluations (FE
 **Table 2. Effective optimizer settings from the final experiment manifest.**
 
 <!-- data:parameters -->
-| Algoritma | Popülasyon | Etkin parametreler |
+| Algorithm | Population | Effective parameters |
 | --- | --- | --- |
 | DBO | 30 | S=0.5; b=0.3; deviation_prob=0.1; k=0.1; roll_prob=0.9 |
 | DE | 100 | CR=0.9; F=0.5 |
@@ -85,7 +85,7 @@ Friedman analyses treat matching run numbers/seeds as blocks within each benchma
 **Table 3. Manifest-recorded software environment.**
 
 <!-- data:environment -->
-| Alan | Manifest değeri |
+| Field | Manifest value |
 | --- | --- |
 | numpy | 2.2.6 |
 | os | Windows-10-10.0.19045-SP0 |
@@ -107,7 +107,7 @@ CPU, RAM, background load and power mode remain **[EXPERIMENT OPERATOR VERIFICAT
 **Table 4. Distribution of final makespans over 30 runs per algorithm and instance.**
 
 <!-- data:statistics -->
-| Örnek | Yöntem | n | En iyi | En kötü | Ortalama | Medyan | Std. sapma | Ort. RPD (%) | Uygun (%) |
+| Instance | Method | n | Best | Worst | Mean | Median | Sample SD | Mean RPD (%) | Feasible (%) |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
 | ta001 | DBO | 30 | 1297 | 1324 | 1301.300000 | 1297.000000 | 9.311283 | 1.823161 | 100 |
 | ta001 | DE | 30 | 1288 | 1297 | 1296.700000 | 1297.000000 | 1.643168 | 1.463224 | 100 |
@@ -131,7 +131,7 @@ The best observed makespans were 1288 (DE, ta001), 1586 (RIME, ta011) and 2318 (
 **Table 5. Independent deterministic NEH baselines; CI runtimes are not comparable with Windows experiment runtimes.**
 
 <!-- data:neh -->
-| Örnek | Referans Cmax | NEH Cmax | RPD (%) | CI referans süre (s) |
+| Instance | Reference Cmax | NEH Cmax | RPD (%) | CI reference runtime (s) |
 | --- | --- | --- | --- | --- |
 | ta001 | 1278 | 1286 | 0.625978 | 0.016048 |
 | ta011 | 1582 | 1680 | 6.194690 | 0.016795 |
@@ -147,7 +147,7 @@ All convergence curves use the actual FE axis and recorded best-so-far histories
 **Table 6. Median Cmax at recorded evaluation-budget fractions.**
 
 <!-- data:convergence -->
-| Örnek | Yöntem | %25 FE medyanı | %50 FE medyanı | %100 FE medyanı |
+| Instance | Method | Median at 25% FE | Median at 50% FE | Median at 100% FE |
 | --- | --- | --- | --- | --- |
 | ta001 | DBO | 1324.0 | 1324.0 | 1297.0 |
 | ta001 | DE | 1297.0 | 1297.0 | 1297.0 |
@@ -189,7 +189,7 @@ Dispersion and median performance provide complementary evidence. In particular,
 **ta001:**
 
 <!-- data:wilcoxon_ta001 -->
-| Karşılaştırma | z | p-değeri | p (Holm) | Sonuç |
+| Comparison | z | p-value | p (Holm) | Result |
 | --- | --- | --- | --- | --- |
 | DBO – DE | 1.722 | 0.085 | 0.34 | = |
 | DBO – NRBO | 0.6357 | 0.525 | 0.8238 | = |
@@ -200,7 +200,7 @@ Dispersion and median performance provide complementary evidence. In particular,
 **ta011:**
 
 <!-- data:wilcoxon_ta011 -->
-| Karşılaştırma | z | p-değeri | p (Holm) | Sonuç |
+| Comparison | z | p-value | p (Holm) | Result |
 | --- | --- | --- | --- | --- |
 | RIME – DBO | -5.729 | 1.01e-08 | 3.031e-08 | + |
 | RIME – DE | -2.58 | 0.009883 | 0.01219 | + |
@@ -211,7 +211,7 @@ Dispersion and median performance provide complementary evidence. In particular,
 **ta021:**
 
 <!-- data:wilcoxon_ta021 -->
-| Karşılaştırma | z | p-değeri | p (Holm) | Sonuç |
+| Comparison | z | p-value | p (Holm) | Result |
 | --- | --- | --- | --- | --- |
 | DE – DBO | -5.847 | 4.998e-09 | 1.499e-08 | + |
 | DE – NRBO | -6.594 | 4.286e-11 | 1.714e-10 | + |
@@ -224,7 +224,7 @@ The ta001 reference is DBO due to the prespecified alphabetical tie rule among e
 **Table 10. Friedman statistics and post-hoc Nemenyi critical-difference thresholds.**
 
 <!-- data:friedman -->
-| Örnek | Friedman istatistiği | p | Blok | Yöntem | CD |
+| Instance | Friedman statistic | p | Blocks | Method | CD |
 | --- | --- | --- | --- | --- | --- |
 | ta001 | 11.656442 | 0.0200975631331 | 30 | 5 | 1.113701 |
 | ta011 | 55.899160 | 2.10520296168e-11 | 30 | 5 | 1.113701 |
@@ -236,7 +236,7 @@ The ta001 reference is DBO due to the prespecified alphabetical tie rule among e
 **ta001:**
 
 <!-- data:ranks_ta001 -->
-| Algoritma | Ortalama Friedman sırası | Genel sıra |
+| Algorithm | Mean Friedman rank | Overall rank |
 | --- | --- | --- |
 | DE | 2.7 | 1.0 |
 | RIME | 2.85 | 2.0 |
@@ -248,7 +248,7 @@ The ta001 reference is DBO due to the prespecified alphabetical tie rule among e
 **ta011:**
 
 <!-- data:ranks_ta011 -->
-| Algoritma | Ortalama Friedman sırası | Genel sıra |
+| Algorithm | Mean Friedman rank | Overall rank |
 | --- | --- | --- |
 | RIME | 1.733 | 1.0 |
 | DE | 2.367 | 2.0 |
@@ -260,7 +260,7 @@ The ta001 reference is DBO due to the prespecified alphabetical tie rule among e
 **ta021:**
 
 <!-- data:ranks_ta021 -->
-| Algoritma | Ortalama Friedman sırası | Genel sıra |
+| Algorithm | Mean Friedman rank | Overall rank |
 | --- | --- | --- |
 | RIME | 1.8 | 1.0 |
 | DE | 1.867 | 2.0 |
@@ -272,7 +272,7 @@ The ta001 reference is DBO due to the prespecified alphabetical tie rule among e
 **Table 14. Mean-rank pairs exceeding the Nemenyi critical difference.**
 
 <!-- data:nemenyi -->
-| Örnek | CD'yi aşan sıra farkı çiftleri |
+| Instance | Method pairs exceeding CD |
 | --- | --- |
 | ta001 | Yok |
 | ta011 | DBO / DE; DBO / PSO; DBO / RIME; DE / NRBO; NRBO / PSO; NRBO / RIME |
@@ -294,7 +294,7 @@ Every global minimum across the 450 final runs is recorded below, including the 
 **Table 15. Best runs, seeds, Cmax, RPD and one-based job permutations.**
 
 <!-- data:best -->
-| Örnek | Yöntem | Run | Seed | Cmax | RPD (%) | Permütasyon (1 tabanlı) |
+| Instance | Method | Run | Seed | Cmax | RPD (%) | One-based permutation |
 | --- | --- | --- | --- | --- | --- | --- |
 | ta001 | DE | 30 | 2055 | 1288 | 0.782473 | 17 9 15 8 3 14 16 6 11 19 13 5 4 18 1 2 7 10 20 12 |
 | ta011 | RIME | 25 | 2050 | 1586 | 0.252845 | 18 5 2 12 9 10 15 17 14 3 4 6 19 8 20 11 13 7 1 16 |
@@ -317,7 +317,7 @@ The [schedule-verification record](support/final_best_schedules.md) contains exa
 **Table 16. Measured algorithm time per run; runtime belongs to the recorded environment.**
 
 <!-- data:runtime -->
-| Örnek | Yöntem | Ort. süre (s) | Süre std. (s) |
+| Instance | Method | Mean time (s) | Time SD (s) |
 | --- | --- | --- | --- |
 | ta001 | DBO | 1.508162 | 0.037801 |
 | ta001 | DE | 2.076895 | 0.031825 |
@@ -358,7 +358,7 @@ A fixed representation and equal objective-evaluation budgets allowed five conti
 
 ## References
 
-Kaynaklar soyada göre sıralanmıştır. Kimlik ve DOI bilgileri mevcut literatür ve yöntem kayıtlarına dayanır; bütün tam metinlerin bu turda yeniden açıldığı iddia edilmez. NEH, DBO ve NRBO erişim sınırları korunmuştur. Shi ve Eberhart kaydı [PSO yöntem metninden](method_pso.md) alınmıştır.
+References are ordered alphabetically by author surname. Bibliographic identifiers and DOIs follow the documented source audit; this review did not independently access every full paper. Access limitations concerning NEH, DBO and NRBO are retained. The Shi–Eberhart citation follows the [PSO method record](method_pso.md).
 
 <a id="ref-L03"></a>
 
