@@ -1,6 +1,6 @@
 # Makale Hazırlık Durumu
 
-**25.11.2026 · Bilal teslimi bağımsız teknik düzeltme aşamasında · İNCELEME BEKLİYOR.** Bu durum proje kabulü veya gönderim onayı değildir.
+**25.11.2026 · Bilal teslimi yönetici teknik denetiminde düzeltildi; dış bağımsız inceleme ve yazar/danışman onayları BEKLİYOR.** Bu durum proje kabulü veya gönderim onayı değildir.
 
 ## Birleştirilmiş içerik
 
@@ -14,7 +14,7 @@
 
 Deney sürümü `73ce39c78a6263ce6f252267edeff0515157aca1`: 15 CSV, 450 koşu, 13500000 FE, seed 2026–2055. [Manifest](../results/tables/experiment_manifest.json) ve [verification.json](../results/verification.json) temel kayıtlardır; pilotlar karıştırılmadı. Kontrol tabanı `3589e6b` deney commit'iyle karıştırılmaz. Bu iki sürümün algoritma/model/veri farkında yalnız PSO açıklama ve yorum değişikliği görüldü; davranış değişikliği bulunmadı.
 
-Yerel kontrol, [kalite belgesindeki](../docs/quality_status.md) validator bağımsız inceleme bekleme kaydını veya yönetici freeze/merge onayını kapatmaz. PR birleştirilmesi tek başına belgelenmiş kabul kararı yerine geçirilmemiştir.
+Yönetici, [final kabul kaydında](../docs/MANAGER_FINAL_GATE_2026-11-25.md) doğrulama kaynaklarını ve gerçekleşen entegrasyonu ayrı tutar. Yeni `tests/test_manager_final_acceptance.py` manifest/hash/450 FE sözleşmesi ile Gantt kaynaklarını ayrıca kontrol eder. Bu, dış bağımsız QA veya yazar/danışman onayı değildir. PR birleştirilmesi tek başına belgelenmiş kabul kararı yerine geçirilmemiştir.
 
 ## Öz kontrol
 
@@ -32,13 +32,13 @@ Otomatik öz kontrol insan bağımsız incelemesi değildir. Tablolar kaynak has
 
 ## Teyitler ve kalan işler
 
-**Teyit edildi:** Bilal'in 25.11.2026 mesajıyla altı yazarın ad-soyadı ve ortak kurum/fakülte/bölümü; danışman 1., takım lideri 2. sıra. NASE kopyası istek doğrultusunda Türkçe taslaktır.
+**Teyit edildi:** Bilal'in 25.11.2026 mesajıyla altı yazarın ad-soyadı ve ortak kurum/fakülte/bölümü; danışman 1., takım lideri 2. sıra. İngilizce NASE metni gönderim için temel taslaktır; Türkçe NASE kopyası yalnız iç düzen kontrolüdür.
 
 **P0:** Bu belge çalışmasında yeni veri/model bozulması bulunmadı; proje geneli için yeni kabul kararı verilmedi.
 
 **P1 / İNCELEME BEKLİYOR:**
 
-1. Muhammed/bağımsız incelemeciler: validator düzeltmesi ve deney sürümü için güncel kabul kaydı; kalite belgesindeki açık kayıt sürüyor.
+1. Yönetici teknik validator/manifest/çizelge testlerini tamamladı; harici bağımsız incelemeci [devir paketindeki](../docs/INDEPENDENT_QA_HANDOFF.md) kapıları yeniden doğrulamalı. Deney öncesi açık EXPERIMENT-FREEZE yönetici onayına dair tarihli kayıt bulunamadığı sınırlaması ayrıca açıklanmıştır.
 2. Tarık/Şeref: rank-sum bağ düzeltmesi yokluğu, seed bloklaması ve veriden seçilen referansın yorum sınırları incelenmeli. P-değerleri korunmuştur; bu bir doğrulanmış yeni kod hatası veya otomatik kabul kapatması değildir.
 3. Yöntem sahipleri/danışman: birleşik yöntem ve sonuç anlatımının, kaynak erişim sınırlarının bağımsız incelemesi.
 4. Her yazar: e-posta, ORCID, fiilî CRediT katkısı; danışman: diğer yazarların nihai sırası/puanı ve sorumlu yazar onayı.
@@ -46,4 +46,4 @@ Otomatik öz kontrol insan bağımsız incelemesi değildir. Tablolar kaynak has
 6. Bütün yazarlar: “çıkar çatışması yoktur / dış finansman alınmamıştır” taslakları, teşekkür, AI kullanım kapsamı ve veri/kod erişim beyanı.
 7. Danışman: nihai NASE dil/dergi seçimi ve etik izin gerekliliği; resmî DOCX şablonuna aktarım ve son biçim denetimi.
 
-**P2:** İngilizce NASE metninin nihai teknik/redaksiyon incelemesi ve Word şablonuna aktarımı bekler. README'deki “final koşular üretilmedi” cümlesi güncel manifest/kalite kaydıyla tutarsız; bu turda README değiştirilmedi. DOCX aktarımında uzun SHA/permütasyon tabloları, denklem düzenleyicisi ve Gantt okunabilirliği kontrol edilecek. [NASE kuralları](../docs/journal_shortlist.md) gönderim günü tekrar doğrulanacak.
+**P2:** İngilizce NASE metninin nihai teknik/redaksiyon incelemesi ve Word şablonuna aktarımı bekler. README'nin artık yanlış olan “final koşular üretilmedi” ifadesi düzeltildi. İngilizce NASE sayısal tablolarının Türkçe başlık/değer etiketleri de kaynak veriler korunarak İngilizceye çevrildi. DOCX aktarımında uzun SHA/permütasyon tabloları, denklem düzenleyicisi ve Gantt okunabilirliği kontrol edilecek. [NASE kuralları](../docs/journal_shortlist.md) gönderim günü tekrar doğrulanacak.

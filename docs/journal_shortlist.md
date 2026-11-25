@@ -17,4 +17,6 @@ Resmî NASE sayfaları:
 - https://dergipark.org.tr/en/pub/nase/aim-and-scope
 - https://dergipark.org.tr/en/pub/nase/writing-rules
 
+**Resmî kaynaklardaki dil çelişkisi:** NASE'nin [About](https://dergipark.org.tr/en/pub/nase/about-journal) sayfası yayımlanan makaleleri Türkçe ve İngilizce olarak tanıtır; buna karşılık [Author Guidelines](https://dergipark.org.tr/en/pub/nase/writing-rules) başvuru metninin İngilizce ve resmî şablonda hazırlanmasını açıkça ister. Bunlar aynı iddia değildir. Dergiden yazılı istisna teyidi alınana kadar daha kısıtlayıcı **İngilizce başvuru** kuralı kullanılır; 'dergi hiçbir koşulda Türkçe yayımlamıyor' iddia edilmez.
+
 **Dil kararı (25.11.2026):** İngilizce resmî yazım kuralları açıkça 'Articles should be written in English' diyor. [İngilizce NASE makale taslağı](../paper/manuscript_nase_en.md) oluşturuldu; Türkçe NASE metni yalnız içerik/düzen kontrol kopyasıdır. NASE'ye gönderim için İngilizce gövde, Word şablonu ve eksik yazar beyanları gerekir.
