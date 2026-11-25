@@ -144,8 +144,8 @@ def nase_text():
     source = (PAPER / "outline.md").read_text(encoding="utf-8")
     parts = re.split(r"^#{2,3} (.+)\n", source, flags=re.M)
     sections = {parts[i]: parts[i + 1].strip() for i in range(1, len(parts), 2)}
-    result = ["# NASE Gönderim Taslağı\n",
-              "**Durum: İNCELEME BEKLİYOR · Türkçe gövde; dil seçimi danışman teyidine tabidir.** "
+    result = ["# NASE Türkçe İçerik/Düzen Taslağı — Gönderime Uygun Değil\n",
+              "**Durum: YALNIZ TÜRKÇE İÇ KONTROL KOPYASI; İngilizce NASE yazım kuralına göre doğrudan gönderilemez. İngilizce çalışma metni: [manuscript_nase_en.md](manuscript_nase_en.md).** "
               "Bu dosya [ders makalesinden](outline.md) `python -B tools/prepare_paper_assets.py --nase` "
               "ile türetilir; bağımsız bir sonuç veya yöntem kaynağı değildir.\n",
               "**Biçim ve gönderim kontrol notu:** [Resmî NASE kuralları](https://dergipark.org.tr/en/pub/nase/writing-rules) "
@@ -232,7 +232,7 @@ def generate_schedules():
 def check():
     expected = blocks()
     assert (PAPER / "manuscript_nase.md").read_text(encoding="utf-8") == nase_text(), "NASE diverged from course source"
-    for filename in ("outline.md", "manuscript_nase.md"):
+    for filename in ("outline.md", "manuscript_nase.md", "manuscript_nase_en.md"):
         text = (PAPER / filename).read_text(encoding="utf-8")
         found = re.findall(r"<!-- data:(\w+) -->\n(.*?)\n<!-- /data:\1 -->", text, re.S)
         assert {k for k, _ in found} == set(expected), (filename, "missing numerical blocks")
@@ -245,13 +245,13 @@ def check():
         ai_method = re.search(r"\*\*Yapay zekâ kullanım açıklaması:\*\* (.*?)(?=\n\n)", text, re.S).group(1)
         ai_declaration = re.search(r"\*\*Yapay Zekâ Kullanım Beyanı:\*\* (.*?)(?=\n\n)", text, re.S).group(1)
         assert ai_method == ai_declaration, (filename, "AI statements differ")
-        for heading in ("Özet", "Abstract"):
+        for heading in (("Abstract",) if filename == "manuscript_nase_en.md" else ("Özet", "Abstract")):
             match = re.search(r"^## " + heading + r"\n\n(.*?)(?=\n\n\*\*)", text, re.M | re.S)
             assert match, (filename, heading)
             count = len(match.group(1).split())
             assert 170 <= count <= 240, (filename, heading, count)
             print(f"{filename} {heading}: {count} words")
-        for label in ("Anahtar Kelimeler", "Keywords"):
+        for label in (("Keywords",) if filename == "manuscript_nase_en.md" else ("Anahtar Kelimeler", "Keywords")):
             keywords = re.search(r"\*\*" + label + r":\*\* (.+)", text).group(1).split(";")
             assert 5 <= len(keywords) <= 8
             print(f"{filename} {label}: {len(keywords)}")

@@ -66,3 +66,6 @@ jobs:
 
       - name: Run literature and paper structure check
         run: python docs/check_literature.py
+
+      - name: Independently verify final manuscript numerical blocks and schedules
+        run: python -B tools/prepare_paper_assets.py --check

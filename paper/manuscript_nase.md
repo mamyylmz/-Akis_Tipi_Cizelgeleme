@@ -1,7 +1,7 @@
-# NASE Gönderim Taslağı
+# NASE Türkçe İçerik/Düzen Taslağı — Gönderime Uygun Değil
 
 
-**Durum: İNCELEME BEKLİYOR · Türkçe gövde; dil seçimi danışman teyidine tabidir.** Bu dosya [ders makalesinden](outline.md) `python -B tools/prepare_paper_assets.py --nase` ile türetilir; bağımsız bir sonuç veya yöntem kaynağı değildir.
+**Durum: YALNIZ TÜRKÇE İÇ KONTROL KOPYASI; İngilizce NASE yazım kuralına göre doğrudan gönderilemez. İngilizce çalışma metni: [manuscript_nase_en.md](manuscript_nase_en.md).** Bu dosya [ders makalesinden](outline.md) `python -B tools/prepare_paper_assets.py --nase` ile türetilir; bağımsız bir sonuç veya yöntem kaynağı değildir.
 
 
 **Biçim ve gönderim kontrol notu:** [Resmî NASE kuralları](https://dergipark.org.tr/en/pub/nase/writing-rules) 25.11.2026 tarihinde kontrol edildi. DOCX şablonuna aktarımda tek sütun, 10 pt Times New Roman, 1.15 satır aralığı ve 2.5 cm kenar boşluğu uygulanmalıdır. Başlık 12 pt; özet, anahtar kelimeler ve kaynakça 9 pt; abstract 150–300 kelime, anahtar kelimeler 5–8 adet olmalıdır. Yazar soyadları büyük harfle; her yazar için kurum/fakülte/bölüm, e-posta ve ORCID gereklidir. APA 6 yazar–yıl atıfları ve alfabetik kaynakça korunmalıdır. Şekil ve tablolar metinde anılmalı, denklemler ardışık numaralarla Word denklem düzenleyicisine aktarılmalıdır. Markdown dosyası sayfa/font ayarlarını uygulamaz; resmî şablona son aktarım ve görsel kontrol **İNCELEME BEKLİYOR**. Danışman Türkçe/İngilizce seçimini kesinleştirmeli ve gönderim günü kurallar yeniden kontrol edilmelidir.

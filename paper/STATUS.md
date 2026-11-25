@@ -1,14 +1,14 @@
 # Makale Hazırlık Durumu
 
-**25.11.2026 · work/bilal · İNCELEME BEKLİYOR.** Bu durum proje kabulü veya gönderim onayı değildir.
+**25.11.2026 · Bilal teslimi bağımsız teknik düzeltme aşamasında · İNCELEME BEKLİYOR.** Bu durum proje kabulü veya gönderim onayı değildir.
 
 ## Birleştirilmiş içerik
 
 - Tek ders makalesi [outline.md](outline.md): 30 zorunlu başlık korunarak giriş, literatür, yöntemler, deney/istatistik, gerçek sonuçlar, tartışma, iki özet, kaynakça, beyanlar ve ekler birleştirildi.
-- [Türkçe NASE taslağı](manuscript_nase.md): aynı içerik dört ana bölüme dönüştürüldü; İngilizce Abstract/Keywords mevcut. Ders metni esas alınır; NASE kopyası `python -B tools/prepare_paper_assets.py --nase` ile türetilir.
+- [İngilizce NASE taslağı](manuscript_nase_en.md): resmî İngilizce dil şartına uygun bilimsel içerik taslağı; 16 sayısal blok aynı kaynaktan ve kaynaklar eşleşiyor. [Türkçe düzen taslağı](manuscript_nase.md) başvuru metni değildir. Ders metni esas alınır; NASE kopyası `python -B tools/prepare_paper_assets.py --nase` ile türetilir.
 - [Final çizelge desteği](support/final_best_schedules.md): üç seçili minimum, bütün minimum eşitlikleri, verifier zaman CSV'leri ve Gantt'lar. Zamanlar elle üretilmedi.
 - [Belge aracı](../tools/prepare_paper_assets.py): ham hash, tablo yeniden hesaplama, 16 sayısal blok, iki sürüm eşleşmesi, kaynakça, özet ve çizelge kontrolü.
-- Giriş taslağı, literatür matrisi, kaynak audit'i ve sahip yöntem dosyaları değiştirilmedi. `results/`, `src/`, `data/` değişmedi; commit/push yapılmadı.
+- Giriş taslağı, literatür matrisi, kaynak audit'i ve sahip yöntem dosyaları değiştirilmedi. Ham sonuçlar ve model/veri dosyaları değişmedi. Bilal teslimi GitHub'da commit/push edilmiştir.
 
 ## Veri ve kabul sınırı
 
@@ -46,4 +46,4 @@ Otomatik öz kontrol insan bağımsız incelemesi değildir. Tablolar kaynak has
 6. Bütün yazarlar: “çıkar çatışması yoktur / dış finansman alınmamıştır” taslakları, teşekkür, AI kullanım kapsamı ve veri/kod erişim beyanı.
 7. Danışman: nihai NASE dil/dergi seçimi ve etik izin gerekliliği; resmî DOCX şablonuna aktarım ve son biçim denetimi.
 
-**P2:** README'deki “final koşular üretilmedi” cümlesi güncel manifest/kalite kaydıyla tutarsız; bu turda README değiştirilmedi. DOCX aktarımında uzun SHA/permütasyon tabloları, denklem düzenleyicisi ve Gantt okunabilirliği kontrol edilecek. [NASE kuralları](../docs/journal_shortlist.md) gönderim günü tekrar doğrulanacak.
+**P2:** İngilizce NASE metninin nihai teknik/redaksiyon incelemesi ve Word şablonuna aktarımı bekler. README'deki “final koşular üretilmedi” cümlesi güncel manifest/kalite kaydıyla tutarsız; bu turda README değiştirilmedi. DOCX aktarımında uzun SHA/permütasyon tabloları, denklem düzenleyicisi ve Gantt okunabilirliği kontrol edilecek. [NASE kuralları](../docs/journal_shortlist.md) gönderim günü tekrar doğrulanacak.
