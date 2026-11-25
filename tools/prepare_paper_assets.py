@@ -182,7 +182,7 @@ def english_numerical_block(source):
         raise ValueError("Expected Markdown table header")
     labels = [cell.strip() for cell in lines[0].strip("|").split("|")]
     lines[0] = "| " + " | ".join(ENGLISH_HEADER_LABELS.get(x, x) for x in labels) + " |"
-    return "\n".join(lines)
+    return "\n".join(lines).replace("[TEYİT BEKLİYOR]", "[CONFIRMATION PENDING]").replace("| Yok |", "| None |")
 
 
 def marked(key, content):
