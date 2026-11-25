@@ -14,7 +14,7 @@ Bu kayıt uygulanan kontrolleri ve kalan imzalı insan kararlarını ayırır. T
 | 45 koşuluk dry-run | `ef03abafe12d5c07403771d83f89358514cf5533` | 15 CSV, 45 koşu, 1.350.000 FE raporlanmış; pilot kanıt ayrı, final bilimsel veri değil |
 | Deney hazırlığı | PR #10, merge `73ce39c78a6263ce6f252267edeff0515157aca1` | Son final deneyin temiz başlangıç SHA'sı; manifest kanıtı var |
 | 450 koşuluk sonuçlar | PR #11, merge `3589e6ba4c4d48db46a6c9271cdba91737f3daf2` | Final veri, manifest, hash ve validator entegrasyonu; P0/P1 doğrulama ayrıca yapıldı |
-| Bilal makale | PR #12, `work/bilal` | Ders makalesi, İngilizce NASE taslağı, sayısal tablolar, Gantt'lar; yönetici incelemesinde bulunan dil/katkı/durum hataları düzeltildi |
+| Bilal makale | PR #12, merge `764a2e1ba40c29e4257e13b816cbe38b5198e390` | Ders makalesi, İngilizce NASE taslağı, sayısal tablolar, Gantt'lar; yönetici incelemesinde bulunan dil/katkı/durum hataları düzeltildi |
 | Yönetici bağımsız testler | `tests/test_manager_final_acceptance.py` | CI + ikinci bağımsız inceleme için tekrar çalıştırılabilir sözleşme |
 
 **Protokol istisnası:** `73ce39...` temiz deney checkout'u manifestte kayıtlı olmakla birlikte, 450 koşu **başlamadan önce** verilen açık yönetici EXPERIMENT-FREEZE onayını gösteren ayrı bir zaman damgalı kanıt tespit edilemedi. Sonradan ön onay verilmiş gibi tarih yazılamaz. Kod/manifest/hash zinciri kanıtıyla sonuçlar teknik incelemeye alınmıştır; bu governance sapması final bağımsız QA'ya bildirilir.
