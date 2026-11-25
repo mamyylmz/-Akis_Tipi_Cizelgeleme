@@ -50,3 +50,11 @@ Akademik P1 kapanışı yukarıdaki 23.11.2026 yönetici kaydına dayanır. Bağ
 ## Main kuralı
 
 `main`e yalnız final kalite kapısı P0=0/P1=0 ve final deney provenance doğrulandıktan sonra `develop -> main` PR ile geçilir.
+
+## 25.11.2026 — Yönetici final denetimi
+
+- PR #11 `develop`e merge edildi (merge `3589e6ba4c4d48db46a6c9271cdba91737f3daf2`). 15 CSV/450 koşu/13.500.000 FE/seed 2026–2055 manifestte mevcut ve validator ile kontrol edildi.
+- Bilal PR #12 ders/NASE taslağı ve Gantt kaynaklarını birleştirir; yönetici İngilizce tablolardaki Türkçe etiketleri, README durumunu ve devredilmiş yazar katkılarını düzeltti.
+- `tests/test_manager_final_acceptance.py`: deney SHA/manifest/etkin parametre, ham SHA-256, validator ve kazananların bağımsız Gantt doğrulama regresyonu.
+- Kaynak ve sınırlar [yönetici kabul kaydında](MANAGER_FINAL_GATE_2026-11-25.md), ikinci QA süreci [devir belgesinde](INDEPENDENT_QA_HANDOFF.md) yer alır.
+- **Teknik CI PASS, nihai yayın izni değildir.** E-posta/ORCID, kesin CRediT/sıra, COI/funding/AI, CPU/RAM, DOCX şablonu ve danışman onayı hâlâ P1 kabul bloğudur. Deney öncesi EXPERIMENT-FREEZE yönetici onayının ayrı zaman damgalı kanıtı bulunamadı; sonradan verilmiş gibi gösterilmez. Bu nedenle `main`e promosyon yapılmaz.
