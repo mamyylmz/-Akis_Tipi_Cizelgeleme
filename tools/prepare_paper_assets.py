@@ -135,6 +135,56 @@ def blocks():
     return out
 
 
+ENGLISH_HEADER_LABELS = {
+    "Örnek": "Instance",
+    "Boyut": "Dimensions",
+    "Veri üretim tohumu": "Benchmark seed",
+    "Referans": "Reference",
+    "FE/koşu": "FE/run",
+    "Algoritma": "Algorithm",
+    "Popülasyon": "Population",
+    "Etkin parametreler": "Effective parameters",
+    "Alan": "Field",
+    "Manifest değeri": "Manifest value",
+    "Yöntem": "Method",
+    "En iyi": "Best",
+    "En kötü": "Worst",
+    "Ortalama": "Mean",
+    "Medyan": "Median",
+    "Std. sapma": "Sample SD",
+    "Ort. RPD (%)": "Mean RPD (%)",
+    "Uygun (%)": "Feasible (%)",
+    "Referans Cmax": "Reference Cmax",
+    "CI referans süre (s)": "CI reference runtime (s)",
+    "%25 FE medyanı": "Median at 25% FE",
+    "%50 FE medyanı": "Median at 50% FE",
+    "%100 FE medyanı": "Median at 100% FE",
+    "Karşılaştırma": "Comparison",
+    "p-değeri": "p-value",
+    "Sonuç": "Result",
+    "Friedman istatistiği": "Friedman statistic",
+    "Blok": "Blocks",
+    "Ortalama Friedman sırası": "Mean Friedman rank",
+    "Genel sıra": "Overall rank",
+    "CD'yi aşan sıra farkı çiftleri": "Method pairs exceeding CD",
+    "Run": "Run",
+    "Seed": "Seed",
+    "Permütasyon (1 tabanlı)": "One-based permutation",
+    "Ort. süre (s)": "Mean time (s)",
+    "Süre std. (s)": "Time SD (s)"
+}
+
+
+def english_numerical_block(source):
+    """Translate only table headings; do not modify empirical values."""
+    lines = source.splitlines()
+    if not lines or not lines[0].startswith("|"):
+        raise ValueError("Expected Markdown table header")
+    labels = [cell.strip() for cell in lines[0].strip("|").split("|")]
+    lines[0] = "| " + " | ".join(ENGLISH_HEADER_LABELS.get(x, x) for x in labels) + " |"
+    return "\n".join(lines)
+
+
 def marked(key, content):
     return f"<!-- data:{key} -->\n{content}\n<!-- /data:{key} -->"
 
@@ -237,7 +287,7 @@ def check():
         found = re.findall(r"<!-- data:(\w+) -->\n(.*?)\n<!-- /data:\1 -->", text, re.S)
         assert {k for k, _ in found} == set(expected), (filename, "missing numerical blocks")
         for key, value in found:
-            assert value == expected[key], (filename, key, "numerical mismatch")
+            assert value == (english_numerical_block(expected[key]) if filename == "manuscript_nase_en.md" else expected[key]), (filename, key, "numerical mismatch")
         refs = set(re.findall(r'<a id="ref-([A-Z0-9]+)"></a>', text))
         used = set(re.findall(r'\]\(#ref-([A-Z0-9]+)\)', text))
         assert refs == used and len(refs) == 13, (filename, refs - used, used - refs)
