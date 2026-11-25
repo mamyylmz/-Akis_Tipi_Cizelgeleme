@@ -7,14 +7,14 @@ YMM4142 Optimizasyon Teorisi Problem 7 için Permütasyon Akış Tipi Çizelgele
 - Beş meta-sezgisel `develop` üzerinde entegre: DE, PSO, DBO, RIME, NRBO.
 - Zorunlu Taillard örnekleri: ta001, ta011, ta021.
 - Final deney protokolü: 5 × 3 × 30 = 450 koşu, toplam 13.500.000 FE.
-- Final 450 koşu henüz üretilmedi.
+- Final 450 koşu üretildi ve sürüm/hash/validator kanıtlarıyla kaydedildi: [manifest](results/tables/experiment_manifest.json), [verification](results/verification.json); 15 CSV, 13.500.000 FE. Bilimsel bağımsız kabul ve makale/yazar onayları ayrı kapılardır.
 - NEH klasik referans sezgiseli ve üç Taillard sonucu kabul edildi. [Yöntem ve sonuçlar](paper/support/neh_baseline.md).
 - DBO/NRBO akademik P1’i kapandı. Kabul kapsamı [kalite durumunda](docs/quality_status.md) kayıtlı.
 - PR #5 deney çalıştırıcısı, manifest ve CSV doğrulayıcısı `develop` dalına alındı.
 - [PSO yöntem ve parametre metni](paper/method_pso.md) tamamlandı.
 
 Güncel iş dağılımı: [worklists/](worklists/README.md).  
-Makale hazırlık durumu: [paper/STATUS.md](paper/STATUS.md).  
+Ders makalesi: [paper/outline.md](paper/outline.md) · [İngilizce NASE çalışma taslağı](paper/manuscript_nase_en.md) · [makale durumu](paper/STATUS.md).  
 Kalite durumu: [docs/quality_status.md](docs/quality_status.md).
 
 ## Repo yapısı
