@@ -42,10 +42,10 @@ Akademik P1 kapanışı yukarıdaki 23.11.2026 yönetici kaydına dayanır. Bağ
 
 ## Kalan proje blokları
 
-- Validator düzeltmesinin bağımsız incelemesi ve güncel kabul kararı.
-- Final en iyi-çözüm Gantt çıktıları ve makaleye aktarımı.
-- Makalenin gerçek Results/Discussion/Conclusion ve beyanları.
-- NASE final biçim uyarlaması.
+- Yönetici teknik testleri eklendi; kod/CSV/Cmax/Gantt/sayısal makale kontrolü CI ile yeniden doğrulanır. **Dış bağımsız final QA henüz yapılmadı.**
+- 450 koşu öncesinde açıkça verilmiş EXPERIMENT-FREEZE yönetici onayı kaydı bulunamamasının protokol istisnası ikinci QA'da değerlendirilmelidir.
+- Result/Discussion/Conclusion metni mevcut; gerçek yazar/e-posta/ORCID/CRediT/COI/funding/AI ve veri-kod erişim onayları bekliyor.
+- CPU/RAM ve ölçüm ortamı delili, NASE resmî İngilizce DOCX şablonu ve danışman onayı bekliyor.
 
 ## Main kuralı
 
