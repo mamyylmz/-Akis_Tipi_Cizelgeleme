@@ -1,22 +1,21 @@
 # Hedef Dergi Kısa Listesi
 
-**Son resmî web kontrolü:** 25.11.2026
+**Resmî yazar kuralları yeniden kontrol edildi:** 28.11.2026. Kaynak: https://dergipark.org.tr/en/pub/nase/writing-rules (sayfa üzerinde son güncelleme: 28.09.2026).
 
 Dersin izin verdiği DergiPark listesi içinde birinci aday **Natural Sciences and Engineering Bulletin (NASE)**, ikinci aday **Sivas Cumhuriyet Üniversitesi Bilim ve Teknoloji Dergisi (CUJAST)** olarak korunur. Nihai seçim danışman onayına tabidir.
 
-| Öncelik / dergi | PFSP uygunluğu | Güncel gönderim özeti |
+| Öncelik / dergi | PFSP uygunluğu | Gönderim özeti |
 | --- | --- | --- |
-| 1 — NASE — https://dergipark.org.tr/en/pub/nase | Amaç-kapsam sayfası Industrial Engineering ile Computer Science and Information Systems Engineering alanlarını açıkça içeriyor. | Resmî İngilizce Author Guidelines sayfası makalelerin **İngilizce** ve dergi şablonuyla hazırlanmasını istiyor; önceki 'Türkçe de kabul edilir' kaydı bu sayfayla çelişiyor. Yazılı dergi teyidi olmadıkça Türkçe gövde gönderime uygun sayılmaz. Tek sütun, 10 pt Times New Roman, 1.15 satır aralığı, 2.5 cm kenar boşluğu; abstract 150–300 kelime; 5–8 keyword; ORCID/e-posta. Ana bölümler: Introduction, Materials and Methods, Results and Discussion, Conclusion. AI kullanımı Materials and Methods bölümünde araç ve kullanım biçimiyle açıklanmalı. |
-| 2 — CUJAST — https://dergipark.org.tr/tr/pub/cujast | Mühendislik/doğa bilimlerinde özgün teorik ve sayısal araştırmaları kapsar. | 12 pt Times New Roman, çift aralık, A4, 2.5 cm kenar boşluğu, sürekli satır numarası; Türkçe/İngilizce özetler ≤300 kelime. Güncel gönderim gününde kurallar tekrar kontrol edilecek. |
+| 1 — NASE — https://dergipark.org.tr/en/pub/nase | Kapsam, Industrial Engineering ve Computer Science and Information Systems Engineering alanlarını içerir. | **İngilizce veya Türkçe** makale kabul edilebileceği yazar kurallarında açıkça belirtilir. Resmî dergi şablonu; tek sütun, 10 pt Times New Roman, 1.15 satır aralığı, 2.5 cm kenar boşluğu; 150–300 kelimelik abstract; 5–8 anahtar kelime; tüm yazarlarda e-posta/ORCID; Word Equation Editor ile numaralı denklemler. AI kullanımının araç ve kapsamı Materials and Methods içinde açıklanır. |
+| 2 — CUJAST — https://dergipark.org.tr/tr/pub/cujast | Mühendislik/doğa bilimlerinde teorik ve sayısal araştırmalar için aday. | Önceki inceleme: 12 pt Times New Roman, çift aralık, A4, 2.5 cm kenar boşluğu, sürekli satır numarası; Türkçe/İngilizce özetler ≤300 kelime. **Bu dergi için 28.11.2026'da yeni bağımsız kural kontrolü yapılmadı; gönderimden önce tekrar bakılmalı.** |
 
-## Karar
+## 28 Kasım kural düzeltmesi
 
-Ders sürümü resmî ders kılavuzunun bölüm yapısıyla hazırlanır. Dergi gönderim sürümü ayrıca NASE'nin güncel şablonuna dönüştürülür. Dersin deney zorunlulukları dergi formatına uyarlama sırasında azaltılmaz.
+25.11.2026 tarihli kayıtta NASE'nin İngilizceyi **zorunlu** tuttuğu yazılıydı. Ancak 28.11.2026'da tekrar açılan resmî **Author Guidelines** sayfasının ilk maddesi açıkça **“Articles should be written in English/Turkish using the Journal’s Manuscript Template.”** ifadesini içeriyor. Bu nedenle önceki “İngilizce zorunludur/Türkçe gönderilemez” iddiası geri çekildi. İngilizce taslak hazırlama kararı yine geçerli ve pratik açıdan uygun olabilir, fakat **dil zorunluluğu olarak sunulamaz**.
 
-Resmî NASE sayfaları:
-- https://dergipark.org.tr/en/pub/nase/aim-and-scope
-- https://dergipark.org.tr/en/pub/nase/writing-rules
+- Yazar kuralları: https://dergipark.org.tr/en/pub/nase/writing-rules
+- Kapsam: https://dergipark.org.tr/en/pub/nase/aim-and-scope
+- Şablon: Yazar kurallarındaki **Manuscript Template** bağlantısından indirilmeli; yalnız Markdown'dan otomatik DOCX üretimi resmî şablona uyum kanıtı değildir.
+- Makale sürümleri: `paper/outline.md` ders metni; `paper/manuscript_nase_en.md` İngilizce dergi uyarlaması. Türkçe dergi uyarlamasının kullanılabilirliği, danışman/dergi ve şablon kontrolüne tabidir.
 
-**Resmî kaynaklardaki dil çelişkisi:** NASE'nin [About](https://dergipark.org.tr/en/pub/nase/about-journal) sayfası yayımlanan makaleleri Türkçe ve İngilizce olarak tanıtır; buna karşılık [Author Guidelines](https://dergipark.org.tr/en/pub/nase/writing-rules) başvuru metninin İngilizce ve resmî şablonda hazırlanmasını açıkça ister. Bunlar aynı iddia değildir. Dergiden yazılı istisna teyidi alınana kadar daha kısıtlayıcı **İngilizce başvuru** kuralı kullanılır; 'dergi hiçbir koşulda Türkçe yayımlamıyor' iddia edilmez.
-
-**Dil kararı (25.11.2026):** İngilizce resmî yazım kuralları açıkça 'Articles should be written in English' diyor. [İngilizce NASE makale taslağı](../paper/manuscript_nase_en.md) oluşturuldu; Türkçe NASE metni yalnız içerik/düzen kontrol kopyasıdır. NASE'ye gönderim için İngilizce gövde, Word şablonu ve eksik yazar beyanları gerekir.
+**Kabul sınırı:** Dil kuralı düzeltilmiş olsa da tüm yazar beyanları, cihaz kanıtı, bağımsız QA, resmî Word şablonu ve danışman onayı eksikken gönderim izni verilmiş sayılmaz.
