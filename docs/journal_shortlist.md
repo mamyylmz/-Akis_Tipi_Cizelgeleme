@@ -1,16 +1,21 @@
 # Hedef Dergi Kısa Listesi
 
-**Sürüm 0.6 · Bağımsız resmî web kontrolü: 18.11.2026 · Durum: PASS**
+**Resmî yazar kuralları doğrudan kontrol edildi:** 28.11.2026. Kaynak: https://dergipark.org.tr/en/pub/nase/writing-rules (erişilebilir sayfada son güncelleme: 10.05.2024).
 
-Ders kuralı, gönderimin ortak kılavuzdaki 11 DergiPark dergisinden birine yapılmasıdır. Birinci aday **Natural Sciences and Engineering Bulletin (NASE)**, ikinci aday **Sivas Cumhuriyet Üniversitesi Bilim ve Teknoloji Dergisi (CUJAST)** olarak korunmuştur. Nihai seçim danışmanla yapılacaktır. Endüstri Mühendisliği ve Algorithms hedef dergi listesinden çıkarılmıştır; bu dergilerdeki yayınların literatür kaynağı olarak kullanılması hedef dergi oldukları anlamına gelmez.
+Dersin izin verdiği DergiPark listesi içinde birinci aday **Natural Sciences and Engineering Bulletin (NASE)**, ikinci aday **Sivas Cumhuriyet Üniversitesi Bilim ve Teknoloji Dergisi (CUJAST)** olarak korunur. Nihai seçim danışman onayına tabidir.
 
-| Öncelik / dergi | Kapsam ve PFSP uygunluğu | Güncel biçim / gönderim bilgisi | Doğrulama durumu |
-| --- | --- | --- | --- |
-| 1 — NASE — https://dergipark.org.tr/en/pub/nase | Resmî kapsam, **Industrial Engineering** ile **Computer Science and Information Systems Engineering** alanlarını açıkça içerir. PFSP, çizelgeleme ve algoritma karşılaştırması bu kapsama uygundur; bu uygunluk kabul garantisi değildir. | Türkçe veya İngilizce; tek sütun; 10 pt Times New Roman; 1,15 satır aralığı; 2,5 cm kenar boşluğu. Özet 150–300 kelime; 5–8 anahtar kelime; yazar e-postaları ve ORCID istenir. Kaynakça APA biçimindedir. Yapay zekâ kullanımı varsa kullanılan aracın ve kullanım biçiminin Materyal ve Metot bölümünde açıklanması gerekir. | [Amaç-kapsam](https://dergipark.org.tr/en/pub/nase/aim-and-scope) ve [Yazım kuralları](https://dergipark.org.tr/en/pub/nase/writing-rules) 18.11.2026'da yeniden kontrol edildi. Yazım kuralları sayfası resmî [Manuscript Template](https://dergipark.org.tr/en/download/journal-file/29916) bağlantısını yayımlıyor. Bu ortamda DOCX ikili içeriği doğrudan ayrıştırılamadı; ancak şablonun resmî bağlantısı ve bağlayıcı biçim kuralları doğrulandı. |
-| 2 — CUJAST — https://dergipark.org.tr/tr/pub/cujast | Resmî kapsam tüm mühendislik ve doğa bilimleri disiplinlerini; özgün deneysel, teorik ve sayısal araştırmaları içerir. PFSP'nin sayısal endüstri mühendisliği çalışması olarak kapsam uyumu vardır. | Türkçe veya İngilizce; 12 pt Times New Roman; çift satır aralığı; A4; 2,5 cm kenar boşluğu; sürekli satır numarası. Türkçe ve İngilizce özet en fazla 300 kelime. Resmî gönderim sayfası makale orijinali, imzalı telif formu ve benzerlik raporunu zorunlu; hakem önerilerini isteğe bağlı listeler. | [Amaç-kapsam](https://dergipark.org.tr/en/pub/cujast/aim-and-scope), [Yazım kuralları](https://dergipark.org.tr/en/pub/cujast/writing-rules) ve [Gönderim dosyaları](https://dergipark.org.tr/tr/pub/cujast/page/13384) 18.11.2026'da yeniden kontrol edildi. Resmî sayfalarda ayrı bir indirilebilir makale şablonu bağlantısı tespit edilmedi; bu nedenle mevcut yazım kuralları esas alınır ve nihai gönderim gününde sayfa tekrar kontrol edilir. |
+| Öncelik / dergi | PFSP uygunluğu | Gönderim özeti |
+| --- | --- | --- |
+| 1 — NASE — https://dergipark.org.tr/en/pub/nase | Kapsam, Industrial Engineering ve Computer Science and Information Systems Engineering alanlarını içerir. | Yazar kuralları başvuru metninin **İngilizce** olmasını belirtir. Resmî dergi şablonu; tek sütun, 10 pt Times New Roman, 1.15 satır aralığı, 2.5 cm kenar boşluğu; 150–300 kelimelik abstract; 5–8 anahtar kelime; tüm yazarlarda e-posta/ORCID; Word Equation Editor ile numaralı denklemler. AI kullanımının araç ve kapsamı Materials and Methods içinde açıklanır. |
+| 2 — CUJAST — https://dergipark.org.tr/tr/pub/cujast | Mühendislik/doğa bilimlerinde teorik ve sayısal araştırmalar için aday. | Önceki inceleme: 12 pt Times New Roman, çift aralık, A4, 2.5 cm kenar boşluğu, sürekli satır numarası; Türkçe/İngilizce özetler ≤300 kelime. **Bu dergi için 28.11.2026'da yeni bağımsız kural kontrolü yapılmadı; gönderimden önce tekrar bakılmalı.** |
 
-## Karar
+## 28 Kasım kural düzeltmesi
 
-İlk hedef **NASE**, yedek hedef **CUJAST** olacaktır. Bunun gerekçesi NASE'nin endüstri mühendisliği ve bilgisayar bilimini doğrudan kapsamına yazması, ayrıca resmî manuscript template bağlantısı yayımlamasıdır. Nihai gönderim öncesinde danışman onayı alınacak ve o günkü dergi kuralları yeniden kontrol edilecektir.
+Doğrudan açılan resmî **Author Guidelines** sayfasının ilk maddesi açıkça **“Articles should be written in English using the Journal’s Manuscript Template.”** ifadesini içeriyor. İngilizce NASE taslağı bu koşula uygundur; Türkçe kopya dergi gönderim metni sayılmaz. NASE'nin About sayfasındaki tarihsel iki dil bilgisinin yazar kurallarından farklı olması halinde gönderim için Author Guidelines esas alınır.
 
-Makale geliştirme aşamasında dersin 3.1–3.5 Materyal ve Metot, 4.1–4.8 Deneysel Çalışmalar ve 5. Sonuç ve Tartışma düzeni korunur. Dergi gönderim sürümüne geçildiğinde bölüm adları seçilen derginin biçimine uyarlanır. Ders için kullanılan 150–250 kelimelik özet aralığı NASE'nin 150–300 ve CUJAST'ın ≤300 kelime sınırlarıyla uyumludur.
+- Yazar kuralları: https://dergipark.org.tr/en/pub/nase/writing-rules
+- Kapsam: https://dergipark.org.tr/en/pub/nase/aim-and-scope
+- Şablon: Yazar kurallarındaki **Manuscript Template** bağlantısından indirilmeli; yalnız Markdown'dan otomatik DOCX üretimi resmî şablona uyum kanıtı değildir.
+- Makale sürümleri: `paper/outline.md` ders metni; `paper/manuscript_nase_en.md` İngilizce dergi uyarlaması. Türkçe dergi uyarlamasının kullanılabilirliği, danışman/dergi ve şablon kontrolüne tabidir.
+
+**Kabul sınırı:** Dil kuralı doğrulanmış olsa da tüm yazar beyanları, cihaz kanıtı, bağımsız QA, resmî Word şablonu ve danışman onayı eksikken gönderim izni verilmiş sayılmaz.

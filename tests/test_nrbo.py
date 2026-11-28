@@ -14,6 +14,31 @@ from algorithms.nrbo import _search_rule, nrbo  # noqa: E402
 from problem import MAX_FES, Problem  # noqa: E402
 
 
+class ScriptedRng:
+    """Returns pre-set draws in call order: random() and standard_normal()."""
+
+    def __init__(self, uniform, normal):
+        self.uniform = list(uniform)
+        self.normal = list(normal)
+
+    def random(self, size=None):
+        v = self.uniform.pop(0)
+        return np.full(size, v, dtype=float) if size is not None else float(v)
+
+    def standard_normal(self, size=None):
+        return float(self.normal.pop(0))
+
+
+def expected_search_rule(best, worst, x, rho, u_del, n1, r1, r2, n2):
+    """Independent scalar (D=1) evaluation of SearchRule.m, Flag = 1."""
+    d = u_del * abs(best - x)
+    first = n1 * ((best - worst) * d) / (2 * (best + worst - 2 * x))
+    xa = x - first + rho
+    m = xa + x                      # mean over one dimension
+    yp, yq = r1 * (m + r1 * d), r2 * (m - r2 * d)
+    return n2 * ((yp - yq) * d) / (2 * (yp + yq - 2 * x))
+
+
 class CountingProblem:
     """Wraps a problem; counts calls and flags non-finite or out-of-bound x."""
 
@@ -113,6 +138,68 @@ class TestNewtonRaphsonBasedOptimizer(unittest.TestCase):
         self.assertEqual(deg.calls, 3000)
         self.assertEqual(deg.bad, 0)
         self.assertEqual(r["n_fes"], 3000)
+
+    def check_near_zero(self, best, worst, x, rho, u_del, n1, r1, r2, n2, which, sign):
+        rng = ScriptedRng([u_del, r1, r2], [n1, n2])
+        a = lambda v: np.array([v], dtype=float)  # noqa: E731
+        out = _search_rule(rng, a(best), a(worst), a(x), a(rho))
+        exp = expected_search_rule(best, worst, x, rho, u_del, n1, r1, r2, n2)
+        # The denominator under test really is tiny and has the intended sign.
+        d = u_del * abs(best - x)
+        den1 = best + worst - 2 * x
+        xa = x - n1 * ((best - worst) * d) / (2 * den1) + rho
+        m = xa + x
+        den2 = r1 * (m + r1 * d) + r2 * (m - r2 * d) - 2 * x
+        den = den1 if which == 1 else den2
+        self.assertTrue(0 < abs(den) < 1e-9 and np.sign(den) == sign, den)
+        self.assertTrue(np.all(np.isfinite(out)))
+        np.testing.assert_allclose(out, [exp], rtol=1e-12, atol=0)
+        return float(out[0])
+
+    def test_first_denominator_near_zero_positive_and_negative(self):
+        eps = 1e-12
+        for sign in (1, -1):
+            with self.subTest(sign=sign):
+                # best + worst - 2x = sign * eps
+                self.check_near_zero(best=0.7 + sign * eps, worst=0.3, x=0.5, rho=0.05,
+                                     u_del=0.5, n1=1.0, r1=0.3, r2=0.6, n2=1.0,
+                                     which=1, sign=sign)
+
+    def test_second_denominator_near_zero_positive_and_negative(self):
+        eps = 1e-12
+        best, worst, x, rho, u_del, n1 = 0.6, 0.9, 0.4, 0.05, 0.5, 1.0
+        d = u_del * abs(best - x)
+        m = (x - n1 * ((best - worst) * d) / (2 * (best + worst - 2 * x)) + rho) + x
+        for sign in (1, -1):
+            with self.subTest(sign=sign):
+                # With r1 = r2 = r: yp + yq - 2x = 2*r*m - 2x = sign * eps.
+                r = (2 * x + sign * eps) / (2 * m)
+                out = self.check_near_zero(best, worst, x, rho, u_del, n1, r, r, 1.0,
+                                           which=2, sign=sign)
+                self.assertGreater(abs(out), 1e6)   # huge but finite step
+
+    def test_large_finite_steps_in_real_runs_are_bounded_before_evaluation(self):
+        # Measured on ta001/ta021 (seeds 2026-2028): 0.16-0.45 % of NRSR components
+        # exceed the whole range (|NRSR| > 1). They must be clipped, never evaluated raw.
+        import algorithms.nrbo as module
+        large = [0]
+        original = module._search_rule
+
+        def spy(*args):
+            out = original(*args)
+            large[0] += int(np.sum(np.abs(out[np.isfinite(out)]) > 1))
+            return out
+
+        wrapped = CountingProblem(Problem("ta021"))
+        module._search_rule = spy
+        try:
+            r = nrbo(wrapped, max_fes=10_000, seed=2026)
+        finally:
+            module._search_rule = original
+        self.assertGreater(large[0], 0)
+        self.assertEqual(wrapped.calls, 10_000)
+        self.assertEqual(wrapped.bad, 0)
+        self.assertEqual(r["n_fes"], 10_000)
 
     def test_invalid_parameters_are_rejected(self):
         p = Problem("ta001")

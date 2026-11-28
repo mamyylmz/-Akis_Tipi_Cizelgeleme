@@ -1,0 +1,2 @@
+# Keep the experiment CSV bytes identical to the recorded SHA-256 values.
+/raw/**/*.csv -text
