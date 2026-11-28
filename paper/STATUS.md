@@ -1,5 +1,8 @@
 # Makale Hazırlık Durumu
 
+> **GÜNCEL DURUM — 28.11.2026 (CI ve yayın hazırlığı):** [PR #14](https://github.com/mamyylmz/-Akis_Tipi_Cizelgeleme/pull/14) `develop` dalına `b535c9f7d7c6b1060262db040087044f667c0b56` ile birleştirildi. [GitHub Actions #139](https://github.com/mamyylmz/-Akis_Tipi_Cizelgeleme/actions/runs/46146021525) Ubuntu/Windows Python 3.12 başarıyla tamamlandı: **90/90 test her platformda PASS**, ham veri/hash/makale kontrolleri ve ek tie-sensitivity aracı PASS. İngilizce tam makale için **16 tablo ve 12 görsel içeren, resmî NASE şablonu OLMAYAN editoryal DOCX ön izleme** Actions artefaktı olarak üretildi. Kullanıcının görsel incelemesi ve resmî şablon/Word equation düzenlemesi yapılmadan gönderime hazır değildir. `docs/SUBMISSION_SIGNOFF_CHECKLIST_2026-11-28.md` yazar/cihaz/danışman imza alanlarını içerir, **bu alanlar hâlâ doğrulanmamıştır**. Deney öncesi EXPERIMENT-FREEZE zaman damgalı onayı bulunamama durumu korunur. Aşağıdaki 25 Kasım öz kontrol sayıları tarihsel verilerdir, güncel test toplamı 90'dır.
+
+
 **25.11.2026 · Bilal teslimi yönetici teknik denetiminde düzeltildi; dış bağımsız inceleme ve yazar/danışman onayları BEKLİYOR.** Bu durum proje kabulü veya gönderim onayı değildir.
 
 ## Birleştirilmiş içerik
