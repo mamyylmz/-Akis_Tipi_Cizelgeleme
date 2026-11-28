@@ -25,7 +25,7 @@
 | P0 | Etik, COI, funding, AI, data/code beyanı | Taslak metin var; tasdik yok | **BLOCKED — yazar/danışman** |
 | P1 | Deney donanım doğrulama | Manifestte CPU/RAM/yük/power mode yok | **BLOCKED — birincil operatör kaydı** |
 | P1 | EXPERIMENT-FREEZE ön onay kanıtı | METHOD-FREEZE SHA ve temiz deney checkout mevcut; ön onay zaman kaydı yok | **PROTOCOL DEVIATION — geriye dönük onay üretilemez** |
-| P1 | Tam bağımsız QA (86+ test, hash, bağımsız model/veri Cmax, istatistikler) | Test sözleşmesi ve komutlar mevcut | **NOT RUN** — bu ortamda Python repo checkout'u bulunmuyor |
+| P1 | Tam bağımsız QA (86+ test, hash, bağımsız model/veri Cmax, istatistikler) | Test sözleşmesi ve komutlar mevcut | **PASS via GitHub CI** — Ubuntu + Windows Python 3.12, her platformda 90/90 test; ham hash ve makale asset kontrolleri PASS |
 | P1 | NASE dil kuralı doğrulama | Resmî Author Guidelines kontrolü; doküman düzeltildi | **PASS** |
 | P1 | Resmî NASE Word şablonunda bütün makale | İngilizce Markdown taslak var, resmî DOCX dosyası henüz yok | **BLOCKED — layout/author data** |
 | P1 | Danışmanın yöntem/sonuç ve hedef dergi onayı | İmzalı onay yok | **BLOCKED — danışman** |
@@ -52,8 +52,8 @@ python tools/check_experiment_outputs.py --raw-dir results/raw --runs 30 --seed-
 python -B tools/prepare_paper_assets.py --check
 ```
 
-**Bu turda yukarıdaki komutlar çalıştırılmadı**; mevcut kayıtların içindeki 86/86 PASS geçmiş test kanıtıdır, bu turun test sonucu değildir. `python src/main.py` varsayılan final deneyleri yeniden yazabileceğinden kontrollü olmayan çalışma dizininde kullanılmamalıdır.
+**Bu oturumda GitHub CI #125 doğrulandı:** https://github.com/mamyylmz/-Akis_Tipi_Cizelgeleme/actions/runs/46145535110 — PR branch commit `f130e037d1ba2b7df93e9bb8d07002e52446a292`; Ubuntu/Python 3.12 **90/90 OK**, Windows/Python 3.12 **90/90 OK**. Her iki job'da PFSP model, NEH, `src/main.py --check`, repo integrity, literature, full raw CSV verification ve `prepare_paper_assets.py --check` adımları başarılı. Loglarda `PAPER CHECK: PASS (raw hashes, table recalculation, manuscript blocks, citations, abstracts, schedules)` görüldü. Bu kanıt, bu oturumda yerel Python repo checkout'u olmamasına rağmen GitHub-hosted testlerin gerçekten çalıştığını doğrular. Yine de bağımsız akademik hakem/istatistik metodoloji incelemesi değildir. `python src/main.py` varsayılan final deneyleri yeniden yazabileceğinden kontrollü olmayan çalışma dizininde kullanılmamalıdır.
 
 ## 5. Teslim kararı
 
-Ders makalesi bilimsel içerik ve kaydedilmiş deney açısından büyük ölçüde hazırlanmış durumda. Bu incelemeyle belgelenen CSV ve çizelge kontrolü doğruluk güvencesini artırdı; ancak bağımsız tam kod/test QA, gerçek yazar beyanları, CPU/RAM, danışman onayı ve resmî Word şablonuna aktarım çözülmeden dergi gönderim onayı ya da `main` sürüm kabulü verilmez.
+Ders makalesi bilimsel içerik ve kaydedilmiş deney açısından büyük ölçüde hazırlanmış durumda. Bu incelemeyle belgelenen CSV ve çizelge kontrolü doğruluk güvencesini artırdı; ancak başarılı otomatik CI tek başına dış bağımsız akademik review değildir; gerçek yazar beyanları, CPU/RAM, danışman onayı ve resmî Word şablonuna aktarım çözülmeden dergi gönderim onayı ya da `main` sürüm kabulü verilmez.
