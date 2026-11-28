@@ -75,3 +75,17 @@ jobs:
 
       - name: Exploratory tie-sensitive Cmax inference (non-mutating)
         run: python tools/exploratory_tie_sensitivity.py
+
+      - name: Build English NASE review-only Word preview
+        if: runner.os == 'Linux'
+        run: |
+          python -m pip install python-docx==1.2.0
+          python tools/build_nase_preview_docx.py
+
+      - name: Upload unapproved NASE manuscript preview
+        if: runner.os == 'Linux'
+        uses: actions/upload-artifact@v4
+        with:
+          name: PFSP-NASE-REVIEW-PREVIEW-NOT-APPROVED
+          path: dist/PFSP_NASE_REVIEW_PREVIEW.docx
+          if-no-files-found: error
