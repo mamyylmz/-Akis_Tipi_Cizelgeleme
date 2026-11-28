@@ -72,3 +72,6 @@ jobs:
 
       - name: Independently verify final manuscript numerical blocks and schedules
         run: python -B tools/prepare_paper_assets.py --check
+
+      - name: Exploratory tie-sensitive Cmax inference (non-mutating)
+        run: python tools/exploratory_tie_sensitivity.py
