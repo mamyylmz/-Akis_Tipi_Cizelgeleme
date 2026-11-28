@@ -57,3 +57,13 @@ python -B tools/prepare_paper_assets.py --check
 ## 5. Teslim kararı
 
 Ders makalesi bilimsel içerik ve kaydedilmiş deney açısından büyük ölçüde hazırlanmış durumda. Bu incelemeyle belgelenen CSV ve çizelge kontrolü doğruluk güvencesini artırdı; ancak başarılı otomatik CI tek başına dış bağımsız akademik review değildir; gerçek yazar beyanları, CPU/RAM, danışman onayı ve resmî Word şablonuna aktarım çözülmeden dergi gönderim onayı ya da `main` sürüm kabulü verilmez.
+
+## 6. 28 Kasım ek CI ve DOCX üretim kanıtı
+
+- [GitHub Actions #139](https://github.com/mamyylmz/-Akis_Tipi_Cizelgeleme/actions/runs/46146021525): Ubuntu ve Windows Python 3.12 **90/90 test** ve bilimsel içerik/ham veri kontrol adımları PASS. `tools/exploratory_tie_sensitivity.py` her iki platformda PASS.
+- Ubuntu job, `tools/build_nase_preview_docx.py` üzerinden **tam İngilizce makaleyi 16 tablo ve 12 görselle DOCX ön izlemeye** dönüştürdü. GitHub Actions artefaktı: `PFSP-NASE-REVIEW-PREVIEW-NOT-APPROVED` (artefakt ID `15263876638`). Bu **resmî NASE şablonu veya Word Equation Editor uyum kanıtı değildir**.
+- 15 sayfalık Word→PDF render'ı ayrıca gözle incelendi. Geniş tabloların dizgisi ve İngilizce makaledeki Türkçe görsel eksen etiketleri son dizgi aşamasında düzeltilmelidir; resmî şablonun kendisi bu incelemede elde edilip belgeye uygulanamadı.
+- [PR #14](https://github.com/mamyylmz/-Akis_Tipi_Cizelgeleme/pull/14) `develop` dalına merge commit `b535c9f7d7c6b1060262db040087044f667c0b56` ile entegre edildi. `main` değişmedi.
+- Ek test: `docs/STATISTICAL_TIE_SENSITIVITY_2026-11-28.md`. ta001 DBO–DE için ties düzeltmeli keşifsel Holm p≈0.0142, mevcut bağ düzeltmesiz yöntemde 0.34. **Önceden planlanmış doğrulayıcı hipotez sonucunun yerini alamaz**; hakem/danışman metodoloji kararına bağlıdır.
+
+**Nihai karar:** Teknik CI kapısı PASS; akademik imzalar, deney donanımı kanıtı, resmî NASE DOCX/Word denklemleri ve danışman yayın izni hâlâ açık. Bu nedenle dergiye gönderim ve `develop`→`main` promosyonu **bloklu** kalır.
